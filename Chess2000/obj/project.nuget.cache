@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "gB3WUVkcphOGzwtt/3K5CqR8rl9pUYZj73FbLl0rJYgjpoyPmCjss49ymKQ4Ef+5pd9Tsb/zSG+YhY+7Ij4P0w==",
+  "success": true,
+  "projectFilePath": "/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Chess2000.csproj",
+  "expectedPackageFiles": [
+    "/home/shinpansen/.nuget/packages/monogame.content.builder.task/3.8.1.303/monogame.content.builder.task.3.8.1.303.nupkg.sha512",
+    "/home/shinpansen/.nuget/packages/monogame.framework.desktopgl/3.8.1.303/monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
+    "/home/shinpansen/.nuget/packages/microsoft.netcore.app.host.linux-x64/6.0.21/microsoft.netcore.app.host.linux-x64.6.0.21.nupkg.sha512"
+  ],
+  "logs": []
+}
