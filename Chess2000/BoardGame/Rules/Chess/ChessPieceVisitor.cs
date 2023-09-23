@@ -4,14 +4,14 @@ namespace Chess2000.BoardGame.Rules.Chess;
 
 public class ChessPieceVisitor : IPieceVisitor<bool, BlackPiece, WhitePiece>
 {
-    private readonly ChessPiece _pieceVisited;
+    private readonly ChessPiece _visitedPiece;
     
-    public ChessPieceVisitor(ChessPiece piece)
+    public ChessPieceVisitor(ChessPiece visitedPiece)
     {
-        _pieceVisited = piece;
+        _visitedPiece = visitedPiece;
     }
 
-    public bool Visit(BlackPiece p1) => _pieceVisited is BlackPiece;
+    public bool Visit(BlackPiece p1) => _visitedPiece is BlackPiece;
 
-    public bool Visit(WhitePiece p1) => _pieceVisited is WhitePiece;
+    public bool Visit(WhitePiece p1) => _visitedPiece is WhitePiece;
 }
