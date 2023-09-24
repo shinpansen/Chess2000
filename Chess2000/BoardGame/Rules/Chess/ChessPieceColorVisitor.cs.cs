@@ -2,11 +2,11 @@ using Chess2000.BoardGame.Pieces.Chess;
 
 namespace Chess2000.BoardGame.Rules.Chess;
 
-public class ChessPieceVisitor : IPieceVisitor<bool, BlackPiece, WhitePiece>
+public class ChessPieceColorVisitor : IPieceVisitor<BlackPiece, WhitePiece, bool>
 {
     private readonly ChessPiece _visitedPiece;
     
-    public ChessPieceVisitor(ChessPiece visitedPiece)
+    public ChessPieceColorVisitor(ChessPiece visitedPiece)
     {
         _visitedPiece = visitedPiece;
     }

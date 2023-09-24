@@ -5,7 +5,7 @@ namespace Chess2000.BoardGame.Pieces.Chess;
 
 public abstract class BlackPiece : ChessPiece
 {
-    public override bool IsFriend(ChessPieceVisitor visitor)
+    public override bool IsFriend(ChessPieceColorVisitor visitor)
     {
         return visitor.Visit(this);
     }

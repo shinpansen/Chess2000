@@ -8,13 +8,10 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Board
 {
-    public interface IBoard<TSt, TP, TS> 
-        where TSt : ISquare<TP, TS>
-        where TP : IPiece 
-        where TS : ISquareLocation
+    public interface IBoard<TS> where TS : ISquare
     {
-        public void MovePiece(TSt source, TSt target);
-        public bool IsSquareValid(TSt square);
-        public bool AreSquaresValid(List<TSt> squares);
+        public void MovePiece(TS source, TS target);
+        public bool IsSquareValid(TS square);
+        public bool AreSquaresValid(List<TS> squares);
     }
 }

@@ -27,7 +27,7 @@ public class ChessMovementRock : ChessMovement
             throw new NullReferenceException("King or tower source square is empty");
         if (!board.AreSquaresValid(new List<ChessSquare>() {_kingSource, _kingTarget, _towerSource, _towerTarget}))
             throw new ArgumentException("Some squares are not part of the board");
-        if (_kingTarget.GetPiece() != null || _towerTarget.GetPiece() != null)
+        if (_kingTarget.Piece is not null || _towerTarget.Piece is not null)
             throw new ArgumentException("Some target squares aren't empty");
 
         board.MovePiece(_kingSource, _kingTarget);

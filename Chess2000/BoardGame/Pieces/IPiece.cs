@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Pieces
 {
-    public interface IPiece
+    public interface IPiece : IDisposable
     {
-        
     }
 }

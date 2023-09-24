@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Chess2000.BoardGame.Board.Chess;
 using Chess2000.BoardGame.Movement.Chess;
@@ -9,8 +10,11 @@ namespace Chess2000.BoardGame.Rules.Chess;
 
 public class ChessMovementRules : IMovementRules<ChessMovement, ChessPiece, ChessBoard, ChessSquare, ChessSquareLocation>
 {
-    public List<ChessMovement> GetAvailableMoves(ChessPiece piece, ChessBoard board)
+    public List<ChessMovement> GetAvailableMoves(ChessSquare square, ChessBoard board)
     {
-        throw new System.NotImplementedException();
+        var movements = new List<ChessMovement>();
+        if(square.GetPiece() is null) return movements;
+
+        
     }
-} 
+}

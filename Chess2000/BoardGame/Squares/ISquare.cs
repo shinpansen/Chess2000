@@ -9,10 +9,7 @@ using Chess2000.BoardGame.Pieces;
 
 namespace Chess2000.BoardGame.Squares
 {
-    public interface ISquare<TP, out TSl> where TP : IPiece where TSl : ISquareLocation
+    public interface ISquare
     {
-        public TSl GetLocation();
-        public TP GetPiece();
-        public void SetPiece(TP piece);
     }
 }

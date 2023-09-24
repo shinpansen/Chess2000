@@ -4,12 +4,12 @@ using Chess2000.BoardGame.Squares.Chess;
 
 namespace Chess2000.BoardGame.Movement.Chess;
 
-public abstract class ChessMovement : IMovement<ChessBoard, ChessSquare, ChessPiece, ChessSquareLocation>
+public abstract class ChessMovement : IMovement<ChessBoard, ChessSquare>
 {
     public abstract void ApplyMovement(ChessBoard board);
 
     protected bool IsSourceSquareValid(ChessSquare square)
     {
-        return square.GetPiece() != null;
+        return square.Piece is not null;
     }
 }

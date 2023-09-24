@@ -10,7 +10,7 @@ using Chess2000.BoardGame.Movement.Chess;
 
 namespace Chess2000.BoardGame.Board.Chess
 {
-    public class ChessBoard : IBoard<ChessSquare, ChessPiece, ChessSquareLocation>
+    public class ChessBoard : IBoard<ChessSquare>
     {
         public List<ChessSquare> Squares { get; private set; }
 
@@ -31,8 +31,8 @@ namespace Chess2000.BoardGame.Board.Chess
 
         public void MovePiece(ChessSquare source, ChessSquare target)
         {
-            target.SetPiece(source.GetPiece());
-            source.SetPiece(null);
+            target.Piece = source.Piece;
+            source.DestroyPiece();
         }
 
         public bool IsSquareValid(ChessSquare square)

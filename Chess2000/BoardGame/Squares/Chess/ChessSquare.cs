@@ -9,34 +9,25 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Squares.Chess
 {
-    public abstract class ChessSquare : ISquare<ChessPiece, ChessSquareLocation>
+    public abstract class ChessSquare : ISquare
     {
-        private ChessSquareLocation _location { get; set; }
-        private ChessPiece _piece { get; set; }
+        public ChessSquareLocation Location { get; private set; }
+        public ChessPiece Piece { get; set; }
         
         protected ChessSquare(ChessSquareLocation location)
         {
-            _location = location;
+            Location = location;
         }
         
         protected ChessSquare(ChessSquareLocation location, ChessPiece piece) : this(location)
         {
-            _piece = piece;
+            Piece = piece;
         }
 
-        public ChessSquareLocation GetLocation()
+        public void DestroyPiece()
         {
-            return _location;
-        }
-
-        public ChessPiece GetPiece()
-        {
-            return _piece;
-        }
-        
-        public void SetPiece(ChessPiece piece)
-        {
-            _piece = piece;
+            Piece.Dispose();
+            Piece = null;
         }
     }
 }
