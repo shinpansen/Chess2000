@@ -2,7 +2,7 @@ using Chess2000.BoardGame.Pieces.Chess;
 
 namespace Chess2000.BoardGame.Rules.Chess;
 
-public class ChessPieceColorVisitor : IPieceVisitor<BlackPiece, WhitePiece, bool>
+public class ChessPieceColorVisitor
 {
     private readonly ChessPiece _visitedPiece;
     

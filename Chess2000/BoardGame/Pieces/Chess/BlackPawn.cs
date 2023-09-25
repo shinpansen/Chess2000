@@ -12,7 +12,7 @@ public class BlackPawn : BlackPiece
     {
     }
     
-    public override List<ChessMovement> GetAvailableMovements(ChessMovementRules rules)
+    public override Dictionary<string, ChessMovement> GetAvailableMovements(ChessMovementRules rules)
     {
         return rules.GetAvailableMoves(this);
     }

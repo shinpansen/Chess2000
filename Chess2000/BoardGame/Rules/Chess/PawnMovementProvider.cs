@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
 using Chess2000.BoardGame.Board.Chess;
 using Chess2000.BoardGame.Movement.Chess;
 using Chess2000.BoardGame.Pieces.Chess;
@@ -10,35 +12,35 @@ namespace Chess2000.BoardGame.Rules.Chess;
 
 public class PawnMovementProvider : ChessMovementProvider
 {
-    public PawnMovementProvider(ChessSquare square, ChessBoard board) : base(square, board)
+    public PawnMovementProvider(ChessPiece piece, ChessPiecesController piecesController, ChessBoard board) : base(piece, piecesController, board)
     {
     }
 
-    public List<ChessMovement> GetAvailableMoves(BlackPawn pawn)
+    public Dictionary<string, ChessMovement> GetAvailableMoves(BlackPawn pawn)
     {
         return GetAvailableMoves(-1);
     }
 
-    public List<ChessMovement> GetAvailableMoves(WhitePawn pawn)
+    public Dictionary<string, ChessMovement> GetAvailableMoves(WhitePawn pawn)
     {
         return GetAvailableMoves(1);
     }
 
-    private List<ChessMovement> GetAvailableMoves(short direction)
+    private Dictionary<string, ChessMovement> GetAvailableMoves(int direction)
     {
-        var movements = new List<ChessMovement>();
+        var movements = new Dictionary<string, ChessMovement>();
 
         //Basic forward move
-        if(Board.TryGetSquare(Col, Row + direction, out var t1) && t1.Piece is null)
-            movements.Add(new ChessMovementBase(Square, t1));
+        if(TryGetEmptySquare(Col, Row + direction, out var target))
+            movements.Add(target.Location.ToString(), new ChessMovementBase(Piece, target));
         
         //Eating opponent on the left
-        if(Board.TryGetSquare(Col-1, Row + direction, out var t2) && t2.Piece is not null && !IsFriend(t2)) 
-            movements.Add(new ChessMovementBase(Square, t2));
+        if(TryGetSquareWithOpponent(Col-1, Row + direction, out var target2)) 
+            movements.Add(target2.Location.ToString(), new ChessMovementBase(Piece, target2));
 
         //Eating opponent on the right
-        if(Board.TryGetSquare(Col-1, Row + direction, out var t3) && t3.Piece is not null && !IsFriend(t3)) 
-            movements.Add(new ChessMovementBase(Square, t3));
+        if (TryGetSquareWithOpponent(Col+1, Row + direction, out var target3))
+            movements.Add(target3.Location.ToString(), new ChessMovementBase(Piece, target3));
 
         return movements;
     }

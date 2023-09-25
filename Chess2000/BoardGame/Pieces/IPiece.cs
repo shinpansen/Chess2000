@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Pieces
 {
-    public interface IPiece : IDisposable
+    public interface IPiece<TS, TSl> 
+        where TS : ISquare<TSl> 
+        where TSl : ISquareLocation<TSl>
     {
+        TS Square { get; }
     }
 }

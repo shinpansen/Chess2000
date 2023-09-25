@@ -9,9 +9,11 @@ using Chess2000.BoardGame.Movement;
 
 namespace Chess2000.BoardGame.Board
 {
-    public interface IBoard<TS>
-        where TS : ISquare
+    public interface IBoard<TS, in TSl>
+        where TS : ISquare<TSl>
+        where TSl : ISquareLocation<TSl>
     {
-        public void ApplySquareMovement(IMovement<> board);
+        public TS GetSquare(TSl squareLocation);
+        public bool TryGetSquare(TSl squareLocation, out TS square);
     }
 }

@@ -12,32 +12,13 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Squares.Chess
 {
-    public abstract class ChessSquare : ISquare
+    public abstract class ChessSquare : ISquare<ChessSquareLocation>
     {
         public ChessSquareLocation Location { get; private set; }
-        public ChessPiece Piece { get; private set; }
         
         protected ChessSquare(ChessSquareLocation location)
         {
             Location = location;
-        }
-        
-        protected ChessSquare(ChessSquareLocation location, ChessPiece piece) : this(location)
-        {
-            Piece = piece;
-        }
-
-        public void MovePieceToNewSquare(ChessSquare newSquare, ChessMovement movement)
-        {
-            
-            Piece.MoveToNewSquare(newSquare, movement);
-            Piece = null;
-        }
-        
-        private void DestroyPiece()
-        {
-            Piece?.Dispose();
-            Piece = null;
         }
     }
 }

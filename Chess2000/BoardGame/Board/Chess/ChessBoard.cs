@@ -10,7 +10,7 @@ using Chess2000.BoardGame.Movement.Chess;
 
 namespace Chess2000.BoardGame.Board.Chess
 {
-    public class ChessBoard : IBoard<ChessSquare, ChessMovement>
+    public class ChessBoard : IBoard<ChessSquare, ChessSquareLocation>
     {
         public List<ChessSquare> Squares { get; private set; }
 
@@ -21,7 +21,7 @@ namespace Chess2000.BoardGame.Board.Chess
             {
                 for (ushort r = 1; r < 8; r++)
                 {
-                    var location = new ChessSquareLocation(r, col);
+                    var location = new ChessSquareLocation(col, r);
                     Squares.Add(ChessSquareLocation.FirstRows.Contains(r) ? 
                         new ChessSquareFirstRow(location) : 
                         new ChessSquareBase(location));
@@ -29,56 +29,37 @@ namespace Chess2000.BoardGame.Board.Chess
             }
         }
 
-        public ChessSquare GetSquare(string location)
+        public ChessSquare GetSquare(ChessSquareLocation squareLocation)
         {
-            return Squares.First(s => s.Location.ToString().Equals(location));
+            return Squares.First(s => s.Location.Equals(squareLocation));
         }
 
-        public ChessSquare GetSquare(Point location)
+        public bool TryGetSquare(ChessSquareLocation squareLocation, out ChessSquare square)
         {
-            return Squares.First(s => s.Location.ToPoint().Equals(location));
+            square = default;
+            try
+            {
+                square = GetSquare(squareLocation);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public ChessSquare GetSquare(int row, int column)
+        public ChessSquare GetSquareFromCoords(int row, int column)
         {
             var location = new Point(column, row);
             return Squares.First(s => s.Location.ToPoint().Equals(location));
         }
 
-        public bool TryGetSquare(string location, out ChessSquare square)
+        public bool TryGetSquareFromCoords(int column, int row, out ChessSquare square)
         {
             square = default;
             try
             {
-                square = GetSquare(location);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool TryGetSquare(Point location, out ChessSquare square)
-        {
-            square = default;
-            try
-            {
-                square = GetSquare(location);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool TryGetSquare(int column, int row, out ChessSquare square)
-        {
-            square = default;
-            try
-            {
-                square = GetSquare(column, row);
+                square = GetSquareFromCoords(column, row);
                 return true;
             }
             catch

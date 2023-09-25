@@ -8,20 +8,20 @@ namespace Chess2000.BoardGame.Movement.Chess;
 
 public class ChessMovementBase : ChessMovement
 {
-    private ChessSquare _source { get; set; }
+    private ChessPiece _piece { get; set; }
     private ChessSquare _target { get; set; }
 
-    public ChessMovementBase(ChessSquare source, ChessSquare target)
+    public ChessMovementBase(ChessPiece piece, ChessSquare target)
     {
-        _source = source;
+        _piece = piece;
         _target = target;
     }
 
     public override void ApplyMovement(ChessBoard board)
     {
-        if (!IsSourceSquareValid(_source))
+        /*if (!IsSourceSquareValid(_source))
             throw new NullReferenceException("Source square is empty");
 
-        _source.Piece.MoveToNewSquare(_target, this);
+        _source.Piece.MoveToNewSquare(_target, this);*/
     }
 }

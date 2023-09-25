@@ -6,10 +6,11 @@ using Chess2000.BoardGame.Squares;
 
 namespace Chess2000.BoardGame.Rules;
 
-public interface IMovementRules<TM, in TS, in TB>
-    where TM : IMovement<TB, TS>
-    where TB : IBoard<TS> 
-    where TS : ISquare
+public interface IMovementRules<TB, TM, TS, TSl, TKey>
+    where TB : IBoard<TS, TSl>
+    where TM : IMovement<TB, TS, TSl>
+    where TS : ISquare<TSl>
+    where TSl : ISquareLocation<TSl>
 {
-    public List<TM> GetAvailableMoves();
+    public Dictionary<TKey, TM> GetAvailableMoves();
 }

@@ -7,10 +7,10 @@ using Chess2000.BoardGame.Squares.Chess;
 
 namespace Chess2000.BoardGame.Pieces.Chess;
 
-public abstract class ChessPiece : IPiece
+public abstract class ChessPiece : IPiece<ChessSquare, ChessSquareLocation>
 {
-    public ChessSquare Square { get; private set; }
-    public ChessMovement LastMove { get; private set; }
+    public ChessSquare Square { get; protected set; }
+    public ChessMovement LastMove { get; protected set; }
 
     public ChessPiece(ChessSquare square)
     {
@@ -18,16 +18,11 @@ public abstract class ChessPiece : IPiece
     }
     
     public abstract bool IsFriend(ChessPieceColorVisitor piece);
-    public abstract List<ChessMovement> GetAvailableMovements(ChessMovementRules rules);
+    public abstract Dictionary<string, ChessMovement> GetAvailableMovements(ChessMovementRules rules);
 
     public void MoveToNewSquare(ChessSquare newSquare, ChessMovement movement)
     {
         Square = newSquare;
         LastMove = movement;
-    }
-    
-    public void Dispose()
-    {
-        GC.SuppressFinalize(this);
     }
 }

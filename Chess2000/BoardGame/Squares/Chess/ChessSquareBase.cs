@@ -11,8 +11,4 @@ public class ChessSquareBase : ChessSquare
     public ChessSquareBase(ChessSquareLocation location) : base(location)
     {
     }
-
-    public ChessSquareBase(ChessSquareLocation location, ChessPiece piece) : base(location, piece)
-    {
-    }
 }

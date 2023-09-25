@@ -8,33 +8,35 @@ using Chess2000.BoardGame.Squares.Chess;
 
 namespace Chess2000.BoardGame.Rules.Chess;
 
-public class ChessMovementRules : IMovementRules<ChessMovement, ChessSquare, ChessBoard>
+public class ChessMovementRules : IMovementRules<ChessBoard, ChessMovement, ChessSquare, ChessSquareLocation, string>
 {
-    private ChessSquare _square { get; set; }
+    private ChessPiece _piece { get; set; }
+    private ChessPiecesController _piecesController { get; set; }
     private ChessBoard _board { get; set; }
 
-    public ChessMovementRules(ChessSquare square, ChessBoard board)
+    public ChessMovementRules(ChessPiece piece, ChessPiecesController piecesController, ChessBoard board)
     {
-        _square = square;
+        _piece = piece;
+        _piecesController = piecesController;
         _board = board;
     }
 
-    public List<ChessMovement> GetAvailableMoves()
+    public Dictionary<string, ChessMovement> GetAvailableMoves()
     {
-        if(_square.Piece is null) new List<ChessMovement>();
+        if(_piece is null) new List<ChessMovement>();
         
-        return _square.Piece.GetAvailableMovements(this);
+        return _piece.GetAvailableMovements(this);
     }
 
-    public List<ChessMovement> GetAvailableMoves(BlackPawn pawn)
+    public Dictionary<string, ChessMovement> GetAvailableMoves(BlackPawn blackPawn)
     {
-        var movementProvider = new PawnMovementProvider(_square, _board);
-        return movementProvider.GetAvailableMoves(pawn);
+        var movementProvider = new PawnMovementProvider(_piece, _piecesController, _board);
+        return movementProvider.GetAvailableMoves(blackPawn);
     }
 
-    public List<ChessMovement> GetAvailableMoves(WhitePawn pawn)
+    public Dictionary<string, ChessMovement> GetAvailableMoves(WhitePawn whitePawn)
     {
-        var movementProvider = new PawnMovementProvider(_square, _board);
-        return movementProvider.GetAvailableMoves(pawn);
+        var movementProvider = new PawnMovementProvider(_piece, _piecesController, _board);
+        return movementProvider.GetAvailableMoves(whitePawn);
     }
 }
