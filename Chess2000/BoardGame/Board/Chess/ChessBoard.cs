@@ -67,10 +67,5 @@ namespace Chess2000.BoardGame.Board.Chess
                 return false;
             }
         }
-
-        public void ApplySquareMovement(ChessMovement movement)
-        {
-            movement.ApplyMovement(this);
-        }
     }
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Chess2000.BoardGame.Pieces.Chess
 {
     public class ChessPiecesController : 
-        IPiecesController<ChessBoard, ChessPiece, ChessSquare, ChessSquareLocation, ChessMovement, ChessMovementRules, string>
+        IPiecesController<ChessBoard, ChessPiece, ChessSquare, ChessSquareLocation, ChessMovement, ChessMovementRules, ChessPiecesController, string>
     {
         public List<ChessPiece> Pieces { get; private set; }
         private ChessBoard _board { get; set; }
@@ -28,6 +28,10 @@ namespace Chess2000.BoardGame.Pieces.Chess
                 Pieces.Add(new BlackPawn(board.GetSquare(new ChessSquareLocation(col, 7))));
                 Pieces.Add(new WhitePawn(board.GetSquare(new ChessSquareLocation(col, 2))));
             }
+        }
+
+        public void VerifyMove(ChessMovement move)
+        {
         }
 
         public void ApplyMove(ChessPiece piece, string moveKey)

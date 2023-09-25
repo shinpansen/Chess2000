@@ -17,11 +17,9 @@ public class ChessMovementBase : ChessMovement
         _target = target;
     }
 
-    public override void ApplyMovement(ChessBoard board)
+    public override void ApplyMove(ChessPiecesController controller)
     {
-        /*if (!IsSourceSquareValid(_source))
-            throw new NullReferenceException("Source square is empty");
-
-        _source.Piece.MoveToNewSquare(_target, this);*/
+        controller.VerifyMove(this);
+        throw new NotImplementedException();
     }
 }

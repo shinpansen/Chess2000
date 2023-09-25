@@ -8,7 +8,8 @@ using Chess2000.BoardGame.Squares.Chess;
 
 namespace Chess2000.BoardGame.Rules.Chess;
 
-public class ChessMovementRules : IMovementRules<ChessBoard, ChessMovement, ChessSquare, ChessSquareLocation, string>
+public class ChessMovementRules : 
+    IMovementRules<ChessBoard, ChessPiece, ChessSquare, ChessSquareLocation, ChessMovement, ChessMovementRules, ChessPiecesController, string>
 {
     private ChessPiece _piece { get; set; }
     private ChessPiecesController _piecesController { get; set; }
