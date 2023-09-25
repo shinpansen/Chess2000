@@ -21,9 +21,7 @@ public class ChessMovementBase : ChessMovement
     {
         if (!IsSourceSquareValid(_source))
             throw new NullReferenceException("Source square is empty");
-        if (!board.AreSquaresValid(new List<ChessSquare>() {_source, _target}))
-            throw new ArgumentException("Some squares are not part of the board");
 
-        board.MovePiece(_source, _target);
+        _source.Piece.MoveToNewSquare(_target, this);
     }
 }

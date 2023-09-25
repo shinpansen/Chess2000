@@ -1,5 +1,8 @@
 ﻿using Chess2000.BoardGame.Board;
+using Chess2000.BoardGame.Board.Chess;
+using Chess2000.BoardGame.Movement.Chess;
 using Chess2000.BoardGame.Pieces.Chess;
+using Chess2000.BoardGame.Rules.Chess;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,7 +15,7 @@ namespace Chess2000.BoardGame.Squares.Chess
     public abstract class ChessSquare : ISquare
     {
         public ChessSquareLocation Location { get; private set; }
-        public ChessPiece Piece { get; set; }
+        public ChessPiece Piece { get; private set; }
         
         protected ChessSquare(ChessSquareLocation location)
         {
@@ -24,9 +27,16 @@ namespace Chess2000.BoardGame.Squares.Chess
             Piece = piece;
         }
 
-        public void DestroyPiece()
+        public void MovePieceToNewSquare(ChessSquare newSquare, ChessMovement movement)
         {
-            Piece.Dispose();
+            
+            Piece.MoveToNewSquare(newSquare, movement);
+            Piece = null;
+        }
+        
+        private void DestroyPiece()
+        {
+            Piece?.Dispose();
             Piece = null;
         }
     }

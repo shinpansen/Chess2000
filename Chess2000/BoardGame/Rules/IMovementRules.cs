@@ -11,5 +11,5 @@ public interface IMovementRules<TM, in TS, in TB>
     where TB : IBoard<TS> 
     where TS : ISquare
 {
-    public List<TM> GetAvailableMoves(TS square, TB board);
+    public List<TM> GetAvailableMoves();
 }

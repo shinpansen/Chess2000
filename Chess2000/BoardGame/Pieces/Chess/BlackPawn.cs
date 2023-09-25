@@ -1,9 +1,19 @@
+using System.Collections.Generic;
 using System.Diagnostics;
+using Chess2000.BoardGame.Movement.Chess;
+using Chess2000.BoardGame.Rules.Chess;
 using Chess2000.BoardGame.Squares.Chess;
 
 namespace Chess2000.BoardGame.Pieces.Chess;
 
 public class BlackPawn : BlackPiece
 {
-    public override bool CanRock() => false;
+    public BlackPawn(ChessSquare square) : base(square)
+    {
+    }
+    
+    public override List<ChessMovement> GetAvailableMovements(ChessMovementRules rules)
+    {
+        return rules.GetAvailableMoves(this);
+    }
 }

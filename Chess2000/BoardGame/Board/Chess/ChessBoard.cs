@@ -10,7 +10,7 @@ using Chess2000.BoardGame.Movement.Chess;
 
 namespace Chess2000.BoardGame.Board.Chess
 {
-    public class ChessBoard : IBoard<ChessSquare>
+    public class ChessBoard : IBoard<ChessSquare, ChessMovement>
     {
         public List<ChessSquare> Squares { get; private set; }
 
@@ -29,31 +29,65 @@ namespace Chess2000.BoardGame.Board.Chess
             }
         }
 
-        public void MovePiece(ChessSquare source, ChessSquare target)
+        public ChessSquare GetSquare(string location)
         {
-            target.Piece = source.Piece;
-            source.DestroyPiece();
+            return Squares.First(s => s.Location.ToString().Equals(location));
         }
 
-        public bool IsSquareValid(ChessSquare square)
+        public ChessSquare GetSquare(Point location)
         {
-            return Squares.Contains(square);
+            return Squares.First(s => s.Location.ToPoint().Equals(location));
         }
 
-        public bool AreSquaresValid(List<ChessSquare> squares)
+        public ChessSquare GetSquare(int row, int column)
         {
-            foreach (ChessSquare square in squares)
-                if (!IsSquareValid(square))
-                    return false;
-            return true;
+            var location = new Point(column, row);
+            return Squares.First(s => s.Location.ToPoint().Equals(location));
         }
-        
-        public void ApplyMovement(ChessMovementBase movement)
+
+        public bool TryGetSquare(string location, out ChessSquare square)
         {
-            movement.ApplyMovement(this);
+            square = default;
+            try
+            {
+                square = GetSquare(location);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
-        
-        public void ApplyMovement(ChessMovementRock movement)
+
+        public bool TryGetSquare(Point location, out ChessSquare square)
+        {
+            square = default;
+            try
+            {
+                square = GetSquare(location);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool TryGetSquare(int column, int row, out ChessSquare square)
+        {
+            square = default;
+            try
+            {
+                square = GetSquare(column, row);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public void ApplySquareMovement(ChessMovement movement)
         {
             movement.ApplyMovement(this);
         }
