@@ -2,7 +2,6 @@
 using Chess2000.BoardGame.Movement;
 using Chess2000.BoardGame.Pieces.Chess;
 using Chess2000.BoardGame.Rules;
-using Chess2000.BoardGame.Squares;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -32,15 +32,15 @@ public class PawnMovementProvider : ChessMovementProvider
 
         //Basic forward move
         if(TryGetEmptySquare(Col, Row + direction, out var target))
-            movements.Add(target.Location.ToString(), new ChessMovementBase(Piece, target));
+            movements.Add(target._location.ToString(), new ChessMovementBase(Piece, target));
         
         //Eating opponent on the left
         if(TryGetSquareWithOpponent(Col-1, Row + direction, out var target2)) 
-            movements.Add(target2.Location.ToString(), new ChessMovementBase(Piece, target2));
+            movements.Add(target2._location.ToString(), new ChessMovementBase(Piece, target2));
 
         //Eating opponent on the right
         if (TryGetSquareWithOpponent(Col+1, Row + direction, out var target3))
-            movements.Add(target3.Location.ToString(), new ChessMovementBase(Piece, target3));
+            movements.Add(target3._location.ToString(), new ChessMovementBase(Piece, target3));
 
         return movements;
     }

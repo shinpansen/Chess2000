@@ -1,4 +1,5 @@
 ﻿using Chess2000.BoardGame.Board;
+using Chess2000.BoardGame.Movement;
 using Chess2000.BoardGame.Squares;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Pieces
 {
-    public interface IPiece<TS, TSl> 
-        where TS : ISquare<TSl> 
-        where TSl : ISquareLocation<TSl>
+    public interface IPiece
     {
-        TS Square { get; }
+        public void ExecuteAction(IMovement move);
+        public ISquare GetSquare();
     }
 }

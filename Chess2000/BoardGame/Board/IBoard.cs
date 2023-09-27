@@ -6,14 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Chess2000.BoardGame.Movement;
+using Chess2000.BoardGame.Location;
 
 namespace Chess2000.BoardGame.Board
 {
-    public interface IBoard<TS, in TSl>
-        where TS : ISquare<TSl>
-        where TSl : ISquareLocation<TSl>
+    public interface IBoard
     {
-        public TS GetSquare(TSl squareLocation);
-        public bool TryGetSquare(TSl squareLocation, out TS square);
+        public ISquare GetSquare(ISquareLocation squareLocation);
     }
 }

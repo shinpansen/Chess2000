@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
+using Chess2000.BoardGame.Movement;
 using Chess2000.BoardGame.Movement.Chess;
-using Chess2000.BoardGame.Rules;
 using Chess2000.BoardGame.Rules.Chess;
+using Chess2000.BoardGame.Squares;
 using Chess2000.BoardGame.Squares.Chess;
 
 namespace Chess2000.BoardGame.Pieces.Chess;
 
-public abstract class ChessPiece : IPiece<ChessSquare, ChessSquareLocation>
+public abstract class ChessPiece : IPiece
 {
-    public ChessSquare Square { get; protected set; }
-    public ChessMovement LastMove { get; protected set; }
+    protected ISquare Square { get; set; }
+    protected ChessMovement LastMove { get; set; }
 
     public ChessPiece(ChessSquare square)
     {
@@ -24,5 +25,15 @@ public abstract class ChessPiece : IPiece<ChessSquare, ChessSquareLocation>
     {
         Square = newSquare;
         LastMove = movement;
+    }
+
+    public void ExecuteAction(IMovement move)
+    {
+        throw new NotImplementedException();
+    }
+
+    public ISquare GetSquare()
+    {
+        return Square;
     }
 }

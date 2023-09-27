@@ -1,41 +1,37 @@
 using System;
 using System.Collections.Generic;
 using Chess2000.BoardGame.Board.Chess;
+using Chess2000.BoardGame.Game;
+using Chess2000.BoardGame.Location.Chess;
+using Chess2000.BoardGame.Movement;
 using Chess2000.BoardGame.Movement.Chess;
+using Chess2000.BoardGame.Pieces;
 using Chess2000.BoardGame.Pieces.Chess;
 using Chess2000.BoardGame.Rules;
 using Chess2000.BoardGame.Squares.Chess;
 
 namespace Chess2000.BoardGame.Rules.Chess;
 
-public class ChessMovementRules : 
-    IMovementRules<ChessBoard, ChessPiece, ChessSquare, ChessSquareLocation, ChessMovement, ChessMovementRules, ChessPiecesController, string>
+public class ChessMovementRules : IMovementRules
 {
-    private ChessPiece _piece { get; set; }
-    private ChessPiecesController _piecesController { get; set; }
-    private ChessBoard _board { get; set; }
+    private IGame _game { get; set; }
+    private IPiece _piece { get; set; }
 
-    public ChessMovementRules(ChessPiece piece, ChessPiecesController piecesController, ChessBoard board)
+    public List<IMovement> GetAvailableMoves(IGame game, IPiece piece)
     {
+        _game = game;
         _piece = piece;
-        _piecesController = piecesController;
-        _board = board;
-    }
-
-    public Dictionary<string, ChessMovement> GetAvailableMoves()
-    {
-        if(_piece is null) new List<ChessMovement>();
         
         return _piece.GetAvailableMovements(this);
     }
 
-    public Dictionary<string, ChessMovement> GetAvailableMoves(BlackPawn blackPawn)
+    public List<IMovement> GetAvailableMoves(BlackPawn blackPawn)
     {
         var movementProvider = new PawnMovementProvider(_piece, _piecesController, _board);
         return movementProvider.GetAvailableMoves(blackPawn);
     }
 
-    public Dictionary<string, ChessMovement> GetAvailableMoves(WhitePawn whitePawn)
+    public List<IMovement> GetAvailableMoves(WhitePawn whitePawn)
     {
         var movementProvider = new PawnMovementProvider(_piece, _piecesController, _board);
         return movementProvider.GetAvailableMoves(whitePawn);

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Chess2000.BoardGame.Location.Chess;
 using Chess2000.BoardGame.Movement.Chess;
 using Chess2000.BoardGame.Pieces.Chess;
 using Chess2000.BoardGame.Rules.Chess;
