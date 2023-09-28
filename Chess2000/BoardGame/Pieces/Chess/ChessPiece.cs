@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Chess2000.BoardGame.Movement;
-using Chess2000.BoardGame.Movement.Chess;
+using Chess2000.BoardGame.Movements;
+using Chess2000.BoardGame.Movements.Chess;
 using Chess2000.BoardGame.Rules;
 using Chess2000.BoardGame.Rules.Chess;
 using Chess2000.BoardGame.Squares;
 using Chess2000.BoardGame.Squares.Chess;
+using Chess2000.BoardGame.Visitors;
 
 namespace Chess2000.BoardGame.Pieces.Chess;
 
@@ -18,15 +19,10 @@ public abstract class ChessPiece : IPiece
     {
         Square = square;
     }
-    
-    public abstract bool IsFriend(ChessPieceColorVisitor piece);
+
+    public abstract bool Visit(PiecesVisitor visitor);
 
     public List<IMovement> GetAvailableMoves(IMovementsRules rules)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void ExecuteAction(IMovement move)
     {
         throw new NotImplementedException();
     }
@@ -35,4 +31,7 @@ public abstract class ChessPiece : IPiece
     {
         return Square;
     }
+
+    public abstract IPiece Clone();
+    public abstract IPiece Clone(ISquare newSquare);
 }

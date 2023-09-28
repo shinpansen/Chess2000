@@ -4,9 +4,9 @@ using Chess2000.BoardGame.Board.Chess;
 using Chess2000.BoardGame.Pieces.Chess;
 using Chess2000.BoardGame.Squares.Chess;
 
-namespace Chess2000.BoardGame.Movement.Chess;
+namespace Chess2000.BoardGame.Movements.Chess;
 
-public class ChessMovementRock : ChessMovement
+public class ChessMovementRock 
 {
     private ChessSquare _kingSource { get; set; }
     private ChessSquare _kingTarget { get; set; }
@@ -22,7 +22,7 @@ public class ChessMovementRock : ChessMovement
         _towerTarget = towerTarget;
     }
 
-    public override void ExecuteMove()
+    public void ExecuteMove()
     {
         throw new NotImplementedException();
     }

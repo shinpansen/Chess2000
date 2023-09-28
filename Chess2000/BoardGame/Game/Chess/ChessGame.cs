@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Game.Chess
 {
-    public class ChessGame : Game<ChessPiece>
+    public class ChessGame : Game
     {
         public ChessGame() : base()
         {

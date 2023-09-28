@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Rules
 {
-    public abstract class MovementsProvider<TPiece> : IMovementProvider where TPiece : IPiece
+    public abstract class MovementsProvider : IMovementProvider
     {
         protected IBoard Board { get; set; }
-        protected IGame<TPiece> Game { get; set; }
-        protected TPiece Piece { get; set; }
+        protected IGame Game { get; set; }
+        protected IPiece Piece { get; set; }
 
-        protected MovementsProvider(IGame<TPiece> game, IBoard board, TPiece piece)
+        protected MovementsProvider(IGame game, IBoard board, IPiece piece)
         {
             Game = game;
             Board = board;

@@ -1,4 +1,5 @@
-﻿using Chess2000.BoardGame.Pieces;
+﻿using Chess2000.BoardGame.Movements;
+using Chess2000.BoardGame.Pieces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Game
 {
-    public interface IGame<TPiece> where TPiece : IPiece
+    public interface IGame
     {
-        public ReadOnlyCollection<TPiece> GetAvailablePieces();
+        public ReadOnlyCollection<IPiece> GetAvailablePieces();
+        public void ExecuteMove(IMovement move);
     }
 }

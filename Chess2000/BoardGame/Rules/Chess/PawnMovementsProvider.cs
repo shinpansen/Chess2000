@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Chess2000.BoardGame.Board.Chess;
-using Chess2000.BoardGame.Movement.Chess;
+using Chess2000.BoardGame.Movements.Chess;
 using Chess2000.BoardGame.Pieces.Chess;
 using Chess2000.BoardGame.Rules;
 using Chess2000.BoardGame.Squares.Chess;
 using Chess2000.BoardGame.Game.Chess;
 using Chess2000.BoardGame.Board;
-using Chess2000.BoardGame.Movement;
+using Chess2000.BoardGame.Movements;
 using Chess2000.BoardGame.Location.Links;
 using Chess2000.BoardGame.Location.Links._2DGrid;
 using Chess2000.BoardGame.Game;
@@ -19,7 +19,7 @@ namespace Chess2000.BoardGame.Rules.Chess;
 
 public class PawnMovementsProvider : ChessMovementsProvider
 {
-    public PawnMovementsProvider(IGame<ChessPiece> game, IBoard board, ChessPiece piece) : base(game, board, piece)
+    public PawnMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
     {
     }
 

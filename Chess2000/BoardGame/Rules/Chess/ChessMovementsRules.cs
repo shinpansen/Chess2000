@@ -5,8 +5,8 @@ using Chess2000.BoardGame.Board.Chess;
 using Chess2000.BoardGame.Game;
 using Chess2000.BoardGame.Game.Chess;
 using Chess2000.BoardGame.Location.Chess;
-using Chess2000.BoardGame.Movement;
-using Chess2000.BoardGame.Movement.Chess;
+using Chess2000.BoardGame.Movements;
+using Chess2000.BoardGame.Movements.Chess;
 using Chess2000.BoardGame.Pieces;
 using Chess2000.BoardGame.Pieces.Chess;
 using Chess2000.BoardGame.Rules;
@@ -14,9 +14,9 @@ using Chess2000.BoardGame.Squares.Chess;
 
 namespace Chess2000.BoardGame.Rules.Chess;
 
-public class ChessMovementsRules : MovementsRules<ChessPiece>
+public class ChessMovementsRules : MovementsRules
 {
-    public ChessMovementsRules(IGame<ChessPiece> game, IBoard board, ChessPiece piece) : base(game, board, piece)
+    public ChessMovementsRules(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
     {
     }
 

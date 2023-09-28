@@ -6,15 +6,16 @@ using Chess2000.BoardGame.Location.Links;
 using Chess2000.BoardGame.Pieces;
 using Chess2000.BoardGame.Pieces.Chess;
 using Chess2000.BoardGame.Squares;
+using Chess2000.BoardGame.Visitors;
 using Chess2000.BoardGame.Squares.Chess;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Chess2000.BoardGame.Rules.Chess;
 
-public abstract class ChessMovementsProvider : MovementsProvider<ChessPiece>
+public abstract class ChessMovementsProvider : MovementsProvider
 {
-    protected ChessMovementsProvider(IGame<ChessPiece> game, IBoard board, ChessPiece piece) : base(game, board, piece)
+    protected ChessMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
     {
     }
 
@@ -48,8 +49,8 @@ public abstract class ChessMovementsProvider : MovementsProvider<ChessPiece>
         return false;
     }
 
-    protected bool IsFriend(ChessPiece piece)
+    protected bool IsFriend(IPiece piece)
     {
-        return Piece.IsFriend(new ChessPieceColorVisitor(piece));
+        return Piece.Visit(new PiecesVisitor(piece));
     }
 }

@@ -1,5 +1,7 @@
-﻿using Chess2000.BoardGame.Pieces;
+﻿using Chess2000.BoardGame.Movements;
+using Chess2000.BoardGame.Pieces;
 using Chess2000.BoardGame.Pieces.Chess;
+using Chess2000.BoardGame.Rules.Chess;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,18 +11,23 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Game
 {
-    public abstract class Game<TPiece> : IGame<TPiece> where TPiece : IPiece
+    public abstract class Game : IGame
     {
-        protected List<TPiece> AvailablePieces { get; set; }
+        protected List<IPiece> AvailablePieces { get; set; }
 
         public Game()
         {
-            AvailablePieces = new List<TPiece>();
+            AvailablePieces = new List<IPiece>();
         }
 
-        public ReadOnlyCollection<TPiece> GetAvailablePieces()
+        public ReadOnlyCollection<IPiece> GetAvailablePieces()
         {
             return AvailablePieces.AsReadOnly();
+        }
+
+        public virtual void ExecuteMove(IMovement move)
+        {
+            AvailablePieces = move.ExecuteMove(this, null);
         }
     }
 }

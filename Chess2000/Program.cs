@@ -1,5 +1,4 @@
-﻿
-using Chess2000.BoardGame.Board;
+﻿using Chess2000.BoardGame.Board;
 using Chess2000.BoardGame.Board.Chess;
 using Chess2000.BoardGame.Game;
 using Chess2000.BoardGame.Game.Chess;
@@ -21,11 +20,11 @@ var rules = new ChessMovementRules(board.Squares[0], board);
 rules.GetAvailableMoves();*/
 
 IBoard board = new ChessBoard();
-IGame<ChessPiece> chessGame = new ChessGame();
+IGame chessGame = new ChessGame();
 
 var piece = chessGame.GetAvailablePieces().First();
 var moves = piece.GetAvailableMoves(new ChessMovementsRules(chessGame, board, piece));
-piece.ExecuteAction(moves.First());
+chessGame.ExecuteMove(moves.First());
 
 using var game = new Chess2000.MyGame();
 game.Run();

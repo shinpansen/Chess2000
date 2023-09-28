@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Chess2000.BoardGame.Movement;
+using Chess2000.BoardGame.Movements;
 using Chess2000.BoardGame.Location;
 
 namespace Chess2000.BoardGame.Board
