@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Location.Links._2DGrid
 {
-    public class Top : Link2DGrid
+    public class Link2DGrid : ISquareLink
     {
-        public override string ToString() => "Top";
+        public bool Equals(ISquareLink other)
+        {
+            return other.ToString().Equals(this.ToString());
+        }
     }
 }

@@ -1,25 +1,28 @@
 using System;
 using System.Collections.Generic;
 using Chess2000.BoardGame.Board.Chess;
+using Chess2000.BoardGame.Game;
+using Chess2000.BoardGame.Pieces;
 using Chess2000.BoardGame.Pieces.Chess;
+using Chess2000.BoardGame.Rules;
+using Chess2000.BoardGame.Squares;
 using Chess2000.BoardGame.Squares.Chess;
 
 namespace Chess2000.BoardGame.Movement.Chess;
 
-public class ChessMovementBase : ChessMovement
+public class ChessMovementBase : IMovement
 {
-    private ChessPiece _piece { get; set; }
-    private ChessSquare _target { get; set; }
+    protected IPiece Piece { get; set; }
+    protected ISquare Target { get; set; }
 
-    public ChessMovementBase(ChessPiece piece, ChessSquare target)
+    public ChessMovementBase(IPiece piece, ISquare target)
     {
-        _piece = piece;
-        _target = target;
+        Piece = piece;
+        Target = target;
     }
 
-    public override void ApplyMove(ChessPiecesController controller)
+    public void ExecuteMove(List<IPiece> availablePieces, IMovementsRules rules)
     {
-        controller.VerifyMove(this);
         throw new NotImplementedException();
     }
 }

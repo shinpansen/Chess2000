@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Location.Links._2DGrid
 {
-    public class Bottom : ISquareLink
+    public class Bottom : Link2DGrid
     {
         public override string ToString() => "Bottom";
     }

@@ -6,7 +6,7 @@ using Chess2000.BoardGame.Pieces;
 
 namespace Chess2000.BoardGame.Rules;
 
-public interface IMovementRules
+public interface IMovementsRules
 {
-    public List<IMovement> GetAvailableMoves(IGame game, IPiece piece);
+    public List<IMovement> GetAvailableMoves();
 }

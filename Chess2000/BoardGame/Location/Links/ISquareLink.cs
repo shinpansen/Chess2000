@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Location.Links
 {
-    public interface ISquareLink
+    public interface ISquareLink : IEquatable<ISquareLink>
     {
     }
 }

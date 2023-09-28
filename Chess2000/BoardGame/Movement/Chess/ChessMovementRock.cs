@@ -22,18 +22,7 @@ public class ChessMovementRock : ChessMovement
         _towerTarget = towerTarget;
     }
 
-    public void ApplyMovement(ChessBoard board)
-    {
-        /*if (!IsSourceSquareValid(_kingSource) || !IsSourceSquareValid(_towerSource))
-            throw new NullReferenceException("King or tower source square is empty");
-        if (_kingTarget.Piece is not null || _towerTarget.Piece is not null)
-            throw new ArgumentException("Some target squares aren't empty");
-
-        board.ApplySquareMovement(_kingSource, _kingTarget);
-        board.ApplySquareMovement(_towerSource, _towerTarget);*/
-    }
-
-    public override void ApplyMove(ChessPiecesController controller)
+    public override void ExecuteMove()
     {
         throw new NotImplementedException();
     }

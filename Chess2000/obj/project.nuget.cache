@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "dH/hS6holye9ks+yVqvJfZJBzhqeK4gzSczfXrQcZnVICQrp6Dmrm2LTvQKi8al04Jh3KK2abFwA8gUeTD5/vQ==",
+  "dgSpecHash": "sXiJRLBnyTLqmP6wnt3R0BXqY1SySuHCPl5f9LJpltxHB1+nDErA6CbkceWJ4LjPG2hL+kQjY12dUnwNaC63kg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\shinpansen\\Documents\\MonoGames\\Chess2000\\Chess2000\\Chess2000.csproj",
+  "projectFilePath": "C:\\Users\\jdasilva\\Documents\\DOSSIER PRIVÉ\\MonoGame\\Chess2000\\Chess2000\\Chess2000.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\shinpansen\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
-    "C:\\Users\\shinpansen\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+    "C:\\Users\\jdasilva\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\jdasilva\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
   ],
   "logs": []
 }

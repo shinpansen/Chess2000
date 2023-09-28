@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Chess2000.BoardGame.Movement;
 using Chess2000.BoardGame.Movement.Chess;
+using Chess2000.BoardGame.Rules;
 using Chess2000.BoardGame.Rules.Chess;
 using Chess2000.BoardGame.Squares;
 using Chess2000.BoardGame.Squares.Chess;
@@ -11,20 +12,18 @@ namespace Chess2000.BoardGame.Pieces.Chess;
 public abstract class ChessPiece : IPiece
 {
     protected ISquare Square { get; set; }
-    protected ChessMovement LastMove { get; set; }
+    protected IMovement LastMove { get; set; }
 
-    public ChessPiece(ChessSquare square)
+    public ChessPiece(ISquare square)
     {
         Square = square;
     }
     
     public abstract bool IsFriend(ChessPieceColorVisitor piece);
-    public abstract Dictionary<string, ChessMovement> GetAvailableMovements(ChessMovementRules rules);
 
-    public void MoveToNewSquare(ChessSquare newSquare, ChessMovement movement)
+    public List<IMovement> GetAvailableMoves(IMovementsRules rules)
     {
-        Square = newSquare;
-        LastMove = movement;
+        throw new NotImplementedException();
     }
 
     public void ExecuteAction(IMovement move)

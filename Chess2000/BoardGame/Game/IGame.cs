@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Game
 {
-    public interface IGame
+    public interface IGame<TPiece> where TPiece : IPiece
     {
-        public ReadOnlyCollection<IPiece> GetAvailablePieces();
+        public ReadOnlyCollection<TPiece> GetAvailablePieces();
     }
 }

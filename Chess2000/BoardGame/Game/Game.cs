@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Game
 {
-    public abstract class Game : IGame
+    public abstract class Game<TPiece> : IGame<TPiece> where TPiece : IPiece
     {
-        private List<IPiece> _availablePieces { get; set; }
+        protected List<TPiece> AvailablePieces { get; set; }
 
-        public Game(List<IPiece> pieces)
+        public Game()
         {
-            _availablePieces = pieces;
+            AvailablePieces = new List<TPiece>();
         }
 
-        public ReadOnlyCollection<IPiece> GetAvailablePieces()
+        public ReadOnlyCollection<TPiece> GetAvailablePieces()
         {
-            return _availablePieces.AsReadOnly();
+            return AvailablePieces.AsReadOnly();
         }
     }
 }
