@@ -12,7 +12,7 @@ using Chess2000.BoardGame.Squares.Chess;
 
 namespace Chess2000.BoardGame.Movements.Chess;
 
-public class ChessMovementBase : Movement
+public class ChessMovementBase : IMovement
 {
     protected IPiece Piece { get; set; }
     protected ISquare Target { get; set; }
@@ -23,18 +23,15 @@ public class ChessMovementBase : Movement
         Target = target;
     }
 
-    public override List<IPiece> ExecuteMove(IGame game, IMovementsRules rules)
+    public List<IPiece> SimulateMove(IGame game)
     {
-        List<IPiece> piecesClone = CloneAvailablePieces(game);
+        var piecesClone = new List<IPiece>(game.GetAvailablePieces());
 
-        if(TryGetPiece(piecesClone, Target.GetLocation(), out var targetPiece))
+        if (game.TryGetPiece(Target.GetLocation(), out var targetPiece))
             piecesClone.Remove(targetPiece);
 
-        if (TryGetPiece(piecesClone, Piece.GetSquare().GetLocation(), out var sourcePiece))
-        {
-            piecesClone.Add(sourcePiece.Clone(Target));
-            piecesClone.Remove(sourcePiece);
-        }
+        piecesClone.Remove(Piece);
+        piecesClone.Add(Piece.Clone(Target));
 
         return piecesClone;
     }

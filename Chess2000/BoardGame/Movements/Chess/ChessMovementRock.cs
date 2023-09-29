@@ -1,29 +1,36 @@
 using System;
 using System.Collections.Generic;
-using Chess2000.BoardGame.Board.Chess;
-using Chess2000.BoardGame.Pieces.Chess;
-using Chess2000.BoardGame.Squares.Chess;
+using Chess2000.BoardGame.Game;
+using Chess2000.BoardGame.Pieces;
+using Chess2000.BoardGame.Squares;
 
 namespace Chess2000.BoardGame.Movements.Chess;
 
-public class ChessMovementRock 
+public class ChessMovementRock : IMovement
 {
-    private ChessSquare _kingSource { get; set; }
-    private ChessSquare _kingTarget { get; set; }
-    private ChessSquare _towerSource { get; set; }
-    private ChessSquare _towerTarget { get; set; }
+    private IPiece _king { get; set; }
+    private ISquare _kingTarget { get; set; }
+    private IPiece _tower { get; set; }
+    private ISquare _towerTarget { get; set; }
 
-    public ChessMovementRock(ChessSquare kingSource, ChessSquare kingTarget, 
-        ChessSquare towerSource, ChessSquare towerTarget)
+    public ChessMovementRock(IPiece king, ISquare kingTarget, IPiece tower, ISquare towerTarget)
     {
-        _kingSource = kingSource;
+        _king = king;
         _kingTarget = kingTarget;
-        _towerSource = towerSource;
+        _tower = tower;
         _towerTarget = towerTarget;
     }
 
-    public void ExecuteMove()
+    public List<IPiece> SimulateMove(IGame game)
     {
-        throw new NotImplementedException();
+        var piecesClone = new List<IPiece>(game.GetAvailablePieces());
+
+        piecesClone.Remove(_king);
+        piecesClone.Add(_king.Clone(_kingTarget));
+
+        piecesClone.Remove(_tower);
+        piecesClone.Add(_tower.Clone(_towerTarget));
+
+        return piecesClone;
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Chess2000.BoardGame.Board;
 using Chess2000.BoardGame.Game;
 using Chess2000.BoardGame.Movements;
@@ -8,5 +9,5 @@ namespace Chess2000.BoardGame.Rules;
 
 public interface IMovementsRules
 {
-    public List<IMovement> GetAvailableMoves();
+    public ReadOnlyCollection<IMovement> GetAvailableMoves();
 }

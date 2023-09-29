@@ -25,7 +25,7 @@ namespace Chess2000.BoardGame.Squares.Chess
 
         public ISquareLocation GetLocation()
         {
-            return _location.Clone();
+            return _location;
         }
     }
 }

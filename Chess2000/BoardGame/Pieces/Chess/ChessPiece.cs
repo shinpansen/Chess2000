@@ -22,10 +22,7 @@ public abstract class ChessPiece : IPiece
 
     public abstract bool Visit(PiecesVisitor visitor);
 
-    public List<IMovement> GetAvailableMoves(IMovementsRules rules)
-    {
-        throw new NotImplementedException();
-    }
+    public abstract List<IMovement> GetAvailableMoves(IMovementsRules rules);
 
     public ISquare GetSquare()
     {

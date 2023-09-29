@@ -6,8 +6,7 @@ using System.Collections.Generic;
 
 namespace Chess2000.BoardGame.Location;
 
-public interface ISquareLocation : IEquatable<ISquareLocation>
+public interface ISquareLocation : IEquatable<SquareLocation>
 {
     public Dictionary<ISquareLink, ISquareLocation> GetNeighbors();
-    public ISquareLocation Clone();
 }
