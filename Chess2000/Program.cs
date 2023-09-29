@@ -26,7 +26,7 @@ IGame chessGame = new ChessGame();
 
 if (!chessGame.TryGetPiece(new ChessSquareLocation("A2"), out var piece)) return;
 ChessMovementsRules rules = new ChessMovementsRules(chessGame, board, piece);
-List<IMovement> moves = piece.GetAvailableMoves(rules);
+var moves = rules.GetAvailableMoves();
 chessGame.ExecuteMove(moves.First(), rules);
 
 using var game = new Chess2000.MyGame();

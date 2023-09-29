@@ -11,6 +11,7 @@ using Chess2000.BoardGame.Pieces;
 using Chess2000.BoardGame.Pieces.Chess;
 using Chess2000.BoardGame.Rules;
 using Chess2000.BoardGame.Squares.Chess;
+using Chess2000.BoardGame.Visitors;
 
 namespace Chess2000.BoardGame.Rules.Chess;
 
@@ -18,6 +19,9 @@ public class ChessMovementsRules : MovementsRules
 {
     public ChessMovementsRules(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
     {
+        var v = new MovementsRulesVisitor(this);
+        availableMoves = v.GetAvailableMoves(this);
+        //availableMoves = Piece.GetAvailableMoves(this);
     }
 
     public List<IMovement> GetAvailableMoves(BlackPawn blackPawn)
