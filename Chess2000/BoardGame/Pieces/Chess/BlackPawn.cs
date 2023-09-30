@@ -1,19 +1,46 @@
-using System.Collections.Generic;
-using System.Diagnostics;
-using Chess2000.BoardGame.Movement.Chess;
+using Chess2000.BoardGame.Data;
+using Chess2000.BoardGame.Movements;
+using Chess2000.BoardGame.Rules;
 using Chess2000.BoardGame.Rules.Chess;
-using Chess2000.BoardGame.Squares.Chess;
+using Chess2000.BoardGame.Squares;
+using System;
+using System.Collections.Generic;
 
 namespace Chess2000.BoardGame.Pieces.Chess;
 
-public class BlackPawn : BlackPiece
+public sealed class BlackPawn : BlackPiece
 {
-    public BlackPawn(ChessSquare square) : base(square)
+    private BlackPawn(ISquare square) : base(square)
     {
     }
-    
-    public override Dictionary<string, ChessMovement> GetAvailableMovements(ChessMovementRules rules)
+
+    private BlackPawn(ISquare square, IMovement lastMove) : base(square, lastMove)
     {
-        return rules.GetAvailableMoves(this);
+    }
+
+    public BlackPawn(string location) : base(location)
+    {
+    }
+
+    public override List<IMovement> GetAvailableMoves(IMovementsRules rules)
+    {
+        if (rules is ChessMovementsRules chessMovementsRules)
+            return chessMovementsRules.GetAvailableMoves(this);
+        throw new ArgumentException(nameof(BlackPawn) + " can't follow those rules");
+    }
+
+    public override IPiece Clone()
+    {
+        return new BlackPawn(Square);
+    }
+
+    public override IPiece Clone(ISquare newSquare)
+    {
+        return new BlackPawn(newSquare);
+    }
+
+    public override IPiece Clone(ISquare newSquare, IMovement lastMove)
+    {
+        return new BlackPawn(newSquare, lastMove);
     }
 }

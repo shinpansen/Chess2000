@@ -10,7 +10,7 @@ namespace Chess2000.BoardGame.Players.Chess
 {
     public class ChessPlayer<TP> : IPlayer where TP : ChessPiece
     {
-        public List<TP> PlayerPieces { get; protected set; }
+        public List<TP> PlayerPieces { get; private set; }
 
         public ChessPlayer(ChessBoard board)
         {
