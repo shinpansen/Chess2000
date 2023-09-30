@@ -26,7 +26,7 @@ public sealed class BlackPawn : BlackPiece
     {
         if (rules is ChessMovementsRules chessMovementsRules)
             return chessMovementsRules.GetAvailableMoves(this);
-        throw new ArgumentException("The piece can't follow this rules");
+        throw new ArgumentException(nameof(BlackPawn) + " can't follow those rules");
     }
 
     public override IPiece Clone()

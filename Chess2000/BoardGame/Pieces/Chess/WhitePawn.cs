@@ -26,7 +26,7 @@ public sealed class WhitePawn : WhitePiece
     {
         if(rules is ChessMovementsRules chessMovementsRules)
             return chessMovementsRules.GetAvailableMoves(this);
-        throw new ArgumentException("The piece can't follow this rules");
+        throw new ArgumentException(nameof(WhitePawn) + " can't follow those rules");
     }
 
     public override IPiece Clone()
