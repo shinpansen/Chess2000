@@ -2,6 +2,7 @@ using Chess2000.BoardGame.Board;
 using Chess2000.BoardGame.Game;
 using Chess2000.BoardGame.Location.Links;
 using Chess2000.BoardGame.Pieces;
+using Chess2000.BoardGame.Pieces.Visitors;
 using Chess2000.BoardGame.Squares;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,9 @@ public abstract class ChessMovementsProvider : MovementsProvider
     {
     }
 
-    protected bool TryGetEmptySquare(Queue<ISquareLink> links, out ISquare square)
+    protected bool TryGetEmptySquare(Queue<ISquareLink> links, out ISquare square, bool pathShouldBeFree = false)
     {
-        if(!TryGetSquare(links, out square)) return false;
+        if(!TryGetSquare(links, out square, pathShouldBeFree)) return false;
 
         var targetLocation = square.GetLocation();
         if (!Game.GetAvailablePieces().Any(p => p.GetSquare().GetLocation().Equals(targetLocation)))
@@ -24,9 +25,9 @@ public abstract class ChessMovementsProvider : MovementsProvider
         return false;
     }
 
-    protected bool TryGetSquareWithOpponent(Queue<ISquareLink> links, out ISquare square)
+    protected bool TryGetSquareWithOpponent(Queue<ISquareLink> links, out ISquare square, bool pathShouldBeFree = false)
     {
-        if (!TryGetSquare(links, out square)) return false;
+        if (!TryGetSquare(links, out square, pathShouldBeFree)) return false;
 
         var targetLocation = square.GetLocation();
         var piece = Game.GetAvailablePieces().FirstOrDefault(p => p.GetSquare().GetLocation().Equals(targetLocation));
@@ -34,9 +35,9 @@ public abstract class ChessMovementsProvider : MovementsProvider
         return false;
     }
 
-    protected bool TryGetSquareEmptyOrWithOpponent(Queue<ISquareLink> links, out ISquare square)
+    protected bool TryGetSquareEmptyOrWithOpponent(Queue<ISquareLink> links, out ISquare square, bool pathShouldBeFree = false)
     {
-        if (!TryGetSquare(links, out square)) return false;
+        if (!TryGetSquare(links, out square, pathShouldBeFree)) return false;
 
         var targetLocation = square.GetLocation();
         var piece = Game.GetAvailablePieces().FirstOrDefault(p => p.GetSquare().GetLocation().Equals(targetLocation));
@@ -46,8 +47,6 @@ public abstract class ChessMovementsProvider : MovementsProvider
 
     protected bool IsFriend(IPiece piece)
     {
-        var pieceData = Piece.Visit(new PiecesVisitor(piece));
-        if (pieceData.TryGetData<bool>("IsFriend", out var value)) return value;
-        return false;
+        return Piece.Visit(new BooleanPieceVisitor(piece));
     }
 }

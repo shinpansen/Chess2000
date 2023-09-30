@@ -26,10 +26,10 @@ public class ChessMovementRock : IMovement
         var piecesClone = new List<IPiece>(game.GetAvailablePieces());
 
         piecesClone.Remove(_king);
-        piecesClone.Add(_king.Clone(_kingTarget, new Data.Data("LastMove", this)));
+        piecesClone.Add(_king.Clone(_kingTarget, this));
 
         piecesClone.Remove(_tower);
-        piecesClone.Add(_tower.Clone(_towerTarget, new Data.Data("LastMove", this)));
+        piecesClone.Add(_tower.Clone(_towerTarget, this));
 
         return piecesClone;
     }

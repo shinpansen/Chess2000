@@ -1,7 +1,6 @@
-using Chess2000.BoardGame.Data;
-using Chess2000.BoardGame.Rules.Chess;
+using Chess2000.BoardGame.Movements;
+using Chess2000.BoardGame.Pieces.Visitors;
 using Chess2000.BoardGame.Squares;
-using Chess2000.BoardGame.Squares.Chess;
 
 namespace Chess2000.BoardGame.Pieces.Chess;
 
@@ -11,7 +10,7 @@ public abstract class WhitePiece : ChessPiece
     {
     }
 
-    protected WhitePiece(ISquare square, IData data) : base(square, data)
+    protected WhitePiece(ISquare square, IMovement lastMove) : base(square, lastMove)
     {
     }
 
@@ -19,7 +18,7 @@ public abstract class WhitePiece : ChessPiece
     {
     }
 
-    public override IData Visit(PiecesVisitor visitor)
+    public override bool Visit(BooleanPieceVisitor visitor)
     {
         return visitor.Visit(this);
     }

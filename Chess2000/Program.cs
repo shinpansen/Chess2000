@@ -23,9 +23,10 @@ IGame chessGame = new ChessGame();
 if (!chessGame.TryGetPiece(new ChessSquareLocation("B2"), out var piece)) return;
 ChessMovementsRules rules = new ChessMovementsRules(chessGame, board, piece);
 var moves = rules.GetAvailableMoves();
-chessGame.ExecuteMove(moves.First(m => m is ChessMovementPawnDouble), rules);
+chessGame.ExecuteMove(moves.First(m => m is ChessMovementBase), rules);
 
-rules = new ChessMovementsRules(chessGame, board, piece);
+if (!chessGame.TryGetPiece(new ChessSquareLocation("B3"), out var piece2)) return;
+rules = new ChessMovementsRules(chessGame, board, piece2);
 moves = rules.GetAvailableMoves();
 
 using var game = new Chess2000.MyGame();

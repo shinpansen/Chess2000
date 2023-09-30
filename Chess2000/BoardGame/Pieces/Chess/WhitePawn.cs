@@ -14,7 +14,7 @@ public sealed class WhitePawn : WhitePiece
     {
     }
 
-    private WhitePawn(ISquare square, IData data) : base(square, data)
+    private WhitePawn(ISquare square, IMovement lastMove) : base(square, lastMove)
     {
     }
 
@@ -29,11 +29,6 @@ public sealed class WhitePawn : WhitePiece
         throw new ArgumentException("The piece can't follow this rules");
     }
 
-    public override IData GetData()
-    {
-        return this.Data;
-    }
-
     public override IPiece Clone()
     {
         return new WhitePawn(Square);
@@ -44,8 +39,8 @@ public sealed class WhitePawn : WhitePiece
         return new WhitePawn(newSquare);
     }
 
-    public override IPiece Clone(ISquare newSquare, IData data)
+    public override IPiece Clone(ISquare newSquare, IMovement lastMove)
     {
-        return new WhitePawn(newSquare, data);
+        return new WhitePawn(newSquare, lastMove);
     }
 }

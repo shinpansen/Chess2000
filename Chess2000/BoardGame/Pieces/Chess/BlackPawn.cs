@@ -14,7 +14,7 @@ public sealed class BlackPawn : BlackPiece
     {
     }
 
-    private BlackPawn(ISquare square, IData data) : base(square, data)
+    private BlackPawn(ISquare square, IMovement lastMove) : base(square, lastMove)
     {
     }
 
@@ -29,11 +29,6 @@ public sealed class BlackPawn : BlackPiece
         throw new ArgumentException("The piece can't follow this rules");
     }
 
-    public override IData GetData()
-    {
-        return this.Data;
-    }
-
     public override IPiece Clone()
     {
         return new BlackPawn(Square);
@@ -44,8 +39,8 @@ public sealed class BlackPawn : BlackPiece
         return new BlackPawn(newSquare);
     }
 
-    public override IPiece Clone(ISquare newSquare, IData data)
+    public override IPiece Clone(ISquare newSquare, IMovement lastMove)
     {
-        return new BlackPawn(newSquare, data);
+        return new BlackPawn(newSquare, lastMove);
     }
 }

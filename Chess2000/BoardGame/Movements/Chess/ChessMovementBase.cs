@@ -31,7 +31,7 @@ public class ChessMovementBase : IMovement
             piecesClone.Remove(targetPiece);
 
         piecesClone.Remove(Piece);
-        piecesClone.Add(Piece.Clone(Target, new Data.Data("LastMove", this)));
+        piecesClone.Add(Piece.Clone(Target, this));
 
         return piecesClone;
     }

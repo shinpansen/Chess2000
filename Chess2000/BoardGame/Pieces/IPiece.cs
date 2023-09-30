@@ -1,6 +1,7 @@
 ﻿using Chess2000.BoardGame.Board;
 using Chess2000.BoardGame.Data;
 using Chess2000.BoardGame.Movements;
+using Chess2000.BoardGame.Pieces.Visitors;
 using Chess2000.BoardGame.Rules;
 using Chess2000.BoardGame.Squares;
 using System;
@@ -15,10 +16,10 @@ namespace Chess2000.BoardGame.Pieces
     {
         public List<IMovement> GetAvailableMoves(IMovementsRules rules);
         public ISquare GetSquare();
-        public IData GetData();
         public IPiece Clone();
         public IPiece Clone(ISquare newSquare);
-        public IPiece Clone(ISquare newSquare, IData data);
-        public IData Visit(PiecesVisitor visitor);
+        public IPiece Clone(ISquare newSquare, IMovement move);
+        public bool Visit(BooleanPieceVisitor visitor);
+        public IMovement Visit(MovementPieceVisitor visitor);
     }
 }

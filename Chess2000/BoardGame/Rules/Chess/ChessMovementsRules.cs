@@ -23,12 +23,12 @@ public class ChessMovementsRules : MovementsRules
     public List<IMovement> GetAvailableMoves(BlackPawn blackPawn)
     {
         var movementProvider = new PawnMovementsProvider(Game, Board, Piece);
-        return movementProvider.GetAvailableMoves(blackPawn);
+        return movementProvider.GetAvailableMovesForBlackPawn();
     }
 
     public List<IMovement> GetAvailableMoves(WhitePawn whitePawn)
     {
         var movementProvider = new PawnMovementsProvider(Game, Board, Piece);
-        return movementProvider.GetAvailableMoves(whitePawn);
+        return movementProvider.GetAvailableMovesForWhitePawn();
     }
 }

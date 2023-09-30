@@ -24,7 +24,7 @@ namespace Chess2000.BoardGame.Rules
             Piece = piece;
         }
 
-        public virtual bool TryGetSquare(Queue<ISquareLink> links, out ISquare square)
+        public virtual bool TryGetSquare(Queue<ISquareLink> links, out ISquare square, bool pathShouldBeFree = false)
         {
             square = default;
 
@@ -33,6 +33,8 @@ namespace Chess2000.BoardGame.Rules
             {
                 location = location.GetNeighbors().First(l => l.Key.Equals(links.First())).Value;
                 links.Dequeue();
+
+                if (pathShouldBeFree && Game.TryGetPiece(location, out _)) return false;
             }
             if (links.Any()) return false;
 

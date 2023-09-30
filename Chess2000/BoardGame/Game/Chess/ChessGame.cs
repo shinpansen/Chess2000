@@ -14,7 +14,7 @@ namespace Chess2000.BoardGame.Game.Chess
         public ChessGame() : base()
         {
             AvailablePieces.Add(new WhitePawn("B2"));
-            //AvailablePieces.Add(new BlackPawn("C3"));
+            //AvailablePieces.Add(new BlackPawn("B4"));
         }
     }
 }

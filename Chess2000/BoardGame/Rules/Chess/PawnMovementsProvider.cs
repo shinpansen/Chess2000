@@ -23,52 +23,41 @@ public class PawnMovementsProvider : ChessMovementsProvider
     {
     }
 
-    public List<IMovement> GetAvailableMoves(BlackPawn pawn)
+    public List<IMovement> GetAvailableMovesForBlackPawn()
     {
         return GetAvailableMoves(new Bottom());
     }
 
-    public List<IMovement> GetAvailableMoves(WhitePawn pawn)
+    public List<IMovement> GetAvailableMovesForWhitePawn()
     {
         return GetAvailableMoves(new Top());
     }
 
-    private List<IMovement> GetAvailableMoves(ISquareLink link)
+    private List<IMovement> GetAvailableMoves(ISquareLink forward)
     {
         var moves = new List<IMovement>();
 
         //Basic forward move
-        var forwardLinks = new Queue<ISquareLink>();
-        forwardLinks.Enqueue(link);
+        var forwardLinks = new Link2DGridBuilder().Link(forward).Build();
         if (TryGetEmptySquare(forwardLinks, out var square))
             moves.Add(new ChessMovementBase(Piece, square));
 
         //Double forward move
-        var pieceData = Piece.GetData();
-        var hasLastMove = pieceData.TryGetData<IMovement>("LastMove", out var lastMove);
-        if (!hasLastMove || (hasLastMove && lastMove is not ChessMovementPawnDouble))
+        IMovement lastMove = Piece.Visit(new Pieces.Visitors.MovementPieceVisitor(Piece));
+        if (lastMove is null) //Only allowed for the first move
         {
-            forwardLinks = new Queue<ISquareLink>();
-            forwardLinks.Enqueue(link);
-            var doubleForwardLinks = new Queue<ISquareLink>();
-            doubleForwardLinks.Enqueue(link);
-            doubleForwardLinks.Enqueue(link);
-            if (TryGetEmptySquare(forwardLinks, out _) &&
-                TryGetEmptySquare(doubleForwardLinks, out var squareDouble))
+            var doubleForwardLinks = new Link2DGridBuilder().Link(forward).Link(forward).Build();
+            if (TryGetEmptySquare(doubleForwardLinks, out var squareDouble, true))
                 moves.Add(new ChessMovementPawnDouble(Piece, squareDouble));
         }
 
         //Eating opponent on the left
-        var DiagonaleLeftLinks = new Queue<ISquareLink>();
-        DiagonaleLeftLinks.Enqueue(link);
-        DiagonaleLeftLinks.Enqueue(new Left());
-        if (TryGetSquareWithOpponent(DiagonaleLeftLinks, out var square2)) 
+        var DiagonaleLeftLinks = new Link2DGridBuilder().Link(forward).Left().Build();
+        if (TryGetSquareWithOpponent(DiagonaleLeftLinks, out var square2))
             moves.Add(new ChessMovementBase(Piece, square2));
 
         //Eating opponent on the right
-        var DiagonaleRightLinks = new Queue<ISquareLink>();
-        DiagonaleRightLinks.Enqueue(link);
-        DiagonaleRightLinks.Enqueue(new Right());
+        var DiagonaleRightLinks = new Link2DGridBuilder().Link(forward).Right().Build();
         if (TryGetSquareWithOpponent(DiagonaleRightLinks, out var square3))
             moves.Add(new ChessMovementBase(Piece, square3));
 
