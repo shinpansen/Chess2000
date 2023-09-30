@@ -102,24 +102,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jdasilva\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\shinpansen\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jdasilva\\Documents\\DOSSIER PRIVÉ\\MonoGame\\Chess2000\\Chess2000\\Chess2000.csproj",
+      "projectUniqueName": "C:\\Users\\shinpansen\\Documents\\MonoGames\\Chess2000\\Chess2000\\Chess2000.csproj",
       "projectName": "Chess2000",
-      "projectPath": "C:\\Users\\jdasilva\\Documents\\DOSSIER PRIVÉ\\MonoGame\\Chess2000\\Chess2000\\Chess2000.csproj",
-      "packagesPath": "C:\\Users\\jdasilva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jdasilva\\Documents\\DOSSIER PRIVÉ\\MonoGame\\Chess2000\\Chess2000\\obj\\",
+      "projectPath": "C:\\Users\\shinpansen\\Documents\\MonoGames\\Chess2000\\Chess2000\\Chess2000.csproj",
+      "packagesPath": "C:\\Users\\shinpansen\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\shinpansen\\Documents\\MonoGames\\Chess2000\\Chess2000\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\jdasilva\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\shinpansen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

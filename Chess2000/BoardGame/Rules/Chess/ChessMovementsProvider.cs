@@ -1,13 +1,8 @@
 using Chess2000.BoardGame.Board;
-using Chess2000.BoardGame.Board.Chess;
 using Chess2000.BoardGame.Game;
-using Chess2000.BoardGame.Game.Chess;
 using Chess2000.BoardGame.Location.Links;
 using Chess2000.BoardGame.Pieces;
-using Chess2000.BoardGame.Pieces.Chess;
 using Chess2000.BoardGame.Squares;
-using Chess2000.BoardGame.Visitors;
-using Chess2000.BoardGame.Squares.Chess;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -51,6 +46,8 @@ public abstract class ChessMovementsProvider : MovementsProvider
 
     protected bool IsFriend(IPiece piece)
     {
-        return Piece.Visit(new PiecesVisitor(piece));
+        var pieceData = Piece.Visit(new PiecesVisitor(piece));
+        if (pieceData.TryGetData<bool>("IsFriend", out var value)) return value;
+        return false;
     }
 }

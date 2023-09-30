@@ -43,6 +43,21 @@ public class PawnMovementsProvider : ChessMovementsProvider
         if (TryGetEmptySquare(forwardLinks, out var square))
             moves.Add(new ChessMovementBase(Piece, square));
 
+        //Double forward move
+        var pieceData = Piece.GetData();
+        var hasLastMove = pieceData.TryGetData<IMovement>("LastMove", out var lastMove);
+        if (!hasLastMove || (hasLastMove && lastMove is not ChessMovementPawnDouble))
+        {
+            forwardLinks = new Queue<ISquareLink>();
+            forwardLinks.Enqueue(link);
+            var doubleForwardLinks = new Queue<ISquareLink>();
+            doubleForwardLinks.Enqueue(link);
+            doubleForwardLinks.Enqueue(link);
+            if (TryGetEmptySquare(forwardLinks, out _) &&
+                TryGetEmptySquare(doubleForwardLinks, out var squareDouble))
+                moves.Add(new ChessMovementPawnDouble(Piece, squareDouble));
+        }
+
         //Eating opponent on the left
         var DiagonaleLeftLinks = new Queue<ISquareLink>();
         DiagonaleLeftLinks.Enqueue(link);

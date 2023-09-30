@@ -14,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace Chess2000.BoardGame.Squares.Chess
 {
-    public abstract class ChessSquare : ISquare
+    public class ChessSquare : ISquare
     {
         private ISquareLocation _location { get; set; }
         
-        protected ChessSquare(ChessSquareLocation location)
+        public ChessSquare(ChessSquareLocation location)
         {
             _location = location;
         }

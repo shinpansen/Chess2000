@@ -27,7 +27,7 @@ public class ChessMovementEnPassant : IMovement
         var piecesClone = new List<IPiece>(game.GetAvailablePieces());
 
         piecesClone.Remove(_pawn);
-        piecesClone.Add(_pawn.Clone(_pawnTarget));
+        piecesClone.Add(_pawn.Clone(_pawnTarget, new Data.Data("LastMove", this)));
         piecesClone.Remove(_otherPiece);
 
         return piecesClone;

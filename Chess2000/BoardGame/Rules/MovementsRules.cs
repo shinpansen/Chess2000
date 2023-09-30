@@ -24,6 +24,7 @@ namespace Chess2000.BoardGame.Rules
             Game = game;
             Board = board;
             Piece = piece;
+            availableMoves = Piece.GetAvailableMoves(this);
         }
         
         public virtual ReadOnlyCollection<IMovement> GetAvailableMoves()

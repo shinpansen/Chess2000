@@ -24,10 +24,11 @@ namespace Chess2000.BoardGame.Board.Chess
             {
                 for (ushort r = 1; r < 8; r++)
                 {
-                    var location = new ChessSquareLocation(col, r);
-                    _squares.Add(ChessSquareLocation.FirstRows.Contains(r) ? 
+                    var location = new ChessSquareLocation(col + r);
+                    /*_squares.Add(ChessSquareLocation.FirstRows.Contains(r) ? 
                         new ChessSquareFirstRow(location) : 
-                        new ChessSquareBase(location));
+                        new ChessSquareBase(location));*/
+                    _squares.Add(new ChessSquare(location));
                 }
             }
         }

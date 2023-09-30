@@ -3,12 +3,8 @@ using Chess2000.BoardGame.Board.Chess;
 using Chess2000.BoardGame.Game;
 using Chess2000.BoardGame.Game.Chess;
 using Chess2000.BoardGame.Location.Chess;
-using Chess2000.BoardGame.Movements;
-using Chess2000.BoardGame.Pieces;
-using Chess2000.BoardGame.Pieces.Chess;
+using Chess2000.BoardGame.Movements.Chess;
 using Chess2000.BoardGame.Rules.Chess;
-using Chess2000.BoardGame.Squares.Chess;
-using System.Collections.Generic;
 using System.Linq;
 
 /*ChessPiece p1 = new BlackPawn();
@@ -24,10 +20,13 @@ rules.GetAvailableMoves();*/
 IBoard board = new ChessBoard();
 IGame chessGame = new ChessGame();
 
-if (!chessGame.TryGetPiece(new ChessSquareLocation("A2"), out var piece)) return;
+if (!chessGame.TryGetPiece(new ChessSquareLocation("B2"), out var piece)) return;
 ChessMovementsRules rules = new ChessMovementsRules(chessGame, board, piece);
 var moves = rules.GetAvailableMoves();
-chessGame.ExecuteMove(moves.First(), rules);
+chessGame.ExecuteMove(moves.First(m => m is ChessMovementPawnDouble), rules);
+
+rules = new ChessMovementsRules(chessGame, board, piece);
+moves = rules.GetAvailableMoves();
 
 using var game = new Chess2000.MyGame();
 game.Run();

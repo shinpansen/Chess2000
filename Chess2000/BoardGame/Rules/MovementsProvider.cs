@@ -35,6 +35,8 @@ namespace Chess2000.BoardGame.Rules
                 links.Dequeue();
             }
             if (links.Any()) return false;
+
+            square = Board.GetSquare(location);
             return true;
         }
     }
