@@ -8,22 +8,22 @@ namespace Chess2000.BoardGame.Location.Chess;
 
 public class ChessSquareLocation : SquareLocation
 {
-    public static readonly string[] AvailableColumns = new[] { "A", "B", "C", "D", "E", "F", "G", "H" };
+    public static readonly string[] AvailableColumns = { "A", "B", "C", "D", "E", "F", "G", "H" };
     private int _row { get; set; }
     private string _column { get; set; }
 
     public ChessSquareLocation(string location)
     {
-        if (location.Length != 2 || !int.TryParse(location.Substring(1, 1), out var row))
+        if (location.Length != 2 || !int.TryParse(location.AsSpan(1, 1), out var row))
             throw new ArgumentException("Invalid location");
-        if (row < 1 || row > 8 || !AvailableColumns.Contains(location.Substring(0, 1).ToUpper()))
+        if (row < 1 || row > 8 || !AvailableColumns.Contains(location[..1].ToUpper()))
             throw new ArgumentException("Invalid row or column");
 
         _row = row;
-        _column = location.Substring(0, 1);
+        _column = location[..1];
     }
 
-    protected ChessSquareLocation(int column, int row)
+    private ChessSquareLocation(int column, int row)
     {
         if (row < 1 || row > 8 || column < 0 || column > AvailableColumns.Length)
             throw new ArgumentException("Invalid row or column");
@@ -49,7 +49,7 @@ public class ChessSquareLocation : SquareLocation
 
     public override string ToString()
     {
-        return _column + _row.ToString();
+        return _column + _row;
     }
 
     private Point2D ToPoint2D()

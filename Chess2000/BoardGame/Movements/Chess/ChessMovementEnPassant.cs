@@ -13,13 +13,13 @@ public class ChessMovementEnPassant : IMovement
 {
     private IPiece _pawn { get; set; }
     private ISquare _pawnTarget { get; set; }
-    private IPiece _otherPiece { get; set; }
+    private IPiece _opponentPiece { get; set; }
 
-    public ChessMovementEnPassant(IPiece pawn, ISquare pawnTarget, IPiece otherPiece)
+    public ChessMovementEnPassant(IPiece pawn, ISquare pawnTarget, IPiece opponentPiece)
     {
         _pawn = pawn;
         _pawnTarget = pawnTarget;
-        _otherPiece = otherPiece;
+        _opponentPiece = opponentPiece;
     }
 
     public List<IPiece> SimulateMove(IGame game)
@@ -28,7 +28,7 @@ public class ChessMovementEnPassant : IMovement
 
         piecesClone.Remove(_pawn);
         piecesClone.Add(_pawn.Clone(_pawnTarget, this));
-        piecesClone.Remove(_otherPiece);
+        piecesClone.Remove(_opponentPiece);
 
         return piecesClone;
     }

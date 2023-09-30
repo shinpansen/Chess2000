@@ -10,11 +10,8 @@ namespace Chess2000.BoardGame.Pieces.Visitors
 {
     public class MovementPieceVisitor
     {
-        private readonly IPiece _visitedPiece;
-
-        public MovementPieceVisitor(IPiece visitedPiece)
+        public MovementPieceVisitor()
         {
-            _visitedPiece = visitedPiece;
         }
 
         public IMovement Visit(ChessPiece piece) => piece.LastMove;

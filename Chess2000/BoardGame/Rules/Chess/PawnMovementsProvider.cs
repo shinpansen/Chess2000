@@ -1,13 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework;
-using Chess2000.BoardGame.Board.Chess;
 using Chess2000.BoardGame.Movements.Chess;
-using Chess2000.BoardGame.Pieces.Chess;
-using Chess2000.BoardGame.Rules;
-using Chess2000.BoardGame.Squares.Chess;
-using Chess2000.BoardGame.Game.Chess;
+using Chess2000.BoardGame.Pieces.Visitors;
 using Chess2000.BoardGame.Board;
 using Chess2000.BoardGame.Movements;
 using Chess2000.BoardGame.Location.Links;
@@ -43,7 +38,7 @@ public class PawnMovementsProvider : ChessMovementsProvider
             moves.Add(new ChessMovementBase(Piece, square));
 
         //Double forward move
-        IMovement lastMove = Piece.Visit(new Pieces.Visitors.MovementPieceVisitor(Piece));
+        var lastMove = Piece.Visit(new MovementPieceVisitor());
         if (lastMove is null) //Only allowed for the first move
         {
             var doubleForwardLinks = new Link2DGridBuilder().Link(forward).Link(forward).Build();
@@ -52,15 +47,33 @@ public class PawnMovementsProvider : ChessMovementsProvider
         }
 
         //Eating opponent on the left
-        var DiagonaleLeftLinks = new Link2DGridBuilder().Link(forward).Left().Build();
-        if (TryGetSquareWithOpponent(DiagonaleLeftLinks, out var square2))
-            moves.Add(new ChessMovementBase(Piece, square2));
+        var topLeftLinks = new Link2DGridBuilder().Link(forward).Left().Build();
+        if (TryGetSquareWithOpponent(topLeftLinks, out var squareTopLeft))
+            moves.Add(new ChessMovementBase(Piece, squareTopLeft));
 
         //Eating opponent on the right
-        var DiagonaleRightLinks = new Link2DGridBuilder().Link(forward).Right().Build();
-        if (TryGetSquareWithOpponent(DiagonaleRightLinks, out var square3))
-            moves.Add(new ChessMovementBase(Piece, square3));
+        var topRightLinks = new Link2DGridBuilder().Link(forward).Right().Build();
+        if (TryGetSquareWithOpponent(topRightLinks, out var squareTopRight))
+            moves.Add(new ChessMovementBase(Piece, squareTopRight));
+        
+        //Prise en passant
+        AddPriseEnPassantMove(moves, forward, new Left());
+        AddPriseEnPassantMove(moves, forward, new Right());
 
         return moves;
+    }
+
+    private void AddPriseEnPassantMove(List<IMovement> moves, ISquareLink forward, ISquareLink leftRight)
+    {
+        var enPassantLinks = new Link2DGridBuilder().Link(forward).Link(leftRight).Build();
+        var enPassantOpponentLinks = new Link2DGridBuilder().Link(leftRight).Build();
+        
+        if (!TryGetEmptySquare(enPassantLinks, out var squareEnPassant)) return;
+        if (!TryGetSquareWithOpponent(enPassantOpponentLinks, out var squareEnPassantOpponent)) return;
+
+        Game.TryGetPiece(squareEnPassantOpponent.GetLocation(), out var opponentPiece);
+        var opponentLastMove = opponentPiece.Visit(new MovementPieceVisitor());
+        if(opponentLastMove is ChessMovementPawnDouble)
+            moves.Add(new ChessMovementEnPassant(Piece, squareEnPassant, opponentPiece));
     }
 }

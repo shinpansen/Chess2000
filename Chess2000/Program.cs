@@ -21,8 +21,9 @@ IBoard board = new ChessBoard();
 IGame chessGame = new ChessGame();
 
 if (!chessGame.TryGetPiece(new ChessSquareLocation("B2"), out var piece)) return;
-ChessMovementsRules rules = new ChessMovementsRules(chessGame, board, piece);
+var rules = new ChessMovementsRules(chessGame, board, piece);
 var moves = rules.GetAvailableMoves();
+moves.First().SimulateMove(chessGame);
 chessGame.ExecuteMove(moves.First(m => m is ChessMovementBase), rules);
 
 if (!chessGame.TryGetPiece(new ChessSquareLocation("B3"), out var piece2)) return;

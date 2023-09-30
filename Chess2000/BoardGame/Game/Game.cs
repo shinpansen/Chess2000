@@ -16,12 +16,7 @@ namespace Chess2000.BoardGame.Game
 {
     public abstract class Game : IGame
     {
-        protected List<IPiece> AvailablePieces { get; set; }
-
-        public Game()
-        {
-            AvailablePieces = new List<IPiece>();
-        }
+        protected List<IPiece> AvailablePieces { get; set; } = new();
 
         public ReadOnlyCollection<IPiece> GetAvailablePieces()
         {
@@ -37,7 +32,8 @@ namespace Chess2000.BoardGame.Game
         public virtual void ExecuteMove(IMovement move, IMovementsRules rules)
         {
             if (!rules.GetAvailableMoves().Contains(move))
-                throw new ArgumentException("Unauthorized move");
+                throw new ArgumentException(@"Unauthorized move. 
+                    The instance of 'rules' should be the same you got the 'move' from");
 
             AvailablePieces = move.SimulateMove(this);
         }
