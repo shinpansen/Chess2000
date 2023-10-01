@@ -32,9 +32,8 @@ public abstract class MovementsProvider : IMovementProvider
         while (links.Any() && location.GetNeighbors().Any(l => l.Key.Equals(links.First())))
         {
             location = location.GetNeighbors().First(l => l.Key.Equals(links.First())).Value;
-            links.Dequeue();
-
             if (pathShouldBeFree && Game.TryGetPiece(location, out _)) return false;
+            links.Dequeue();
         }
         if (links.Any()) return false;
 

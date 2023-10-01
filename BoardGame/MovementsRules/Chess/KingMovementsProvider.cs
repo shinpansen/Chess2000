@@ -34,8 +34,8 @@ public class KingMovementsProvider : ChessMovementsProvider
     private void AddMoveIfPossible(List<IMovement> moves, ISquareLink link)
     {
         var links = new Link2DGridBuilder().Link(link).Build();
-        if (TryGetSquareEmptyOrWithOpponent(links, out var s))
-            moves.Add(new ChessMovementBase(Piece, s));
+        if (TryGetSquareEmptyOrWithOpponent(links, out var square))
+            moves.Add(new ChessMovementBase(Piece, square));
     }
 
     private void AddRockIfPossible(List<IMovement> moves)

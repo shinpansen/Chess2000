@@ -12,15 +12,15 @@ namespace BoardGame.MovementsRules.Chess;
 
 public abstract class ChessMovementsProvider : MovementsProvider
 {
-    protected static readonly List<ISquareLink> StraightLinks = new List<ISquareLink>()
+    public static readonly List<ISquareLink> StraightLinks = new List<ISquareLink>()
     {
         new Top(),
         new Bottom(),
         new Left(),
         new Right()
     };
-    
-    protected static readonly List<ISquareLink> DiagonalLinks = new List<ISquareLink>()
+
+    public static readonly List<ISquareLink> DiagonalLinks = new List<ISquareLink>()
     {
         new TopLeft(),
         new BottomLeft(),
@@ -35,27 +35,34 @@ public abstract class ChessMovementsProvider : MovementsProvider
     protected bool TryGetEmptySquare(Queue<ISquareLink> links, out ISquare square, bool pathShouldBeFree = false)
     {
         if(!TryGetSquare(links, out square, pathShouldBeFree)) return false;
-
-        var targetLocation = square.GetLocation();
-        return !Game.GetAvailablePieces().Any(p => p.GetSquare().GetLocation().Equals(targetLocation));
+        return !Game.TryGetPiece(square.GetLocation(), out _);
     }
 
     protected bool TryGetSquareWithOpponent(Queue<ISquareLink> links, out ISquare square, bool pathShouldBeFree = false)
     {
-        if (!TryGetSquare(links, out square, pathShouldBeFree)) return false;
-
-        var targetLocation = square.GetLocation();
-        var piece = Game.GetAvailablePieces().FirstOrDefault(p => p.GetSquare().GetLocation().Equals(targetLocation));
+        if (!TryGetLastSquareEmptyOrWithOpponent(links, out square, out var piece, pathShouldBeFree)) return false;
         return piece is not null && !IsFriend(piece);
     }
 
     protected bool TryGetSquareEmptyOrWithOpponent(Queue<ISquareLink> links, out ISquare square, bool pathShouldBeFree = false)
     {
-        if (!TryGetSquare(links, out square, pathShouldBeFree)) return false;
-
-        var targetLocation = square.GetLocation();
-        var piece = Game.GetAvailablePieces().FirstOrDefault(p => p.GetSquare().GetLocation().Equals(targetLocation));
+        if (!TryGetLastSquareEmptyOrWithOpponent(links, out square, out var piece, pathShouldBeFree)) return false;
         return piece is null || !IsFriend(piece);
+    }
+
+    private bool TryGetLastSquareEmptyOrWithOpponent(Queue<ISquareLink> links, out ISquare square, out IPiece piece, bool pathShouldBeFree)
+    {
+        piece = default;
+        //Test if there is an opponent on the last square of the path
+        //If pathShouldBeFree is true, we cannot get the last square with a potential opponent
+        var linksClone = new Queue<ISquareLink>(links);
+        if (!TryGetSquare(links, out square, pathShouldBeFree))
+        {
+            if (links.Count > 1) return false;
+            else if (!TryGetSquare(linksClone, out square)) return false;
+        }
+        Game.TryGetPiece(square.GetLocation(), out piece);
+        return true;
     }
 
     private bool IsFriend(IPiece piece)

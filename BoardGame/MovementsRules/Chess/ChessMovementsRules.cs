@@ -22,13 +22,73 @@ public class ChessMovementsRules : MovementsRules
 
     public List<IMovement> GetAvailableMoves(BlackPawn blackPawn)
     {
-        var movementProvider = new PawnMovementsProvider(Game, Board, Piece);
-        return movementProvider.GetAvailableMovesForBlackPawn();
+        var provider = new PawnMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMovesForBlackPawn();
     }
 
     public List<IMovement> GetAvailableMoves(WhitePawn whitePawn)
     {
-        var movementProvider = new PawnMovementsProvider(Game, Board, Piece);
-        return movementProvider.GetAvailableMovesForWhitePawn();
+        var provider = new PawnMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMovesForWhitePawn();
+    }
+
+    public List<IMovement> GetAvailableMoves(BlackBishop blackBishop)
+    {
+        var provider = new QueenTowerBishopMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMoves(ChessMovementsProvider.DiagonalLinks);
+    }
+
+    public List<IMovement> GetAvailableMoves(WhiteBishop blackBishop)
+    {
+        var provider = new QueenTowerBishopMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMoves(ChessMovementsProvider.DiagonalLinks);
+    }
+
+    public List<IMovement> GetAvailableMoves(BlackTower blackTower)
+    {
+        var provider = new QueenTowerBishopMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMoves(ChessMovementsProvider.StraightLinks);
+    }
+
+    public List<IMovement> GetAvailableMoves(WhiteTower whiteTower)
+    {
+        var provider = new QueenTowerBishopMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMoves(ChessMovementsProvider.StraightLinks);
+    }
+
+    public List<IMovement> GetAvailableMoves(BlackQueen blackQueen)
+    {
+        var provider = new QueenTowerBishopMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMoves(ChessMovementsProvider.StraightLinks, ChessMovementsProvider.DiagonalLinks);
+    }
+
+    public List<IMovement> GetAvailableMoves(WhiteQueen whiteQueen)
+    {
+        var provider = new QueenTowerBishopMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMoves(ChessMovementsProvider.StraightLinks, ChessMovementsProvider.DiagonalLinks);
+    }
+
+    public List<IMovement> GetAvailableMoves(BlackKing blackKing)
+    {
+        var provider = new KingMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMoves();
+    }
+
+    public List<IMovement> GetAvailableMoves(WhiteKing whiteKing)
+    {
+        var provider = new KingMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMoves();
+    }
+
+    public List<IMovement> GetAvailableMoves(BlackKnight blackKnight)
+    {
+        var provider = new KnightMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMoves();
+    }
+
+    public List<IMovement> GetAvailableMoves(WhiteKnight whiteKnight)
+    {
+        var provider = new KnightMovementsProvider(Game, Board, Piece);
+        return provider.GetAvailableMoves();
     }
 }

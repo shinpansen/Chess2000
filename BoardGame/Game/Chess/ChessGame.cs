@@ -13,7 +13,9 @@ public class ChessGame : Game
 {
     public ChessGame()
     {
-        AvailablePieces.Add(new BlackPawn("B7"));
+        AvailablePieces.Add(new WhiteBishop("C1"));
+        AvailablePieces.Add(new BlackPawn("E3"));
+        AvailablePieces.Add(new BlackPawn("G5"));
         //AvailablePieces.Add(new BlackPawn("B4"));
     }
 }
