@@ -23,7 +23,7 @@ public class ChessSquareLocation : SquareLocation
         Column = location[..1];
     }
 
-    private ChessSquareLocation(int column, int row)
+    public ChessSquareLocation(int column, int row)
     {
         if (row < 1 || row > 8 || column < 0 || column > AvailableColumns.Length)
             throw new ArgumentException("Invalid row or column");

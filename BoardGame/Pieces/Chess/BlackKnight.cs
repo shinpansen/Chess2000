@@ -16,7 +16,7 @@ namespace BoardGame.Pieces.Chess
         {
         }
 
-        private BlackKnight(ISquare square, IMovement lastMove) : base(square, lastMove)
+        public BlackKnight(ISquare square, IMovement lastMove) : base(square, lastMove)
         {
         }
 

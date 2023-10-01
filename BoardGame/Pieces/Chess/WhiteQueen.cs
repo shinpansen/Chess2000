@@ -12,11 +12,11 @@ namespace BoardGame.Pieces.Chess
 {
     public sealed class WhiteQueen : WhitePiece
     {
-        private WhiteQueen(ISquare square) : base(square)
+        public WhiteQueen(ISquare square) : base(square)
         {
         }
 
-        private WhiteQueen(ISquare square, IMovement lastMove) : base(square, lastMove)
+        public WhiteQueen(ISquare square, IMovement lastMove) : base(square, lastMove)
         {
         }
 

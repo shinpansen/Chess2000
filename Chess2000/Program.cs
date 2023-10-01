@@ -10,7 +10,7 @@ using BoardGame.MovementsRules;
 IBoard board = new ChessBoard();
 IGame chessGame = new ChessGame();
 
-if (!chessGame.TryGetPiece(new ChessSquareLocation("C1"), out var piece)) return;
+if (!chessGame.TryGetPiece(new ChessSquareLocation("D2"), out var piece)) return;
 var rules = new MovementsRules(chessGame, board);
 var moves = rules.GetAvailableMoves(piece);
 moves.First().SimulateMove(chessGame);

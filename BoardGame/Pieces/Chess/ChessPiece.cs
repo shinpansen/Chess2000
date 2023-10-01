@@ -12,7 +12,7 @@ namespace BoardGame.Pieces.Chess;
 
 public abstract class ChessPiece : IPiece
 {
-    public IMovement LastMove { get; protected set; }
+    public IMovement? LastMove { get; protected set; }
     protected ISquare Square { get; set; }
 
     protected ChessPiece(ISquare square)
