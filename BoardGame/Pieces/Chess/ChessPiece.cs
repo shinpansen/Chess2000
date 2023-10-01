@@ -38,6 +38,7 @@ public abstract class ChessPiece : IPiece
     public abstract IPiece Clone();
     public abstract IPiece Clone(ISquare newSquare);
     public abstract IPiece Clone(ISquare newSquare, IMovement lastMove);
+    public abstract bool Equals(IPiece? other);
     public abstract bool Visit(BooleanPieceVisitor visitor);
 
     public IMovement Visit(MovementPieceVisitor visitor)

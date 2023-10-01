@@ -12,23 +12,29 @@ using System.Threading.Tasks;
 
 namespace BoardGame.MovementsRules;
 
-public abstract class MovementsRules : IMovementsRules
+public class MovementsRules : IMovementsRules
 {
     protected IGame Game { get; set; }
     protected IBoard Board { get; set; }
-    protected IPiece Piece { get; set; }
-    private List<IMovement> _availableMoves { get; set; }
 
-    protected MovementsRules(IGame game, IBoard board, IPiece piece)
+    public MovementsRules(IGame game, IBoard board)
     {
         Game = game;
         Board = board;
-        Piece = piece;
-        _availableMoves = Piece.GetAvailableMoves(this);
     }
-    
-    public virtual ReadOnlyCollection<IMovement> GetAvailableMoves()
+
+    public IGame GetGame()
     {
-        return _availableMoves.AsReadOnly();
+        return Game;
+    }
+
+    public IBoard GetBoard()
+    {
+        return Board;
+    }
+
+    public virtual ReadOnlyCollection<IMovement> GetAvailableMoves(IPiece piece)
+    {
+        return piece.GetAvailableMoves(this).AsReadOnly();
     }
 }

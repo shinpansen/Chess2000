@@ -14,21 +14,11 @@ namespace BoardGame.MovementsRules.Chess;
 
 public class PawnMovementsProvider : ChessMovementsProvider
 {
-    public PawnMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
+    public PawnMovementsProvider(IMovementsRules rules, IPiece piece) : base(rules, piece)
     {
     }
 
-    public List<IMovement> GetAvailableMovesForBlackPawn()
-    {
-        return GetAvailableMoves(new Bottom());
-    }
-
-    public List<IMovement> GetAvailableMovesForWhitePawn()
-    {
-        return GetAvailableMoves(new Top());
-    }
-
-    private List<IMovement> GetAvailableMoves(ISquareLink forward)
+    public List<IMovement> GetAvailableMoves(ISquareLink forward)
     {
         var moves = new List<IMovement>();
 

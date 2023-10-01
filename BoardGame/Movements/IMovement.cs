@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace BoardGame.Movements;
 
-public interface IMovement
+public interface IMovement : IEquatable<IMovement>
 {
     public List<IPiece> SimulateMove(IGame game);
 }

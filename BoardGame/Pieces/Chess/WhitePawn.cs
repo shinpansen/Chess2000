@@ -3,6 +3,7 @@ using BoardGame.Movements;
 using BoardGame.MovementsRules;
 using BoardGame.MovementsRules.Chess;
 using BoardGame.Squares;
+using BoardGame.SquaresLocation.Links._2DGrid;
 using System;
 using System.Collections.Generic;
 
@@ -24,9 +25,8 @@ public sealed class WhitePawn : WhitePiece
 
     public override List<IMovement> GetAvailableMoves(IMovementsRules rules)
     {
-        if(rules is ChessMovementsRules chessMovementsRules)
-            return chessMovementsRules.GetAvailableMoves(this);
-        throw new ArgumentException(nameof(WhitePawn) + " can't follow those rules");
+        var provider = new PawnMovementsProvider(rules, this);
+        return provider.GetAvailableMoves(new Top());
     }
 
     public override IPiece Clone()
@@ -42,5 +42,11 @@ public sealed class WhitePawn : WhitePiece
     public override IPiece Clone(ISquare newSquare, IMovement lastMove)
     {
         return new WhitePawn(newSquare, lastMove);
+    }
+
+    public override bool Equals(IPiece? other)
+    {
+        if (other is not WhitePawn otherPiece) return false;
+        return otherPiece.GetSquare().GetLocation().Equals(Square.GetLocation());
     }
 }

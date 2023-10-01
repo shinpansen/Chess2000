@@ -9,7 +9,7 @@ namespace BoardGame.SquaresLocation;
 
 public abstract class SquareLocation : ISquareLocation
 {
-    public virtual bool Equals(ISquareLocation? other) => (ToString() ?? string.Empty).Equals(other?.ToString());
+    public abstract bool Equals(ISquareLocation? other);
 
     public abstract Dictionary<ISquareLink, ISquareLocation> GetNeighbors();
 }

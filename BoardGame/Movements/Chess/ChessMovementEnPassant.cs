@@ -32,4 +32,12 @@ public class ChessMovementEnPassant : IMovement
 
         return piecesClone;
     }
+
+    public bool Equals(IMovement? other)
+    {
+        if (other is not ChessMovementEnPassant otherMovement) return false;
+        return otherMovement._pawn.Equals(this._pawn) &&
+            otherMovement._pawnTarget.GetLocation().Equals(this._pawnTarget.GetLocation()) &&
+            otherMovement._opponentPiece.Equals(this._opponentPiece);
+    }
 }

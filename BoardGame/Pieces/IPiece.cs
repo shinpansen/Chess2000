@@ -12,13 +12,10 @@ using System.Threading.Tasks;
 
 namespace BoardGame.Pieces;
 
-public interface IPiece
+public interface IPiece : ICloneablePiece<IPiece, ISquare, IMovement>, IEquatable<IPiece>
 {
     public List<IMovement> GetAvailableMoves(IMovementsRules rules);
     public ISquare GetSquare();
-    public IPiece Clone();
-    public IPiece Clone(ISquare newSquare);
-    public IPiece Clone(ISquare newSquare, IMovement move);
     public bool Visit(BooleanPieceVisitor visitor);
     public IMovement Visit(MovementPieceVisitor visitor);
 }

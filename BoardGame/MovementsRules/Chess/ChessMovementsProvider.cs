@@ -28,7 +28,7 @@ public abstract class ChessMovementsProvider : MovementsProvider
         new BottomRight()
     };
     
-    protected ChessMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
+    protected ChessMovementsProvider(IMovementsRules rules, IPiece piece) : base(rules, piece)
     {
     }
 

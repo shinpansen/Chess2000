@@ -12,7 +12,7 @@ namespace BoardGame.MovementsRules.Chess;
 
 public class KingMovementsProvider : ChessMovementsProvider
 {
-    public KingMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
+    public KingMovementsProvider(IMovementsRules rules, IPiece piece) : base(rules, piece)
     {
     }
     

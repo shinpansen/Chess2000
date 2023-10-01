@@ -29,11 +29,11 @@ public abstract class Game : IGame
         return piece is not null;
     }
 
-    public virtual void ExecuteMove(IMovement move, IMovementsRules rules)
+    public virtual void ExecuteMove(IPiece piece, IMovement move, IMovementsRules rules)
     {
-        if (!rules.GetAvailableMoves().Contains(move))
-            throw new ArgumentException(@"Unauthorized move. 
-                    The instance of 'rules' should be the same you got the 'move' from");
+        var moves = rules.GetAvailableMoves(piece);
+        if (!moves.Any(m => m.Equals(move)))
+            throw new ArgumentException("Unauthorized move.");
 
         AvailablePieces = move.SimulateMove(this);
     }

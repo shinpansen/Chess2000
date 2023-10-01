@@ -15,7 +15,7 @@ namespace BoardGame.MovementsRules.Chess
 {
     public class QueenTowerBishopMovementsProvider : ChessMovementsProvider
     {
-        public QueenTowerBishopMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
+        public QueenTowerBishopMovementsProvider(IMovementsRules rules, IPiece piece) : base(rules, piece)
         {
         }
 

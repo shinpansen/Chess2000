@@ -17,10 +17,10 @@ public abstract class MovementsProvider : IMovementProvider
     protected IGame Game { get; set; }
     protected IPiece Piece { get; set; }
 
-    protected MovementsProvider(IGame game, IBoard board, IPiece piece)
+    protected MovementsProvider(IMovementsRules rules, IPiece piece)
     {
-        Game = game;
-        Board = board;
+        Game = rules.GetGame();
+        Board = rules.GetBoard();
         Piece = piece;
     }
 

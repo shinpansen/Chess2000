@@ -9,5 +9,7 @@ namespace BoardGame.MovementsRules;
 
 public interface IMovementsRules
 {
-    public ReadOnlyCollection<IMovement> GetAvailableMoves();
+    public IGame GetGame();
+    public IBoard GetBoard();
+    public ReadOnlyCollection<IMovement> GetAvailableMoves(IPiece piece);
 }

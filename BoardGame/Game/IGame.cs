@@ -15,5 +15,5 @@ public interface IGame
 {
     public ReadOnlyCollection<IPiece> GetAvailablePieces();
     public bool TryGetPiece(ISquareLocation location, out IPiece piece);
-    public void ExecuteMove(IMovement move, IMovementsRules rules);
+    public void ExecuteMove(IPiece piece, IMovement move, IMovementsRules rules);
 }

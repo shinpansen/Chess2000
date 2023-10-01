@@ -10,4 +10,11 @@ public class ChessMovementPawnDouble : ChessMovementBase
     public ChessMovementPawnDouble(IPiece piece, ISquare target) : base(piece, target)
     {
     }
+
+    public override bool Equals(IMovement? other)
+    {
+        if (other is not ChessMovementPawnDouble otherMovement) return false;
+        return otherMovement.Piece.Equals(this.Piece) &&
+            otherMovement.Target.GetLocation().Equals(this.Target.GetLocation());
+    }
 }

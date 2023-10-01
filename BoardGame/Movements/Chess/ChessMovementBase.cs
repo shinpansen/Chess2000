@@ -35,4 +35,11 @@ public class ChessMovementBase : IMovement
 
         return piecesClone;
     }
+
+    public virtual bool Equals(IMovement? other)
+    {
+        if (other is not ChessMovementBase otherMovement) return false;
+        return otherMovement.Piece.Equals(this.Piece) && 
+            otherMovement.Target.GetLocation().Equals(this.Target.GetLocation());
+    }
 }

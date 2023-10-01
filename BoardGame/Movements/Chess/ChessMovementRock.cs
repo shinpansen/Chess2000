@@ -33,4 +33,13 @@ public class ChessMovementRock : IMovement
 
         return piecesClone;
     }
+
+    public bool Equals(IMovement? other)
+    {
+        if (other is not ChessMovementRock otherMovement) return false;
+        return otherMovement._king.Equals(this._king) &&
+            otherMovement._kingTarget.GetLocation().Equals(this._kingTarget.GetLocation()) &&
+            otherMovement._tower.Equals(this._tower) &&
+            otherMovement._towerTarget.GetLocation().Equals(this._towerTarget.GetLocation());
+    }
 }

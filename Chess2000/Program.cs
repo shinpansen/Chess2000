@@ -4,17 +4,17 @@ using BoardGame.Game;
 using BoardGame.Game.Chess;
 using BoardGame.SquaresLocation.Chess;
 using BoardGame.Movements.Chess;
-using BoardGame.MovementsRules.Chess;
 using System.Linq;
+using BoardGame.MovementsRules;
 
 IBoard board = new ChessBoard();
 IGame chessGame = new ChessGame();
 
 if (!chessGame.TryGetPiece(new ChessSquareLocation("C1"), out var piece)) return;
-var rules = new ChessMovementsRules(chessGame, board, piece);
-var moves = rules.GetAvailableMoves();
+var rules = new MovementsRules(chessGame, board);
+var moves = rules.GetAvailableMoves(piece);
 moves.First().SimulateMove(chessGame);
-chessGame.ExecuteMove(moves.First(m => m is ChessMovementBase), rules);
+chessGame.ExecuteMove(piece, moves.First(), rules);
 
 using var game = new Chess2000.MyGame();
 game.Run();

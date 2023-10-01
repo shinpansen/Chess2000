@@ -26,9 +26,8 @@ namespace BoardGame.Pieces.Chess
 
         public override List<IMovement> GetAvailableMoves(IMovementsRules rules)
         {
-            if (rules is ChessMovementsRules chessMovementsRules)
-                return chessMovementsRules.GetAvailableMoves(this);
-            throw new ArgumentException(nameof(WhiteKing) + " can't follow those rules");
+            var provider = new KingMovementsProvider(rules, this);
+            return provider.GetAvailableMoves();
         }
 
         public override IPiece Clone()
@@ -44,6 +43,12 @@ namespace BoardGame.Pieces.Chess
         public override IPiece Clone(ISquare newSquare, IMovement lastMove)
         {
             return new WhiteKing(newSquare, lastMove);
+        }
+
+        public override bool Equals(IPiece? other)
+        {
+            if (other is not WhiteKing otherPiece) return false;
+            return otherPiece.GetSquare().GetLocation().Equals(Square.GetLocation());
         }
     }
 }
