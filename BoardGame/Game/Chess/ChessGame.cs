@@ -13,7 +13,7 @@ public class ChessGame : Game
 {
     public ChessGame()
     {
-        AvailablePieces.Add(new WhitePawn("B2"));
+        AvailablePieces.Add(new BlackPawn("B7"));
         //AvailablePieces.Add(new BlackPawn("B4"));
     }
 }
