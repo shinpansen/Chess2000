@@ -2,6 +2,7 @@
 # Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
 ################################################################################
 
+/.vs
 /Chess2000/.vs
 /Chess2000/bin
 /Chess2000/obj
