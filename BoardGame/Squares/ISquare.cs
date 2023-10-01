@@ -1,6 +1,6 @@
-﻿using Chess2000.BoardGame.Location;
+﻿using BoardGame.Location;
 
-namespace Chess2000.BoardGame.Squares;
+namespace BoardGame.Squares;
 
 public interface ISquare
 {

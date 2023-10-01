@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Chess2000.BoardGame.Movements.Chess;
-using Chess2000.BoardGame.Pieces.Visitors;
-using Chess2000.BoardGame.Board;
-using Chess2000.BoardGame.Movements;
-using Chess2000.BoardGame.Location.Links;
-using Chess2000.BoardGame.Location.Links._2DGrid;
-using Chess2000.BoardGame.Game;
-using Chess2000.BoardGame.Pieces;
+using BoardGame.Movements.Chess;
+using BoardGame.Pieces.Visitors;
+using BoardGame.Board;
+using BoardGame.Movements;
+using BoardGame.Location.Links;
+using BoardGame.Location.Links._2DGrid;
+using BoardGame.Game;
+using BoardGame.Pieces;
 
-namespace Chess2000.BoardGame.Rules.Chess;
+namespace BoardGame.Rules.Chess;
 
 public class PawnMovementsProvider : ChessMovementsProvider
 {

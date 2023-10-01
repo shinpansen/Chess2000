@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Chess2000.BoardGame.Board.Chess;
-using Chess2000.BoardGame.Game;
-using Chess2000.BoardGame.Location;
-using Chess2000.BoardGame.Pieces;
-using Chess2000.BoardGame.Pieces.Chess;
-using Chess2000.BoardGame.Rules;
-using Chess2000.BoardGame.Squares;
-using Chess2000.BoardGame.Squares.Chess;
+using BoardGame.Board.Chess;
+using BoardGame.Game;
+using BoardGame.Location;
+using BoardGame.Pieces;
+using BoardGame.Pieces.Chess;
+using BoardGame.Rules;
+using BoardGame.Squares;
+using BoardGame.Squares.Chess;
 
-namespace Chess2000.BoardGame.Movements.Chess;
+namespace BoardGame.Movements.Chess;
 
 public class ChessMovementBase : IMovement
 {

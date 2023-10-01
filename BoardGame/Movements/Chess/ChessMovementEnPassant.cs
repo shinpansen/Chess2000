@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
-using Chess2000.BoardGame.Game;
-using Chess2000.BoardGame.Pieces;
-using Chess2000.BoardGame.Pieces.Chess;
-using Chess2000.BoardGame.Squares;
-using Chess2000.BoardGame.Squares.Chess;
+using BoardGame.Game;
+using BoardGame.Pieces;
+using BoardGame.Pieces.Chess;
+using BoardGame.Squares;
+using BoardGame.Squares.Chess;
 
-namespace Chess2000.BoardGame.Movements.Chess;
+namespace BoardGame.Movements.Chess;
 
 public class ChessMovementEnPassant : IMovement
 {

@@ -1,12 +1,12 @@
-using Chess2000.BoardGame.Board;
-using Chess2000.BoardGame.Game;
-using Chess2000.BoardGame.Location;
-using Chess2000.BoardGame.Pieces;
-using Chess2000.BoardGame.Rules;
+using BoardGame.Board;
+using BoardGame.Game;
+using BoardGame.Location;
+using BoardGame.Pieces;
+using BoardGame.Rules;
 using System;
 using System.Collections.Generic;
 
-namespace Chess2000.BoardGame.Movements;
+namespace BoardGame.Movements;
 
 public interface IMovement
 {

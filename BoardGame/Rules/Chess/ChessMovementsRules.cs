@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
-using Chess2000.BoardGame.Board;
-using Chess2000.BoardGame.Board.Chess;
-using Chess2000.BoardGame.Game;
-using Chess2000.BoardGame.Game.Chess;
-using Chess2000.BoardGame.Location.Chess;
-using Chess2000.BoardGame.Movements;
-using Chess2000.BoardGame.Movements.Chess;
-using Chess2000.BoardGame.Pieces;
-using Chess2000.BoardGame.Pieces.Chess;
-using Chess2000.BoardGame.Rules;
-using Chess2000.BoardGame.Squares.Chess;
+using BoardGame.Board;
+using BoardGame.Board.Chess;
+using BoardGame.Game;
+using BoardGame.Game.Chess;
+using BoardGame.Location.Chess;
+using BoardGame.Movements;
+using BoardGame.Movements.Chess;
+using BoardGame.Pieces;
+using BoardGame.Pieces.Chess;
+using BoardGame.Rules;
+using BoardGame.Squares.Chess;
 
-namespace Chess2000.BoardGame.Rules.Chess;
+namespace BoardGame.Rules.Chess;
 
 public class ChessMovementsRules : MovementsRules
 {

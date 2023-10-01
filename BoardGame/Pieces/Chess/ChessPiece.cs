@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
-using Chess2000.BoardGame.Data;
-using Chess2000.BoardGame.Location.Chess;
-using Chess2000.BoardGame.Movements;
-using Chess2000.BoardGame.Pieces.Visitors;
-using Chess2000.BoardGame.Rules;
-using Chess2000.BoardGame.Squares;
-using Chess2000.BoardGame.Squares.Chess;
+using BoardGame.Data;
+using BoardGame.Location.Chess;
+using BoardGame.Movements;
+using BoardGame.Pieces.Visitors;
+using BoardGame.Rules;
+using BoardGame.Squares;
+using BoardGame.Squares.Chess;
 
-namespace Chess2000.BoardGame.Pieces.Chess;
+namespace BoardGame.Pieces.Chess;
 
 public abstract class ChessPiece : IPiece
 {

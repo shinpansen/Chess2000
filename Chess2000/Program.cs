@@ -1,10 +1,10 @@
-﻿using Chess2000.BoardGame.Board;
-using Chess2000.BoardGame.Board.Chess;
-using Chess2000.BoardGame.Game;
-using Chess2000.BoardGame.Game.Chess;
-using Chess2000.BoardGame.Location.Chess;
-using Chess2000.BoardGame.Movements.Chess;
-using Chess2000.BoardGame.Rules.Chess;
+﻿using BoardGame.Board;
+using BoardGame.Board.Chess;
+using BoardGame.Game;
+using BoardGame.Game.Chess;
+using BoardGame.Location.Chess;
+using BoardGame.Movements.Chess;
+using BoardGame.Rules.Chess;
 using System.Linq;
 
 /*ChessPiece p1 = new BlackPawn();

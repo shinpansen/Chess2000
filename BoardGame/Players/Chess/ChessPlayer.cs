@@ -1,12 +1,12 @@
-﻿using Chess2000.BoardGame.Board.Chess;
-using Chess2000.BoardGame.Pieces.Chess;
+﻿using BoardGame.Board.Chess;
+using BoardGame.Pieces.Chess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess2000.BoardGame.Players.Chess;
+namespace BoardGame.Players.Chess;
 
 public class ChessPlayer<TP> : IPlayer where TP : ChessPiece
 {

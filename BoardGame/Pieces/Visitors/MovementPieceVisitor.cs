@@ -1,12 +1,12 @@
-﻿using Chess2000.BoardGame.Movements;
-using Chess2000.BoardGame.Pieces.Chess;
+﻿using BoardGame.Movements;
+using BoardGame.Pieces.Chess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess2000.BoardGame.Pieces.Visitors;
+namespace BoardGame.Pieces.Visitors;
 
 public class MovementPieceVisitor
 {

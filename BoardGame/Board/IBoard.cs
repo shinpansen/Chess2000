@@ -1,14 +1,14 @@
-﻿using Chess2000.BoardGame.Pieces;
-using Chess2000.BoardGame.Squares;
+﻿using BoardGame.Pieces;
+using BoardGame.Squares;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Chess2000.BoardGame.Movements;
-using Chess2000.BoardGame.Location;
+using BoardGame.Movements;
+using BoardGame.Location;
 
-namespace Chess2000.BoardGame.Board;
+namespace BoardGame.Board;
 
 public interface IBoard
 {

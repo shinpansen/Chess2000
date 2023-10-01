@@ -1,8 +1,8 @@
-using Chess2000.BoardGame.Movements;
-using Chess2000.BoardGame.Pieces.Visitors;
-using Chess2000.BoardGame.Squares;
+using BoardGame.Movements;
+using BoardGame.Pieces.Visitors;
+using BoardGame.Squares;
 
-namespace Chess2000.BoardGame.Pieces.Chess;
+namespace BoardGame.Pieces.Chess;
 
 public abstract class WhitePiece : ChessPiece
 {

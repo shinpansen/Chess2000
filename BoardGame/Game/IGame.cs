@@ -1,7 +1,7 @@
-﻿using Chess2000.BoardGame.Location;
-using Chess2000.BoardGame.Movements;
-using Chess2000.BoardGame.Pieces;
-using Chess2000.BoardGame.Rules;
+﻿using BoardGame.Location;
+using BoardGame.Movements;
+using BoardGame.Pieces;
+using BoardGame.Rules;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess2000.BoardGame.Game;
+namespace BoardGame.Game;
 
 public interface IGame
 {

@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using Chess2000.BoardGame.Board;
-using Chess2000.BoardGame.Game;
-using Chess2000.BoardGame.Location.Links;
-using Chess2000.BoardGame.Location.Links._2DGrid;
-using Chess2000.BoardGame.Movements;
-using Chess2000.BoardGame.Movements.Chess;
-using Chess2000.BoardGame.Pieces;
+using BoardGame.Board;
+using BoardGame.Game;
+using BoardGame.Location.Links;
+using BoardGame.Location.Links._2DGrid;
+using BoardGame.Movements;
+using BoardGame.Movements.Chess;
+using BoardGame.Pieces;
 
-namespace Chess2000.BoardGame.Rules.Chess;
+namespace BoardGame.Rules.Chess;
 
 public class KingMovementsProvider : ChessMovementsProvider
 {

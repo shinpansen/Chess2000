@@ -1,7 +1,7 @@
-﻿using Chess2000.BoardGame.Location;
-using Chess2000.BoardGame.Location.Chess;
+﻿using BoardGame.Location;
+using BoardGame.Location.Chess;
 
-namespace Chess2000.BoardGame.Squares.Chess;
+namespace BoardGame.Squares.Chess;
 
 public class ChessSquare : ISquare
 {

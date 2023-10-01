@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess2000.BoardGame.Data;
+namespace BoardGame.Data;
 
 public class Data : IData
 {

@@ -1,16 +1,16 @@
-﻿using Chess2000.BoardGame.Pieces.Chess;
-using Chess2000.BoardGame.Squares.Chess;
+﻿using BoardGame.Pieces.Chess;
+using BoardGame.Squares.Chess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Chess2000.BoardGame.Movements.Chess;
-using Chess2000.BoardGame.Squares;
-using Chess2000.BoardGame.Location;
-using Chess2000.BoardGame.Location.Chess;
+using BoardGame.Movements.Chess;
+using BoardGame.Squares;
+using BoardGame.Location;
+using BoardGame.Location.Chess;
 
-namespace Chess2000.BoardGame.Board.Chess;
+namespace BoardGame.Board.Chess;
 
 public class ChessBoard : IBoard
 {

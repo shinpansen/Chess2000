@@ -1,15 +1,15 @@
-﻿using Chess2000.BoardGame.Board;
-using Chess2000.BoardGame.Game;
-using Chess2000.BoardGame.Location.Links;
-using Chess2000.BoardGame.Pieces;
-using Chess2000.BoardGame.Squares;
+﻿using BoardGame.Board;
+using BoardGame.Game;
+using BoardGame.Location.Links;
+using BoardGame.Pieces;
+using BoardGame.Squares;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess2000.BoardGame.Rules;
+namespace BoardGame.Rules;
 
 public abstract class MovementsProvider : IMovementProvider
 {

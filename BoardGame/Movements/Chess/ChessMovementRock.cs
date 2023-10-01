@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Chess2000.BoardGame.Game;
-using Chess2000.BoardGame.Pieces;
-using Chess2000.BoardGame.Squares;
+using BoardGame.Game;
+using BoardGame.Pieces;
+using BoardGame.Squares;
 
-namespace Chess2000.BoardGame.Movements.Chess;
+namespace BoardGame.Movements.Chess;
 
 public class ChessMovementRock : IMovement
 {

@@ -1,16 +1,16 @@
-﻿using Chess2000.BoardGame.Board;
-using Chess2000.BoardGame.Data;
-using Chess2000.BoardGame.Movements;
-using Chess2000.BoardGame.Pieces.Visitors;
-using Chess2000.BoardGame.Rules;
-using Chess2000.BoardGame.Squares;
+﻿using BoardGame.Board;
+using BoardGame.Data;
+using BoardGame.Movements;
+using BoardGame.Pieces.Visitors;
+using BoardGame.Rules;
+using BoardGame.Squares;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess2000.BoardGame.Pieces;
+namespace BoardGame.Pieces;
 
 public interface IPiece
 {

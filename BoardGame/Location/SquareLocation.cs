@@ -1,11 +1,11 @@
-﻿using Chess2000.BoardGame.Location.Links;
+﻿using BoardGame.Location.Links;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess2000.BoardGame.Location;
+namespace BoardGame.Location;
 
 public abstract class SquareLocation : ISquareLocation
 {

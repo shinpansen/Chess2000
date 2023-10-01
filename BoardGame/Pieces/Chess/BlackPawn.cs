@@ -1,12 +1,12 @@
-using Chess2000.BoardGame.Data;
-using Chess2000.BoardGame.Movements;
-using Chess2000.BoardGame.Rules;
-using Chess2000.BoardGame.Rules.Chess;
-using Chess2000.BoardGame.Squares;
+using BoardGame.Data;
+using BoardGame.Movements;
+using BoardGame.Rules;
+using BoardGame.Rules.Chess;
+using BoardGame.Squares;
 using System;
 using System.Collections.Generic;
 
-namespace Chess2000.BoardGame.Pieces.Chess;
+namespace BoardGame.Pieces.Chess;
 
 public sealed class BlackPawn : BlackPiece
 {

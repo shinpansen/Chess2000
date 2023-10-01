@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess2000.BoardGame.Location;
+namespace BoardGame.Location;
 
 public class Point3D
 {
