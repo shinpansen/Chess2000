@@ -17,19 +17,19 @@ namespace Chess2000.BoardGame.Rules
         protected IGame Game { get; set; }
         protected IBoard Board { get; set; }
         protected IPiece Piece { get; set; }
-        protected List<IMovement> availableMoves { get; set; }
+        private List<IMovement> _availableMoves { get; set; }
 
-        public MovementsRules(IGame game, IBoard board, IPiece piece)
+        protected MovementsRules(IGame game, IBoard board, IPiece piece)
         {
             Game = game;
             Board = board;
             Piece = piece;
-            availableMoves = Piece.GetAvailableMoves(this);
+            _availableMoves = Piece.GetAvailableMoves(this);
         }
         
         public virtual ReadOnlyCollection<IMovement> GetAvailableMoves()
         {
-            return availableMoves.AsReadOnly();
+            return _availableMoves.AsReadOnly();
         }
     }
 }
