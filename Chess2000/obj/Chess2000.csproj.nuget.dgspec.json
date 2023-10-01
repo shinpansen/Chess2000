@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Chess2000.csproj": {}
+    "C:\\Users\\shinpansen\\Documents\\MonoGames\\Chess2000\\Chess2000\\Chess2000.csproj": {}
   },
   "projects": {
-    "/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Chess2000.csproj": {
+    "C:\\Users\\shinpansen\\Documents\\MonoGames\\Chess2000\\Chess2000\\Chess2000.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Chess2000.csproj",
+        "projectUniqueName": "C:\\Users\\shinpansen\\Documents\\MonoGames\\Chess2000\\Chess2000\\Chess2000.csproj",
         "projectName": "Chess2000",
-        "projectPath": "/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Chess2000.csproj",
-        "packagesPath": "/home/shinpansen/.nuget/packages/",
-        "outputPath": "/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/obj/",
+        "projectPath": "C:\\Users\\shinpansen\\Documents\\MonoGames\\Chess2000\\Chess2000\\Chess2000.csproj",
+        "packagesPath": "C:\\Users\\shinpansen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shinpansen\\Documents\\MonoGames\\Chess2000\\Chess2000\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/shinpansen/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\shinpansen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,18 +60,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.linux-x64",
-              "version": "[6.0.22, 6.0.22]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.111/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
