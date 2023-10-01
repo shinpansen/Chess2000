@@ -5,7 +5,7 @@ using BoardGame.Game;
 using BoardGame.Movements;
 using BoardGame.Pieces;
 
-namespace BoardGame.Rules;
+namespace BoardGame.MovementsRules;
 
 public interface IMovementsRules
 {

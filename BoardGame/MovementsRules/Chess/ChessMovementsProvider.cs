@@ -1,14 +1,14 @@
 using BoardGame.Board;
 using BoardGame.Game;
-using BoardGame.Location.Links;
+using BoardGame.SquaresLocation.Links;
 using BoardGame.Pieces;
 using BoardGame.Pieces.Visitors;
 using BoardGame.Squares;
 using System.Collections.Generic;
 using System.Linq;
-using BoardGame.Location.Links._2DGrid;
+using BoardGame.SquaresLocation.Links._2DGrid;
 
-namespace BoardGame.Rules.Chess;
+namespace BoardGame.MovementsRules.Chess;
 
 public abstract class ChessMovementsProvider : MovementsProvider
 {

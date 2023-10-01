@@ -1,9 +1,9 @@
-﻿using BoardGame.Location;
+﻿using BoardGame.SquaresLocation;
 using BoardGame.Movements;
 using BoardGame.Pieces;
 using BoardGame.Pieces.Chess;
-using BoardGame.Rules;
-using BoardGame.Rules.Chess;
+using BoardGame.MovementsRules;
+using BoardGame.MovementsRules.Chess;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

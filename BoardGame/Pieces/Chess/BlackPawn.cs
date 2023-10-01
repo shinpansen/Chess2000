@@ -1,7 +1,7 @@
 using BoardGame.Data;
 using BoardGame.Movements;
-using BoardGame.Rules;
-using BoardGame.Rules.Chess;
+using BoardGame.MovementsRules;
+using BoardGame.MovementsRules.Chess;
 using BoardGame.Squares;
 using System;
 using System.Collections.Generic;

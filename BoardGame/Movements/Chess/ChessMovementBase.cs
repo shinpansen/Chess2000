@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using BoardGame.Board.Chess;
 using BoardGame.Game;
-using BoardGame.Location;
+using BoardGame.SquaresLocation;
 using BoardGame.Pieces;
 using BoardGame.Pieces.Chess;
-using BoardGame.Rules;
+using BoardGame.MovementsRules;
 using BoardGame.Squares;
 using BoardGame.Squares.Chess;
 

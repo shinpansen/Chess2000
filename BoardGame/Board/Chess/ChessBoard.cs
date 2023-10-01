@@ -7,8 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BoardGame.Movements.Chess;
 using BoardGame.Squares;
-using BoardGame.Location;
-using BoardGame.Location.Chess;
+using BoardGame.SquaresLocation;
+using BoardGame.SquaresLocation.Chess;
 
 namespace BoardGame.Board.Chess;
 

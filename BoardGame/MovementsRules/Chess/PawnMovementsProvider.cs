@@ -5,12 +5,12 @@ using BoardGame.Movements.Chess;
 using BoardGame.Pieces.Visitors;
 using BoardGame.Board;
 using BoardGame.Movements;
-using BoardGame.Location.Links;
-using BoardGame.Location.Links._2DGrid;
+using BoardGame.SquaresLocation.Links;
+using BoardGame.SquaresLocation.Links._2DGrid;
 using BoardGame.Game;
 using BoardGame.Pieces;
 
-namespace BoardGame.Rules.Chess;
+namespace BoardGame.MovementsRules.Chess;
 
 public class PawnMovementsProvider : ChessMovementsProvider
 {

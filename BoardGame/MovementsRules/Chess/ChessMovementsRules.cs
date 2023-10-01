@@ -4,15 +4,15 @@ using BoardGame.Board;
 using BoardGame.Board.Chess;
 using BoardGame.Game;
 using BoardGame.Game.Chess;
-using BoardGame.Location.Chess;
+using BoardGame.SquaresLocation.Chess;
 using BoardGame.Movements;
 using BoardGame.Movements.Chess;
 using BoardGame.Pieces;
 using BoardGame.Pieces.Chess;
-using BoardGame.Rules;
+using BoardGame.MovementsRules;
 using BoardGame.Squares.Chess;
 
-namespace BoardGame.Rules.Chess;
+namespace BoardGame.MovementsRules.Chess;
 
 public class ChessMovementsRules : MovementsRules
 {

@@ -1,10 +1,10 @@
-using BoardGame.Location.Links;
-using BoardGame.Rules.Chess;
+using BoardGame.SquaresLocation.Links;
+using BoardGame.MovementsRules.Chess;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace BoardGame.Location;
+namespace BoardGame.SquaresLocation;
 
 public interface ISquareLocation : IEquatable<ISquareLocation>
 {

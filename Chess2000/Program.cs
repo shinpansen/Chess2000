@@ -2,9 +2,9 @@
 using BoardGame.Board.Chess;
 using BoardGame.Game;
 using BoardGame.Game.Chess;
-using BoardGame.Location.Chess;
+using BoardGame.SquaresLocation.Chess;
 using BoardGame.Movements.Chess;
-using BoardGame.Rules.Chess;
+using BoardGame.MovementsRules.Chess;
 using System.Linq;
 
 /*ChessPiece p1 = new BlackPawn();

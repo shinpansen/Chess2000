@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoardGame.Rules;
+namespace BoardGame.MovementsRules;
 
 public abstract class MovementsRules : IMovementsRules
 {

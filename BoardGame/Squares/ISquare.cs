@@ -1,4 +1,4 @@
-﻿using BoardGame.Location;
+﻿using BoardGame.SquaresLocation;
 
 namespace BoardGame.Squares;
 

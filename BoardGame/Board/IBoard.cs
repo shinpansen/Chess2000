@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BoardGame.Movements;
-using BoardGame.Location;
+using BoardGame.SquaresLocation;
 
 namespace BoardGame.Board;
 

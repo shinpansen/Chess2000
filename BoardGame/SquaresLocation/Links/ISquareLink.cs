@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BoardGame.Location.Links;
+namespace BoardGame.SquaresLocation.Links;
 
 public interface ISquareLink : IEquatable<ISquareLink>
 {

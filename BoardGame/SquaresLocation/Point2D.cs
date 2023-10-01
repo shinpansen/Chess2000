@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoardGame.Location;
+namespace BoardGame.SquaresLocation;
 
 public class Point2D
 {

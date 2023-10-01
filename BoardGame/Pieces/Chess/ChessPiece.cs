@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using BoardGame.Data;
-using BoardGame.Location.Chess;
+using BoardGame.SquaresLocation.Chess;
 using BoardGame.Movements;
 using BoardGame.Pieces.Visitors;
-using BoardGame.Rules;
+using BoardGame.MovementsRules;
 using BoardGame.Squares;
 using BoardGame.Squares.Chess;
 

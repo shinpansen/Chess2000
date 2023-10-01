@@ -1,5 +1,5 @@
-﻿using BoardGame.Location;
-using BoardGame.Location.Chess;
+﻿using BoardGame.SquaresLocation;
+using BoardGame.SquaresLocation.Chess;
 
 namespace BoardGame.Squares.Chess;
 

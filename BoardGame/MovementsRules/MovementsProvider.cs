@@ -1,6 +1,6 @@
 ﻿using BoardGame.Board;
 using BoardGame.Game;
-using BoardGame.Location.Links;
+using BoardGame.SquaresLocation.Links;
 using BoardGame.Pieces;
 using BoardGame.Squares;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoardGame.Rules;
+namespace BoardGame.MovementsRules;
 
 public abstract class MovementsProvider : IMovementProvider
 {

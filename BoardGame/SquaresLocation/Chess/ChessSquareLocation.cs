@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using BoardGame.Location.Links;
-using BoardGame.Location.Links._2DGrid;
+using BoardGame.SquaresLocation.Links;
+using BoardGame.SquaresLocation.Links._2DGrid;
 
-namespace BoardGame.Location.Chess;
+namespace BoardGame.SquaresLocation.Chess;
 
 public class ChessSquareLocation : SquareLocation
 {

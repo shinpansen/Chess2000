@@ -1,4 +1,4 @@
-﻿using BoardGame.Location.Links;
+﻿using BoardGame.SquaresLocation.Links;
 using BoardGame.Squares;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoardGame.Rules;
+namespace BoardGame.MovementsRules;
 
 public interface IMovementProvider
 {

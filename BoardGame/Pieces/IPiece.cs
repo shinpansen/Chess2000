@@ -2,7 +2,7 @@
 using BoardGame.Data;
 using BoardGame.Movements;
 using BoardGame.Pieces.Visitors;
-using BoardGame.Rules;
+using BoardGame.MovementsRules;
 using BoardGame.Squares;
 using System;
 using System.Collections.Generic;

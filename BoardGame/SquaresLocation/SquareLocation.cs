@@ -1,11 +1,11 @@
-﻿using BoardGame.Location.Links;
+﻿using BoardGame.SquaresLocation.Links;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoardGame.Location;
+namespace BoardGame.SquaresLocation;
 
 public abstract class SquareLocation : ISquareLocation
 {

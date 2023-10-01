@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoardGame.Location.Links._2DGrid
+namespace BoardGame.SquaresLocation.Links._2DGrid
 {
     public class Link2DGridBuilder
     {

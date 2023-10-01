@@ -1,7 +1,7 @@
-﻿using BoardGame.Location;
+﻿using BoardGame.SquaresLocation;
 using BoardGame.Movements;
 using BoardGame.Pieces;
-using BoardGame.Rules;
+using BoardGame.MovementsRules;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
