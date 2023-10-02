@@ -13,7 +13,6 @@ IGame chessGame = new ChessGame();
 if (!chessGame.TryGetPiece(new ChessSquareLocation("D2"), out var piece)) return;
 var rules = new MovementsRules(chessGame, board);
 var moves = rules.GetAvailableMoves(piece);
-piece.GetAvailableMoves(null);
 chessGame.ExecuteMove(piece, moves.First(), rules);
 
 using var game = new Chess2000.MyGame();
