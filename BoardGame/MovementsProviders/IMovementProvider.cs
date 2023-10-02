@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoardGame.MovementsRules;
+namespace BoardGame.MovementsProviders;
 
 public interface IMovementProvider
 {

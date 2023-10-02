@@ -10,11 +10,11 @@ using BoardGame.SquaresLocation.Links._2DGrid;
 using BoardGame.Game;
 using BoardGame.Pieces;
 
-namespace BoardGame.MovementsRules.Chess;
+namespace BoardGame.MovementsProviders.Chess;
 
 public class PawnMovementsProvider : ChessMovementsProvider
 {
-    public PawnMovementsProvider(IMovementsRules rules, IPiece piece) : base(rules, piece)
+    public PawnMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
     {
     }
 

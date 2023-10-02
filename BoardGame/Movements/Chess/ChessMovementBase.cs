@@ -6,7 +6,7 @@ using BoardGame.Game;
 using BoardGame.SquaresLocation;
 using BoardGame.Pieces;
 using BoardGame.Pieces.Chess;
-using BoardGame.MovementsRules;
+using BoardGame.MovementsProviders;
 using BoardGame.Squares;
 using BoardGame.Squares.Chess;
 

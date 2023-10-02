@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BoardGame.Board.Chess;
 using BoardGame.Movements;
-using BoardGame.MovementsRules;
+using BoardGame.MovementsProviders;
 using BoardGame.Pieces;
 
 namespace BoardGame.Game.Chess;
@@ -43,20 +43,5 @@ public class ChessGame : Game
         AvailablePieces.Add(new WhiteBishop("F1"));
         AvailablePieces.Add(new WhiteKnight("G1"));
         AvailablePieces.Add(new WhiteTower("H1"));
-    }
-    
-    public override void ExecuteMove(IPiece piece, IMovement move, IMovementsRules rules)
-    {
-        base.ExecuteMove(piece, move, rules);
-
-        foreach (var p in AvailablePieces.Where(p => p is not WhiteKing && p is not BlackKing))
-        {
-            var moves = p.GetAvailableMoves(new MovementsRules.MovementsRules(this, new ChessBoard()));
-            foreach (var m in moves)
-            {
-                var result = m.SimulateMove(this);
-                //Todo implémenter l'echec
-            }
-        }
     }
 }

@@ -5,15 +5,14 @@ using BoardGame.Game.Chess;
 using BoardGame.SquaresLocation.Chess;
 using BoardGame.Movements.Chess;
 using System.Linq;
-using BoardGame.MovementsRules;
+using BoardGame.MovementsProviders;
 
 IBoard board = new ChessBoard();
 IGame chessGame = new ChessGame();
 
 if (!chessGame.TryGetPiece(new ChessSquareLocation("D2"), out var piece)) return;
-var rules = new MovementsRules(chessGame, board);
-var moves = rules.GetAvailableMoves(piece);
-chessGame.ExecuteMove(piece, moves.First(), rules);
+var moves = piece.GetAvailableMoves(chessGame, board);
+chessGame.ExecuteMove(piece, moves.First(), board);
 
 using var game = new Chess2000.MyGame();
 game.Run();

@@ -2,7 +2,7 @@ using BoardGame.Board;
 using BoardGame.Game;
 using BoardGame.SquaresLocation;
 using BoardGame.Pieces;
-using BoardGame.MovementsRules;
+using BoardGame.MovementsProviders;
 using System;
 using System.Collections.Generic;
 

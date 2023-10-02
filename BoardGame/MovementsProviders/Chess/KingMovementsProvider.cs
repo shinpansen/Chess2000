@@ -8,11 +8,11 @@ using BoardGame.Movements.Chess;
 using BoardGame.Pieces;
 using BoardGame.Pieces.Visitors;
 
-namespace BoardGame.MovementsRules.Chess;
+namespace BoardGame.MovementsProviders.Chess;
 
 public class KingMovementsProvider : ChessMovementsProvider
 {
-    public KingMovementsProvider(IMovementsRules rules, IPiece piece) : base(rules, piece)
+    public KingMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
     {
     }
     

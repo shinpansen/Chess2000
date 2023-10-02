@@ -1,7 +1,9 @@
+using BoardGame.Board;
 using BoardGame.Data;
+using BoardGame.Game;
 using BoardGame.Movements;
-using BoardGame.MovementsRules;
-using BoardGame.MovementsRules.Chess;
+using BoardGame.MovementsProviders;
+using BoardGame.MovementsProviders.Chess;
 using BoardGame.Squares;
 using BoardGame.SquaresLocation.Links._2DGrid;
 using System;
@@ -23,9 +25,9 @@ public sealed class WhitePawn : WhitePiece
     {
     }
 
-    public override List<IMovement> GetAvailableMoves(IMovementsRules rules)
+    public override List<IMovement> GetAvailableMoves(IGame game, IBoard board)
     {
-        var provider = new PawnMovementsProvider(rules, this);
+        var provider = new PawnMovementsProvider(game, board, this);
         return provider.GetAvailableMoves(new Top());
     }
 

@@ -1,12 +1,14 @@
 ﻿using BoardGame.Movements;
-using BoardGame.MovementsRules.Chess;
-using BoardGame.MovementsRules;
+using BoardGame.MovementsProviders.Chess;
+using BoardGame.MovementsProviders;
 using BoardGame.Squares;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BoardGame.Board;
+using BoardGame.Game;
 
 namespace BoardGame.Pieces.Chess
 {
@@ -24,9 +26,9 @@ namespace BoardGame.Pieces.Chess
         {
         }
 
-        public override List<IMovement> GetAvailableMoves(IMovementsRules rules)
+        public override List<IMovement> GetAvailableMoves(IGame game, IBoard board)
         {
-            var provider = new KnightMovementsProvider(rules, this);
+            var provider = new KnightMovementsProvider(game, board, this);
             return provider.GetAvailableMoves();
         }
 

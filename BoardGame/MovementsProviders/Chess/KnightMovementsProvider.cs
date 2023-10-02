@@ -11,11 +11,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoardGame.MovementsRules.Chess
+namespace BoardGame.MovementsProviders.Chess
 {
     public class KnightMovementsProvider : ChessMovementsProvider
     {
-        public KnightMovementsProvider(IMovementsRules rules, IPiece piece) : base(rules, piece)
+        public KnightMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
         {
         }
 

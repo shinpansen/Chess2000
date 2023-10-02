@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BoardGame.MovementsRules;
+namespace BoardGame.MovementsProviders;
 
 public abstract class MovementsProvider : IMovementProvider
 {
@@ -17,10 +17,10 @@ public abstract class MovementsProvider : IMovementProvider
     protected IGame Game { get; set; }
     protected IPiece Piece { get; set; }
 
-    protected MovementsProvider(IMovementsRules rules, IPiece piece)
+    protected MovementsProvider(IGame game, IBoard board, IPiece piece)
     {
-        Game = rules.GetGame();
-        Board = rules.GetBoard();
+        Game = game;
+        Board = board;
         Piece = piece;
     }
 

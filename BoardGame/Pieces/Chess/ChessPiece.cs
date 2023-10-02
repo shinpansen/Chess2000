@@ -4,9 +4,11 @@ using BoardGame.Data;
 using BoardGame.SquaresLocation.Chess;
 using BoardGame.Movements;
 using BoardGame.Pieces.Visitors;
-using BoardGame.MovementsRules;
+using BoardGame.MovementsProviders;
 using BoardGame.Squares;
 using BoardGame.Squares.Chess;
+using BoardGame.Board;
+using BoardGame.Game;
 
 namespace BoardGame.Pieces.Chess;
 
@@ -34,7 +36,7 @@ public abstract class ChessPiece : IPiece
         return Square;
     }
 
-    public abstract List<IMovement> GetAvailableMoves(IMovementsRules rules);
+    public abstract List<IMovement> GetAvailableMoves(IGame game, IBoard board);
     public abstract IPiece Clone();
     public abstract IPiece Clone(ISquare newSquare);
     public abstract IPiece Clone(ISquare newSquare, IMovement lastMove);

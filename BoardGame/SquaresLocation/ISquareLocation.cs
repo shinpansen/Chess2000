@@ -1,5 +1,5 @@
 using BoardGame.SquaresLocation.Links;
-using BoardGame.MovementsRules.Chess;
+using BoardGame.MovementsProviders.Chess;
 using System;
 using System.Collections;
 using System.Collections.Generic;

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BoardGame.SquaresLocation.Links._2DGrid;
 
-namespace BoardGame.MovementsRules.Chess;
+namespace BoardGame.MovementsProviders.Chess;
 
 public abstract class ChessMovementsProvider : MovementsProvider
 {
@@ -28,7 +28,7 @@ public abstract class ChessMovementsProvider : MovementsProvider
         new BottomRight()
     };
     
-    protected ChessMovementsProvider(IMovementsRules rules, IPiece piece) : base(rules, piece)
+    protected ChessMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
     {
     }
 
