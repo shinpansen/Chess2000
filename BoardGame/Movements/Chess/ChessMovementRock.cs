@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using BoardGame.Game;
 using BoardGame.Pieces;
+using BoardGame.Players;
 using BoardGame.Squares;
 
 namespace BoardGame.Movements.Chess;
@@ -21,15 +22,21 @@ public class ChessMovementRock : IMovement
         _towerTarget = towerTarget;
     }
 
-    public List<IPiece> SimulateMove(IGame game)
+    public List<IPiece> SimulateMove(IGame game, IPlayer player)
     {
-        var piecesClone = new List<IPiece>(game.GetAvailablePieces());
+        var piecesClone = new List<IPiece>(player.GetAvailablePieces());
 
-        piecesClone.Remove(_king);
-        piecesClone.Add(_king.Clone(_kingTarget, this));
+        if (player.TryGetPiece(_king.Location, out _))
+        {
+            piecesClone.Remove(_king);
+            piecesClone.Add(_king.Clone(_kingTarget, this));
+        }
 
-        piecesClone.Remove(_tower);
-        piecesClone.Add(_tower.Clone(_towerTarget, this));
+        if (player.TryGetPiece(_tower.Location, out _))
+        {
+            piecesClone.Remove(_tower);
+            piecesClone.Add(_tower.Clone(_towerTarget, this));
+        }
 
         return piecesClone;
     }

@@ -9,11 +9,13 @@ using BoardGame.Squares;
 using BoardGame.Squares.Chess;
 using BoardGame.Board;
 using BoardGame.Game;
+using BoardGame.SquaresLocation;
 
 namespace BoardGame.Pieces.Chess;
 
 public abstract class ChessPiece : IPiece
 {
+    public ISquareLocation Location => GetSquare().GetLocation();
     public IMovement? LastMove { get; protected set; }
     protected ISquare Square { get; set; }
 
@@ -35,15 +37,13 @@ public abstract class ChessPiece : IPiece
     {
         return Square;
     }
-
+    
     public abstract List<IMovement> GetAvailableMoves(IGame game, IBoard board);
     public abstract IPiece Clone();
     public abstract IPiece Clone(ISquare newSquare);
     public abstract IPiece Clone(ISquare newSquare, IMovement lastMove);
     public abstract bool Equals(IPiece? other);
-    public abstract bool Visit(BooleanPieceVisitor visitor);
-
-    public IMovement Visit(MovementPieceVisitor visitor)
+    public IMovement? Visit(MovementPieceVisitor visitor)
     {
         return visitor.Visit(this);
     }

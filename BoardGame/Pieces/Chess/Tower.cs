@@ -12,17 +12,17 @@ using BoardGame.Game;
 
 namespace BoardGame.Pieces.Chess
 {
-    public sealed class WhiteTower : WhitePiece
+    public sealed class Tower : ChessPiece
     {
-        public WhiteTower(ISquare square) : base(square)
+        private Tower(ISquare square) : base(square)
         {
         }
 
-        public WhiteTower(ISquare square, IMovement lastMove) : base(square, lastMove)
+        private Tower(ISquare square, IMovement lastMove) : base(square, lastMove)
         {
         }
 
-        public WhiteTower(string location) : base(location)
+        public Tower(string location) : base(location)
         {
         }
 
@@ -34,23 +34,23 @@ namespace BoardGame.Pieces.Chess
 
         public override IPiece Clone()
         {
-            return new WhiteTower(Square);
+            return new Tower(Square);
         }
 
         public override IPiece Clone(ISquare newSquare)
         {
-            return new WhiteTower(newSquare);
+            return new Tower(newSquare);
         }
 
         public override IPiece Clone(ISquare newSquare, IMovement lastMove)
         {
-            return new WhiteTower(newSquare, lastMove);
+            return new Tower(newSquare, lastMove);
         }
 
         public override bool Equals(IPiece? other)
         {
-            if (other is not WhiteTower otherPiece) return false;
-            return otherPiece.GetSquare().GetLocation().Equals(Square.GetLocation());
+            if (other is not Tower otherPiece) return false;
+            return otherPiece.Location.Equals(Square.GetLocation());
         }
     }
 }

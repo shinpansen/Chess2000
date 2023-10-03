@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BoardGame.SquaresLocation;
 
 namespace BoardGame.MovementsProviders;
 
@@ -28,16 +29,25 @@ public abstract class MovementsProvider : IMovementProvider
     {
         square = default;
 
-        var location = Piece.GetSquare().GetLocation();
+        var location = Piece.Location;
         while (links.Any() && location.GetNeighbors().Any(l => l.Key.Equals(links.First())))
         {
             location = location.GetNeighbors().First(l => l.Key.Equals(links.First())).Value;
-            if (pathShouldBeFree && Game.TryGetPiece(location, out _)) return false;
+            if (pathShouldBeFree && TryGetPiece(location, out _)) return false;
             links.Dequeue();
         }
         if (links.Any()) return false;
 
         square = Board.GetSquare(location);
         return true;
+    }
+
+    protected bool TryGetPiece(ISquareLocation location, out IPiece piece)
+    {
+        piece = default;
+        foreach (var player in Game.GetAvailablePlayers())
+            if (player.TryGetPiece(location, out piece))
+                return true;
+        return false;
     }
 }
