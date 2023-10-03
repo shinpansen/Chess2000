@@ -35,7 +35,7 @@ public abstract class ChessMovementsProvider : MovementsProvider
     protected bool TryGetEmptySquare(Queue<ISquareLink> links, out ISquare square, bool pathShouldBeFree = false)
     {
         if(!TryGetSquare(links, out square, pathShouldBeFree)) return false;
-        return !Game.TryGetPiece(square.GetLocation(), out _);
+        return !TryGetPiece(square.GetLocation(), out _);
     }
 
     protected bool TryGetSquareWithOpponent(Queue<ISquareLink> links, out ISquare square, bool pathShouldBeFree = false)
@@ -61,12 +61,16 @@ public abstract class ChessMovementsProvider : MovementsProvider
             if (links.Count > 1) return false;
             else if (!TryGetSquare(linksClone, out square)) return false;
         }
-        Game.TryGetPiece(square.GetLocation(), out piece);
+        TryGetPiece(square.GetLocation(), out piece);
         return true;
     }
 
-    private bool IsFriend(IPiece piece)
+    private bool IsFriend(IPiece other)
     {
-        return Piece.Visit(new BooleanPieceVisitor(piece));
+        foreach(var player in Game.GetAvailablePlayers())
+            if (player.TryGetPiece(Piece.Location, out _) && 
+                player.TryGetPiece(other.Location, out _))
+                return true;
+        return false;
     }
 }

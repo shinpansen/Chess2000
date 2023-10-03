@@ -7,12 +7,11 @@ using BoardGame.Movements.Chess;
 using System.Linq;
 using BoardGame.MovementsProviders;
 
-IBoard board = new ChessBoard();
 IGame chessGame = new ChessGame();
 
-if (!chessGame.TryGetPiece(new ChessSquareLocation("D2"), out var piece)) return;
-var moves = piece.GetAvailableMoves(chessGame, board);
-chessGame.ExecuteMove(piece, moves.First(), board);
+if (!chessGame.GetAvailablePlayers().First().TryGetPiece(new ChessSquareLocation("D7"), out var piece)) return;
+var moves = piece.GetAvailableMoves(chessGame, chessGame.Board);
+chessGame.ExecuteMove(piece, moves.First());
 
 using var game = new Chess2000.MyGame();
 game.Run();

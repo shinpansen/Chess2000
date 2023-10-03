@@ -28,11 +28,10 @@ public class ChessMovementBase : IMovement
     {
         var piecesClone = new List<IPiece>(player.GetAvailablePieces());
 
-        //Eating target
-        var targetPiece = piecesClone.FirstOrDefault(p => p.GetSquare().GetLocation().Equals(Target.GetLocation()));
-        if (targetPiece is not null) piecesClone.Remove(targetPiece);
+        if(player.TryGetPiece(Target.GetLocation(), out var targetPiece))
+            piecesClone.Remove(targetPiece);
 
-        if (game.TryGetPiece(Piece.GetSquare().GetLocation(), out _))
+        if (player.TryGetPiece(Piece.Location, out _))
         {
             piecesClone.Remove(Piece);
             piecesClone.Add(Piece.Clone(Target, this));

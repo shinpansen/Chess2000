@@ -27,13 +27,13 @@ public class ChessMovementEnPassant : IMovement
     {
         var piecesClone = new List<IPiece>(player.GetAvailablePieces());
 
-        if (game.TryGetPiece(_pawn.GetSquare().GetLocation(), out _))
+        if (player.TryGetPiece(_pawn.Location, out _))
         {
             piecesClone.Remove(_pawn);
             piecesClone.Add(_pawn.Clone(_pawnTarget, this));
         }
 
-        if (game.TryGetPiece(_opponentPiece.GetSquare().GetLocation(), out _))
+        if (player.TryGetPiece(_opponentPiece.Location, out _))
             piecesClone.Remove(_opponentPiece);
 
         return piecesClone;

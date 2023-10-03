@@ -12,45 +12,45 @@ using BoardGame.Game;
 
 namespace BoardGame.Pieces.Chess
 {
-    public sealed class BlackKnight : BlackPiece
+    public sealed class King : ChessPiece
     {
-        private BlackKnight(ISquare square) : base(square)
+        private King(ISquare square) : base(square)
         {
         }
 
-        public BlackKnight(ISquare square, IMovement lastMove) : base(square, lastMove)
+        private King(ISquare square, IMovement lastMove) : base(square, lastMove)
         {
         }
 
-        public BlackKnight(string location) : base(location)
+        public King(string location) : base(location)
         {
         }
 
         public override List<IMovement> GetAvailableMoves(IGame game, IBoard board)
         {
-            var provider = new KnightMovementsProvider(game, board, this);
+            var provider = new KingMovementsProvider(game, board, this);
             return provider.GetAvailableMoves();
         }
 
         public override IPiece Clone()
         {
-            return new BlackKnight(Square);
+            return new King(Square);
         }
 
         public override IPiece Clone(ISquare newSquare)
         {
-            return new BlackKnight(newSquare);
+            return new King(newSquare);
         }
 
         public override IPiece Clone(ISquare newSquare, IMovement lastMove)
         {
-            return new BlackKnight(newSquare, lastMove);
+            return new King(newSquare, lastMove);
         }
 
         public override bool Equals(IPiece? other)
         {
-            if (other is not BlackKnight otherPiece) return false;
-            return otherPiece.GetSquare().GetLocation().Equals(Square.GetLocation());
+            if (other is not King otherPiece) return false;
+            return otherPiece.Location.Equals(Square.GetLocation());
         }
     }
 }

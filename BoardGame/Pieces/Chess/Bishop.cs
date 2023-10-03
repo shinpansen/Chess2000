@@ -12,45 +12,45 @@ using BoardGame.Game;
 
 namespace BoardGame.Pieces.Chess
 {
-    public sealed class BlackQueen : BlackPiece
+    public sealed class Bishop : ChessPiece
     {
-        public BlackQueen(ISquare square) : base(square)
+        private Bishop(ISquare square) : base(square)
         {
         }
 
-        public BlackQueen(ISquare square, IMovement lastMove) : base(square, lastMove)
+        private Bishop(ISquare square, IMovement lastMove) : base(square, lastMove)
         {
         }
 
-        public BlackQueen(string location) : base(location)
+        public Bishop(string location) : base(location)
         {
         }
 
         public override List<IMovement> GetAvailableMoves(IGame game, IBoard board)
         {
             var provider = new QueenTowerBishopMovementsProvider(game, board, this);
-            return provider.GetAvailableMoves(ChessMovementsProvider.StraightLinks, ChessMovementsProvider.DiagonalLinks);
+            return provider.GetAvailableMoves(ChessMovementsProvider.DiagonalLinks);
         }
 
         public override IPiece Clone()
         {
-            return new BlackQueen(Square);
+            return new Bishop(Square);
         }
 
         public override IPiece Clone(ISquare newSquare)
         {
-            return new BlackQueen(newSquare);
+            return new Bishop(newSquare);
         }
 
         public override IPiece Clone(ISquare newSquare, IMovement lastMove)
         {
-            return new BlackQueen(newSquare, lastMove);
+            return new Bishop(newSquare, lastMove);
         }
 
         public override bool Equals(IPiece? other)
         {
-            if (other is not BlackQueen otherPiece) return false;
-            return otherPiece.GetSquare().GetLocation().Equals(Square.GetLocation());
+            if (other is not Bishop otherPiece) return false;
+            return otherPiece.Location.Equals(Square.GetLocation());
         }
     }
 }

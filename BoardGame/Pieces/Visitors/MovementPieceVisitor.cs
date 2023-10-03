@@ -14,5 +14,5 @@ public class MovementPieceVisitor
     {
     }
 
-    public IMovement Visit(ChessPiece piece) => piece.LastMove;
+    public IMovement? Visit(ChessPiece piece) => piece.LastMove;
 }

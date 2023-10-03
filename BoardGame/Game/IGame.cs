@@ -9,8 +9,10 @@ namespace BoardGame.Game;
 
 public interface IGame
 {
+    public bool IsRunning { get; }
+    public IBoard Board { get; }
     public ReadOnlyCollection<IPlayer> GetAvailablePlayers();
-    public bool TryGetPiece(ISquareLocation location, out IPiece piece);
-    public void VerifyMove(IPiece piece, IMovement move, IBoard board);
-    public void ExecuteMove(IPiece piece, IMovement move, IBoard board);
+    public ReadOnlyCollection<IPlayer> GetCurrentPlayers();
+    public void VerifyMove(IPiece piece, IMovement move);
+    public void ExecuteMove(IPiece piece, IMovement move);
 }

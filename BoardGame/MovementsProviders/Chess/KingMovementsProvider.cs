@@ -48,7 +48,7 @@ public class KingMovementsProvider : ChessMovementsProvider
 
         //Tower must never have moved
         if (!TryGetSquare(new Link2DGridBuilder().Right().Right().Right().Build(), out var towerSquare)) return;
-        if (!Game.TryGetPiece(towerSquare.GetLocation(), out var tower)) return;
+        if (!TryGetPiece(towerSquare.GetLocation(), out var tower)) return;
         if (tower.Visit(new MovementPieceVisitor()) is not null) return;
 
         TryGetEmptySquare(new Link2DGridBuilder().Right().Build(), out var towerTarget);
@@ -58,7 +58,7 @@ public class KingMovementsProvider : ChessMovementsProvider
     private void AddBigRockIfPossible(List<IMovement> moves)
     {
         //King must never have moved
-        if (Piece.Visit(new MovementPieceVisitor()) is not null) return;
+        if (Piece?.Visit(new MovementPieceVisitor()) is not null) return;
 
         //Path should be free for king and tower
         if (!TryGetEmptySquare(new Link2DGridBuilder().Left().Left().Build(), out var kingTarget, true)) return;
@@ -66,10 +66,10 @@ public class KingMovementsProvider : ChessMovementsProvider
 
         //Tower must never have moved
         if (!TryGetSquare(new Link2DGridBuilder().Left().Left().Left().Left().Build(), out var towerSquare)) return;
-        if (!Game.TryGetPiece(towerSquare.GetLocation(), out var tower)) return;
-        if (tower.Visit(new MovementPieceVisitor()) is not null) return;
+        if (!TryGetPiece(towerSquare.GetLocation(), out var tower)) return;
+        if (tower?.Visit(new MovementPieceVisitor()) is not null) return;
 
         TryGetEmptySquare(new Link2DGridBuilder().Left().Build(), out var towerTarget);
-        moves.Add(new ChessMovementRock(Piece, kingTarget, tower, towerTarget));
+        moves.Add(new ChessMovementRock(Piece!, kingTarget, tower!, towerTarget));
     }
 }

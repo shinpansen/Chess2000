@@ -18,31 +18,17 @@ namespace BoardGame.Game;
 
 public abstract class Game : IGame
 {
-    protected List<IPiece> AvailablePieces { get; set; } = new();
+    public abstract bool IsRunning { get; }
+    public abstract IBoard Board { get; }
 
-    public ReadOnlyCollection<IPiece> GetAvailablePieces()
+    public virtual void VerifyMove(IPiece piece, IMovement move)
     {
-        return AvailablePieces.AsReadOnly();
-    }
-
-    public bool TryGetPiece(ISquareLocation location, out IPiece piece)
-    {
-        piece = AvailablePieces.First(p => p.GetSquare().GetLocation().Equals(location));
-        return piece is not null;
-    }
-
-    public virtual void VerifyMove(IPiece piece, IMovement move, IBoard board)
-    {
-        var moves = piece.GetAvailableMoves(this, board);
+        var moves = piece.GetAvailableMoves(this, Board);
         if (!moves.Any(m => m.Equals(move)))
             throw new ArgumentException("Unauthorized move.");
     }
-
-    public virtual void ExecuteMove(IPiece piece, IMovement move, IBoard board)
-    {
-        VerifyMove(piece, move, board);
-        AvailablePieces = move.SimulateMove(this);
-    }
-
+    
     public abstract ReadOnlyCollection<IPlayer> GetAvailablePlayers();
+    public abstract ReadOnlyCollection<IPlayer> GetCurrentPlayers();
+    public abstract void ExecuteMove(IPiece piece, IMovement move);
 }

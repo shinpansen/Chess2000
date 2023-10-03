@@ -9,6 +9,7 @@ using BoardGame.SquaresLocation.Links;
 using BoardGame.SquaresLocation.Links._2DGrid;
 using BoardGame.Game;
 using BoardGame.Pieces;
+using BoardGame.Pieces.Chess;
 
 namespace BoardGame.MovementsProviders.Chess;
 
@@ -49,7 +50,18 @@ public class PawnMovementsProvider : ChessMovementsProvider
         //Prise en passant
         AddPriseEnPassantMove(moves, forward, new Left());
         AddPriseEnPassantMove(moves, forward, new Right());
-
+        
+        //Super movement (transformation into Queen or other piece)
+        if (!TryGetSquare(new Link2DGridBuilder().Link(forward, 2).Build(), out var lastSquare)) //Last square in front
+        {
+            string lastSquareLocation = lastSquare.GetLocation().ToString() ?? "";
+            moves.Add(new ChessMovementSuper(Piece, lastSquare, new Queen(lastSquareLocation)));
+            moves.Add(new ChessMovementSuper(Piece, lastSquare, new Tower(lastSquareLocation)));
+            moves.Add(new ChessMovementSuper(Piece, lastSquare, new Bishop(lastSquareLocation)));
+            moves.Add(new ChessMovementSuper(Piece, lastSquare, new Knight(lastSquareLocation)));
+            moves.Add(new ChessMovementSuper(Piece, lastSquare, Piece.Clone(lastSquare))); //Stay a pawn!
+        }
+        
         return moves;
     }
 
@@ -61,7 +73,7 @@ public class PawnMovementsProvider : ChessMovementsProvider
         if (!TryGetEmptySquare(enPassantLinks, out var squareEnPassant)) return;
         if (!TryGetSquareWithOpponent(enPassantOpponentLinks, out var squareEnPassantOpponent)) return;
 
-        Game.TryGetPiece(squareEnPassantOpponent.GetLocation(), out var opponentPiece);
+        TryGetPiece(squareEnPassantOpponent.GetLocation(), out var opponentPiece);
         var opponentLastMove = opponentPiece.Visit(new MovementPieceVisitor());
         if(opponentLastMove is ChessMovementPawnDouble)
             moves.Add(new ChessMovementEnPassant(Piece, squareEnPassant, opponentPiece));

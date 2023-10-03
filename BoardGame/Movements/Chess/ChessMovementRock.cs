@@ -26,13 +26,13 @@ public class ChessMovementRock : IMovement
     {
         var piecesClone = new List<IPiece>(player.GetAvailablePieces());
 
-        if (game.TryGetPiece(_king.GetSquare().GetLocation(), out _))
+        if (player.TryGetPiece(_king.Location, out _))
         {
             piecesClone.Remove(_king);
             piecesClone.Add(_king.Clone(_kingTarget, this));
         }
 
-        if (game.TryGetPiece(_tower.GetSquare().GetLocation(), out _))
+        if (player.TryGetPiece(_tower.Location, out _))
         {
             piecesClone.Remove(_tower);
             piecesClone.Add(_tower.Clone(_towerTarget, this));
