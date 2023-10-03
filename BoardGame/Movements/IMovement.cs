@@ -5,10 +5,11 @@ using BoardGame.Pieces;
 using BoardGame.MovementsProviders;
 using System;
 using System.Collections.Generic;
+using BoardGame.Players;
 
 namespace BoardGame.Movements;
 
 public interface IMovement : IEquatable<IMovement>
 {
-    public List<IPiece> SimulateMove(IGame game);
+    public List<IPiece> SimulateMove(IGame game, IPlayer player);
 }

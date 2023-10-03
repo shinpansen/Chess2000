@@ -4,6 +4,7 @@ using System.Net.NetworkInformation;
 using BoardGame.Game;
 using BoardGame.Pieces;
 using BoardGame.Pieces.Chess;
+using BoardGame.Players;
 using BoardGame.Squares;
 using BoardGame.Squares.Chess;
 
@@ -22,13 +23,18 @@ public class ChessMovementEnPassant : IMovement
         _opponentPiece = opponentPiece;
     }
 
-    public List<IPiece> SimulateMove(IGame game)
+    public List<IPiece> SimulateMove(IGame game, IPlayer player)
     {
-        var piecesClone = new List<IPiece>(game.GetAvailablePieces());
+        var piecesClone = new List<IPiece>(player.GetAvailablePieces());
 
-        piecesClone.Remove(_pawn);
-        piecesClone.Add(_pawn.Clone(_pawnTarget, this));
-        piecesClone.Remove(_opponentPiece);
+        if (game.TryGetPiece(_pawn.GetSquare().GetLocation(), out _))
+        {
+            piecesClone.Remove(_pawn);
+            piecesClone.Add(_pawn.Clone(_pawnTarget, this));
+        }
+
+        if (game.TryGetPiece(_opponentPiece.GetSquare().GetLocation(), out _))
+            piecesClone.Remove(_opponentPiece);
 
         return piecesClone;
     }

@@ -9,6 +9,7 @@ using BoardGame.Pieces.Chess;
 using BoardGame.MovementsProviders;
 using BoardGame.Squares;
 using BoardGame.Squares.Chess;
+using BoardGame.Players;
 
 namespace BoardGame.Movements.Chess;
 
@@ -23,15 +24,19 @@ public class ChessMovementBase : IMovement
         Target = target;
     }
 
-    public List<IPiece> SimulateMove(IGame game)
+    public List<IPiece> SimulateMove(IGame game, IPlayer player)
     {
-        var piecesClone = new List<IPiece>(game.GetAvailablePieces());
+        var piecesClone = new List<IPiece>(player.GetAvailablePieces());
 
-        if (game.TryGetPiece(Target.GetLocation(), out var targetPiece))
-            piecesClone.Remove(targetPiece);
+        //Eating target
+        var targetPiece = piecesClone.FirstOrDefault(p => p.GetSquare().GetLocation().Equals(Target.GetLocation()));
+        if (targetPiece is not null) piecesClone.Remove(targetPiece);
 
-        piecesClone.Remove(Piece);
-        piecesClone.Add(Piece.Clone(Target, this));
+        if (game.TryGetPiece(Piece.GetSquare().GetLocation(), out _))
+        {
+            piecesClone.Remove(Piece);
+            piecesClone.Add(Piece.Clone(Target, this));
+        }
 
         return piecesClone;
     }

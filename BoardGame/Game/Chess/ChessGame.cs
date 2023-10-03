@@ -10,11 +10,16 @@ using BoardGame.Board.Chess;
 using BoardGame.Movements;
 using BoardGame.MovementsProviders;
 using BoardGame.Pieces;
+using System.Collections.ObjectModel;
+using BoardGame.Players;
 
 namespace BoardGame.Game.Chess;
 
 public class ChessGame : Game
 {
+    private IPlayer _playerOne { get; set; }
+    private IPlayer _playerTwo { get; set; }
+
     public ChessGame()
     {
         //Pawns
@@ -43,5 +48,10 @@ public class ChessGame : Game
         AvailablePieces.Add(new WhiteBishop("F1"));
         AvailablePieces.Add(new WhiteKnight("G1"));
         AvailablePieces.Add(new WhiteTower("H1"));
+    }
+
+    public override ReadOnlyCollection<IPlayer> GetAvailablePlayers()
+    {
+        return (new List<IPlayer>() { _playerOne, _playerTwo }).AsReadOnly();
     }
 }

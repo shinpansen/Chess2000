@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BoardGame.Board;
+using BoardGame.Players;
 
 namespace BoardGame.Game;
 
@@ -26,20 +27,22 @@ public abstract class Game : IGame
 
     public bool TryGetPiece(ISquareLocation location, out IPiece piece)
     {
-        piece = AvailablePieces.FirstOrDefault(p => p.GetSquare().GetLocation().Equals(location));
+        piece = AvailablePieces.First(p => p.GetSquare().GetLocation().Equals(location));
         return piece is not null;
     }
 
-    public void VerifyMove(IPiece piece, IMovement move, IBoard board)
+    public virtual void VerifyMove(IPiece piece, IMovement move, IBoard board)
     {
         var moves = piece.GetAvailableMoves(this, board);
         if (!moves.Any(m => m.Equals(move)))
             throw new ArgumentException("Unauthorized move.");
     }
 
-    public void ExecuteMove(IPiece piece, IMovement move, IBoard board)
+    public virtual void ExecuteMove(IPiece piece, IMovement move, IBoard board)
     {
         VerifyMove(piece, move, board);
         AvailablePieces = move.SimulateMove(this);
     }
+
+    public abstract ReadOnlyCollection<IPlayer> GetAvailablePlayers();
 }
