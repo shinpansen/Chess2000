@@ -58,18 +58,15 @@ public class ChessGame : Game
         playerTwoPieces.Add(new Knight("B8"));
         playerTwoPieces.Add(new Bishop("C8"));
         playerTwoPieces.Add(new Queen("D8"));
-        //playerTwoPieces.Add(new King("E8"));
-        playerTwoPieces.Add(new King("D5"));
+        playerTwoPieces.Add(new King("E8"));
         playerTwoPieces.Add(new Bishop("F8"));
         playerTwoPieces.Add(new Knight("G8"));
         playerTwoPieces.Add(new Tower("H8"));
-        playerTwoPieces.Add(new Pawn("E4", new Bottom()));
 
         //White pieces
         playerOnePieces.Add(new Tower("A1"));
         playerOnePieces.Add(new Knight("B1"));
-        //playerOnePieces.Add(new Bishop("C1"));
-        playerOnePieces.Add(new Bishop("F3"));
+        playerOnePieces.Add(new Bishop("C1"));
         playerOnePieces.Add(new Queen("D1"));
         playerOnePieces.Add(new King("E1"));
         playerOnePieces.Add(new Bishop("F1"));

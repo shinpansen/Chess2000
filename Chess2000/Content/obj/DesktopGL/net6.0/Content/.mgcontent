@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black Bishop.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black King.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black Knight.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black Pawn.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black Queen.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black Tower.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/default.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White Bishop.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White King.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White Knight.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White Pawn.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White Queen.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White Tower.png</File>
+    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/Fonts/BoardFont.spritefont</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
