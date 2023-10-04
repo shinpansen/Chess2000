@@ -38,7 +38,8 @@ public abstract class ChessPiece : IPiece
         return Square;
     }
     
-    public abstract List<IMovement> GetAvailableMoves(IGame game, IBoard board);
+    public abstract List<IMovement> GetAvailableMoves(IGame game);
+    public abstract List<IMovement> SimulateAvailableMoves(IGame game, IBoard board);
     public abstract IPiece Clone();
     public abstract IPiece Clone(ISquare newSquare);
     public abstract IPiece Clone(ISquare newSquare, IMovement lastMove);

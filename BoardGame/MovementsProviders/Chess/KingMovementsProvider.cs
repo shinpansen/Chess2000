@@ -7,6 +7,7 @@ using BoardGame.Movements;
 using BoardGame.Movements.Chess;
 using BoardGame.Pieces;
 using BoardGame.Pieces.Visitors;
+using BoardGame.Pieces.Chess;
 
 namespace BoardGame.MovementsProviders.Chess;
 
@@ -14,31 +15,35 @@ public class KingMovementsProvider : ChessMovementsProvider
 {
     public KingMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
     {
-    }
-    
-    public List<IMovement> GetAvailableMoves()
-    {
-        var moves = new List<IMovement>();
-
         //All directions, one square move
-        foreach (var link in StraightLinks) AddMoveIfPossible(moves, link);
-        foreach (var link in DiagonalLinks) AddMoveIfPossible(moves, link);
+        var possibleLinks = DiagonalLinks.Concat(StraightLinks).ToList();
+        foreach (var link in possibleLinks) AddMoveIfPossibleAndNotThreateningOtherKing(link, possibleLinks);
 
         //Rock
-        AddRockIfPossible(moves);
-        AddBigRockIfPossible(moves);
-
-        return moves;
+        AddRockIfPossible();
+        AddBigRockIfPossible();
     }
 
-    private void AddMoveIfPossible(List<IMovement> moves, ISquareLink link)
+    private void AddMoveIfPossibleAndNotThreateningOtherKing(ISquareLink link, List<ISquareLink> possibleLinks)
     {
-        var links = new Link2DGridBuilder().Link(link).Build();
-        if (TryGetSquareEmptyOrWithOpponent(links, out var square))
-            moves.Add(new ChessMovementBase(Piece, square));
+        var firstMoveLink = new Link2DGridBuilder().Link(link).Build();
+        if (!TryGetSquareEmptyOrWithOpponent(firstMoveLink, out var firstSquare)) return;
+
+        //A king can't directly threaten another king.
+        //We simulate the next move to see if we can eat another king from the firstSquare spot
+        foreach (var secondLink in possibleLinks)
+        {
+            var secondMoveLink = new Link2DGridBuilder().Link(link).Link(secondLink).Build();
+            if (TryGetSquareWithOpponent(secondMoveLink, out var squareNextMove) &&
+                TryGetPiece(squareNextMove.GetLocation(), out var piece) &&
+                piece is King)
+                return;
+        }
+
+        Moves.Add(new ChessMovementBase(Piece, firstSquare));
     }
 
-    private void AddRockIfPossible(List<IMovement> moves)
+    private void AddRockIfPossible()
     {
         //King must never have moved
         if (Piece.Visit(new MovementPieceVisitor()) is not null) return;
@@ -52,10 +57,10 @@ public class KingMovementsProvider : ChessMovementsProvider
         if (tower.Visit(new MovementPieceVisitor()) is not null) return;
 
         TryGetEmptySquare(new Link2DGridBuilder().Right().Build(), out var towerTarget);
-        moves.Add(new ChessMovementRock(Piece, kingTarget, tower, towerTarget));
+        Moves.Add(new ChessMovementRock(Piece, kingTarget, tower, towerTarget));
     }
 
-    private void AddBigRockIfPossible(List<IMovement> moves)
+    private void AddBigRockIfPossible()
     {
         //King must never have moved
         if (Piece?.Visit(new MovementPieceVisitor()) is not null) return;
@@ -70,6 +75,6 @@ public class KingMovementsProvider : ChessMovementsProvider
         if (tower?.Visit(new MovementPieceVisitor()) is not null) return;
 
         TryGetEmptySquare(new Link2DGridBuilder().Left().Build(), out var towerTarget);
-        moves.Add(new ChessMovementRock(Piece!, kingTarget, tower!, towerTarget));
+        Moves.Add(new ChessMovementRock(Piece!, kingTarget, tower!, towerTarget));
     }
 }

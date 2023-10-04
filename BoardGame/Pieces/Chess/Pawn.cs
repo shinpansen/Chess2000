@@ -31,10 +31,16 @@ public sealed class Pawn : ChessPiece
         Forward = forward;
     }
 
-    public override List<IMovement> GetAvailableMoves(IGame game, IBoard board)
+    public override List<IMovement> GetAvailableMoves(IGame game)
     {
-        var provider = new PawnMovementsProvider(game, board, this);
-        return provider.GetAvailableMoves(Forward);
+        var provider = new PawnMovementsProvider(game, game.Board, this, Forward);
+        return provider.GetAvailableMoves();
+    }
+
+    public override List<IMovement> SimulateAvailableMoves(IGame game, IBoard board)
+    {
+        var provider = new PawnMovementsProvider(game, board, this, Forward);
+        return provider.SimulateAvailableMoves();
     }
 
     public override IPiece Clone()
@@ -57,5 +63,10 @@ public sealed class Pawn : ChessPiece
         if (other is not Pawn otherPiece) return false;
         return otherPiece.Location.Equals(Square.GetLocation()) && 
                otherPiece.Forward.Equals(this.Forward);
+    }
+
+    public override string ToString()
+    {
+        return "P";
     }
 }

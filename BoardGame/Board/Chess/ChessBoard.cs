@@ -9,31 +9,34 @@ using BoardGame.Movements.Chess;
 using BoardGame.Squares;
 using BoardGame.SquaresLocation;
 using BoardGame.SquaresLocation.Chess;
+using System.Collections.ObjectModel;
 
 namespace BoardGame.Board.Chess;
 
 public class ChessBoard : IBoard
 {
-    private List<ISquare> _squares { get; set; }
+    private List<ISquare> _availableSquares { get; set; }
 
     public ChessBoard()
     {
-        _squares = new List<ISquare>();
+        _availableSquares = new List<ISquare>();
         foreach (var col in ChessSquareLocation.AvailableColumns)
         {
-            for (ushort r = 1; r < 8; r++)
+            for (ushort r = 1; r <= 8; r++)
             {
                 var location = new ChessSquareLocation(col + r);
-                /*_squares.Add(ChessSquareLocation.FirstRows.Contains(r) ? 
-                    new ChessSquareFirstRow(location) : 
-                    new ChessSquareBase(location));*/
-                _squares.Add(new ChessSquare(location));
+                _availableSquares.Add(new ChessSquare(location));
             }
         }
     }
 
+    public ReadOnlyCollection<ISquare> GetAvailableSquares()
+    {
+        return _availableSquares.AsReadOnly();
+    }
+
     public ISquare GetSquare(ISquareLocation squareLocation)
     {
-        return _squares.First(s => s.GetLocation().Equals(squareLocation));
+        return _availableSquares.First(s => s.GetLocation().Equals(squareLocation));
     }
 }

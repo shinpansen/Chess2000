@@ -23,7 +23,7 @@ public abstract class Game : IGame
 
     public virtual void VerifyMove(IPiece piece, IMovement move)
     {
-        var moves = piece.GetAvailableMoves(this, Board);
+        var moves = piece.GetAvailableMoves(this);
         if (!moves.Any(m => m.Equals(move)))
             throw new ArgumentException("Unauthorized move.");
     }

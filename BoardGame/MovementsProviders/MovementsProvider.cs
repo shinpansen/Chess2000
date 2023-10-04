@@ -9,13 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BoardGame.SquaresLocation;
+using BoardGame.Movements;
 
 namespace BoardGame.MovementsProviders;
 
 public abstract class MovementsProvider : IMovementProvider
 {
-    protected IBoard Board { get; set; }
     protected IGame Game { get; set; }
+    protected IBoard Board { get; set; }
     protected IPiece Piece { get; set; }
 
     protected MovementsProvider(IGame game, IBoard board, IPiece piece)
@@ -42,7 +43,7 @@ public abstract class MovementsProvider : IMovementProvider
         return true;
     }
 
-    protected bool TryGetPiece(ISquareLocation location, out IPiece piece)
+    public virtual bool TryGetPiece(ISquareLocation location, out IPiece piece)
     {
         piece = default;
         foreach (var player in Game.GetAvailablePlayers())
@@ -50,4 +51,7 @@ public abstract class MovementsProvider : IMovementProvider
                 return true;
         return false;
     }
+
+    public abstract List<IMovement> GetAvailableMoves();
+    public abstract List<IMovement> SimulateAvailableMoves();
 }
