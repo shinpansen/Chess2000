@@ -3,6 +3,7 @@ using BoardGame.Game;
 using BoardGame.Movements;
 using BoardGame.Movements.Chess;
 using BoardGame.Pieces;
+using BoardGame.Pieces.Chess;
 using BoardGame.SquaresLocation.Links;
 using BoardGame.SquaresLocation.Links._2DGrid;
 using System;
@@ -17,12 +18,6 @@ namespace BoardGame.MovementsProviders.Chess
     {
         public KnightMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
         {
-        }
-
-        public List<IMovement> GetAvailableMoves()
-        {
-            var moves = new List<IMovement>();
-
             //All "L" moves
             List<Queue<ISquareLink>> possibleLinks = new List<Queue<ISquareLink>>()
             {
@@ -35,11 +30,9 @@ namespace BoardGame.MovementsProviders.Chess
                 new Link2DGridBuilder().Bottom().Left().Left().Build(),
                 new Link2DGridBuilder().Bottom().Right().Right().Build()
             };
-            foreach(var links in possibleLinks)
-                if(TryGetSquareEmptyOrWithOpponent(links, out var square))
-                    moves.Add(new ChessMovementBase(Piece, square));
-
-            return moves;
+            foreach (var links in possibleLinks)
+                if (TryGetSquareEmptyOrWithOpponent(links, out var square))
+                    Moves.Add(new ChessMovementBase(Piece, square));
         }
     }
 }

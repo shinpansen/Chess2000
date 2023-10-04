@@ -16,4 +16,9 @@ public class ChessSquare : ISquare
     {
         return _location;
     }
+
+    public override string ToString()
+    {
+        return _location.ToString() ?? string.Empty;
+    }
 }

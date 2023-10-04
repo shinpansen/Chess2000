@@ -26,10 +26,16 @@ namespace BoardGame.Pieces.Chess
         {
         }
 
-        public override List<IMovement> GetAvailableMoves(IGame game, IBoard board)
+        public override List<IMovement> GetAvailableMoves(IGame game)
+        {
+            var provider = new KingMovementsProvider(game, game.Board, this);
+            return provider.GetAvailableMoves();
+        }
+
+        public override List<IMovement> SimulateAvailableMoves(IGame game, IBoard board)
         {
             var provider = new KingMovementsProvider(game, board, this);
-            return provider.GetAvailableMoves();
+            return provider.SimulateAvailableMoves();
         }
 
         public override IPiece Clone()
@@ -51,6 +57,11 @@ namespace BoardGame.Pieces.Chess
         {
             if (other is not King otherPiece) return false;
             return otherPiece.Location.Equals(Square.GetLocation());
+        }
+
+        public override string ToString()
+        {
+            return "K";
         }
     }
 }

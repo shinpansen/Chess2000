@@ -15,14 +15,9 @@ namespace BoardGame.MovementsProviders.Chess
 {
     public class QueenTowerBishopMovementsProvider : ChessMovementsProvider
     {
-        public QueenTowerBishopMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
+        public QueenTowerBishopMovementsProvider(IGame game, IBoard board, IPiece piece, 
+            params List<ISquareLink>[] authorizedDirections) : base(game, board, piece)
         {
-        }
-
-        public List<IMovement> GetAvailableMoves(params List<ISquareLink>[] authorizedDirections)
-        {
-            var moves = new List<IMovement>();
-
             //Diagonal direction, max 8 squares
             foreach (var dir in authorizedDirections)
             {
@@ -32,12 +27,10 @@ namespace BoardGame.MovementsProviders.Chess
                     {
                         var links = new Link2DGridBuilder().Link(link, i).Build();
                         if (TryGetSquareEmptyOrWithOpponent(links, out var square, true))
-                            moves.Add(new ChessMovementBase(Piece, square));
+                            Moves.Add(new ChessMovementBase(Piece, square));
                     }
                 }
             }
-
-            return moves;
         }
     }
 }
