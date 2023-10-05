@@ -21,7 +21,7 @@ public sealed class Pawn : ChessPiece
         Forward = forward;
     }
 
-    private Pawn(ISquare square, IMovement lastMove, ISquareLink forward) : base(square, lastMove)
+    private Pawn(ISquare square, IMovement? lastMove, ISquareLink forward) : base(square, lastMove)
     {
         Forward = forward;
     }
@@ -53,7 +53,7 @@ public sealed class Pawn : ChessPiece
         return new Pawn(newSquare, Forward);
     }
 
-    public override IPiece Clone(ISquare newSquare, IMovement lastMove)
+    public override IPiece Clone(ISquare newSquare, IMovement? lastMove)
     {
         return new Pawn(newSquare, lastMove, Forward);
     }

@@ -24,7 +24,7 @@ public abstract class ChessPiece : IPiece
         Square = square;
     }
 
-    protected ChessPiece(ISquare square, IMovement lastMove) : this(square)
+    protected ChessPiece(ISquare square, IMovement? lastMove) : this(square)
     {
         LastMove = lastMove;
     }
