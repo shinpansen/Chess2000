@@ -67,7 +67,7 @@ public class PawnMovementsProvider : ChessMovementsProvider
 
         TryGetPiece(squareEnPassantOpponent.GetLocation(), out var opponentPiece);
         var opponentLastMove = opponentPiece.Visit(new MovementPieceVisitor());
-        if(opponentLastMove is ChessMovementPawnDouble)
+        if(opponentLastMove is IChessMovementPawnDouble)
             Moves.Add(new ChessMovementEnPassant(Piece, squareEnPassant, opponentPiece));
     }
 }

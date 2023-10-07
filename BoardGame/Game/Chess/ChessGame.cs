@@ -131,7 +131,7 @@ public class ChessGame : Game
         foreach (var p in _currentPlayer.GetAvailablePieces())
         {
             IMovement? lastMove = p.Visit(new Pieces.Visitors.MovementPieceVisitor());
-            currentPlayerPieces.Add(lastMove is ChessMovementPawnDouble ? p.Clone(p.GetSquare()) : p);
+            currentPlayerPieces.Add(lastMove is IChessMovementPawnDouble ? p.Clone(p.GetSquare()) : p);
         }
 
         if (_currentPlayer == _playerOne) _playerOne = new ChessPlayer(currentPlayerPieces);

@@ -5,7 +5,7 @@ using BoardGame.Squares.Chess;
 
 namespace BoardGame.Movements.Chess;
 
-public class ChessMovementPawnDouble : ChessMovementBase
+public class ChessMovementPawnDouble : ChessMovementBase, IChessMovementPawnDouble
 {
     public ChessMovementPawnDouble(IPiece piece, ISquare target) : base(piece, target)
     {

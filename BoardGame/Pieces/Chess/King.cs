@@ -12,7 +12,7 @@ using BoardGame.Game;
 
 namespace BoardGame.Pieces.Chess
 {
-    public sealed class King : ChessPiece
+    public sealed class King : ChessPiece, IKing
     {
         private King(ISquare square) : base(square)
         {

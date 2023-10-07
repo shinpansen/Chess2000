@@ -37,21 +37,29 @@ namespace Chess2000.Graphics
             SpriteBatch.Begin();
             for (int row = 0; row < 8; row++)
             {
-                SpriteBatch.DrawString(font, (8 - row).ToString(),
-                    new Vector2(centerPoint.X - boardSize / 2 - _squareSize,
-                        centerPoint.Y + _squareSize * row - boardSize / 2 + 4),
-                        Color.MediumPurple);
+                //Drawing numbers vertically
+                var numberTexture = content.Load<Texture2D>("Numbers/" + (8 - row));
+                SpriteBatch.Draw(numberTexture, 
+                    new Rectangle(centerPoint.X - (boardSize / 2) - _squareSize + (_squareSize / 4),
+                        centerPoint.Y + _squareSize * row - (boardSize / 2) + (_squareSize / 4),
+                        _squareSize / 2,
+                        _squareSize / 2), Color.Pink);
+
                 for (int column = 0; column < 8; column++)
                 {
                     SpriteBatch.Draw((row + column) % 2 == 0 ? _graySquare : _purpleSquare,
-                        GetRetangleSquare(centerPoint, row, column), 
+                        GetRectangleSquare(centerPoint, row, column), 
                         Color.White);
 
                     if (row > 0) continue;
-                    SpriteBatch.DrawString(font, ChessSquareLocation.AvailableColumns[column],
-                        new Vector2(centerPoint.X - boardSize / 2 + column * _squareSize + 20,
-                            centerPoint.Y + boardSize / 2 + 8),
-                            Color.DarkGray);
+                    //Drawing letters A B C D E F G H horizontally
+                    string letterColumn = ChessSquareLocation.AvailableColumns[column];
+                    var letterTexture = content.Load<Texture2D>("Letters/" + letterColumn);
+                    SpriteBatch.Draw(letterTexture, 
+                        new Rectangle(centerPoint.X - (boardSize / 2) + column * _squareSize + (_squareSize / 4),
+                            centerPoint.Y + (boardSize / 2) + (_squareSize / 4),
+                            _squareSize / 2,
+                            _squareSize / 2), Color.Pink);
                 }
             }
             SpriteBatch.End();
@@ -60,7 +68,7 @@ namespace Chess2000.Graphics
         public void DrawChessPiece(Point centerPoint, IPiece piece, string color, ContentManager content)
         {
             string location = piece.Location.ToString();
-            if (!Regex.IsMatch(location, "[A-H][1-8]"))
+            if (!Regex.IsMatch(location!, "[A-H][1-8]"))
                 throw new Exception("Invalid location");
 
             int row = 8 - (Array.IndexOf(ChessSquareLocation.AvailableColumns, location.Substring(0, 1)) + 1);
@@ -68,15 +76,15 @@ namespace Chess2000.Graphics
 
             SpriteBatch.Begin();
             SpriteBatch.Draw(new PiecesTexturesLoader(piece, color, content).Texture, 
-                GetRetangleSquare(centerPoint, row, column), Color.Pink);
+                GetRectangleSquare(centerPoint, row, column), Color.Pink);
             SpriteBatch.End();
         }
 
-        private Rectangle GetRetangleSquare(Point centerPoint, int row, int column)
+        private Rectangle GetRectangleSquare(Point centerPoint, int row, int column)
         {
-            int boardSize = _squareSize * 8;
-            return new Rectangle(centerPoint.X + (row * _squareSize) - (boardSize / 2),
-                            centerPoint.Y + (column * _squareSize) - (boardSize / 2),
+            float halfBoardSize = (_squareSize * 8f) / 2f;
+            return new Rectangle(centerPoint.X + (row * _squareSize) - (int)halfBoardSize,
+                            centerPoint.Y + (column * _squareSize) - (int)halfBoardSize,
                             _squareSize,
                             _squareSize);
         }

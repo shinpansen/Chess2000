@@ -1,5 +1,4 @@
 ﻿using BoardGame.Board;
-using BoardGame.Data;
 using BoardGame.Movements;
 using BoardGame.Pieces.Visitors;
 using BoardGame.MovementsProviders;

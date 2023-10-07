@@ -36,7 +36,7 @@ public class KingMovementsProvider : ChessMovementsProvider
             var secondMoveLink = new Link2DGridBuilder().Link(link).Link(secondLink).Build();
             if (TryGetSquareWithOpponent(secondMoveLink, out var squareNextMove) &&
                 TryGetPiece(squareNextMove.GetLocation(), out var piece) &&
-                piece is King)
+                piece is IKing)
                 return;
         }
 

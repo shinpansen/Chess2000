@@ -41,7 +41,7 @@ public abstract class ChessMovementsProvider : MovementsProvider
 
     public override List<IMovement> GetAvailableMoves()
     {
-        return Moves.Where(m => IsMoveSafeForTheKing(m)).ToList();
+        return Moves.Where(IsMoveSafeForTheKing).ToList();
     }
 
     public override List<IMovement> SimulateAvailableMoves()
@@ -82,7 +82,7 @@ public abstract class ChessMovementsProvider : MovementsProvider
         return true;
     }
 
-    protected bool IsMoveSafeForTheKing(IMovement move) //Testing if move is gonna kill the king
+    private bool IsMoveSafeForTheKing(IMovement move) //Testing if move is gonna kill the king
     {
         //Simulating move
         var player = Game.GetAvailablePlayers().Where(p => p.TryGetPiece(Piece.Location, out _)).First();
@@ -99,9 +99,8 @@ public abstract class ChessMovementsProvider : MovementsProvider
         foreach (var piece in otherPlayerPiecesAfterMove)
         {
             var moves = piece.SimulateAvailableMoves(newGame, newGame.Board);
-            foreach (var m in moves)
-                if (!m.SimulateMove(newGame, newPlayer).Any(p => p is King)) //King is dead in this simulation
-                    return false;
+            if (moves.Any(m => !m.SimulateMove(newGame, newPlayer).Any(p => p is IKing))) //King is dead in this simulation
+                return false;
         }
         return true;
     }

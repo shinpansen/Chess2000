@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using BoardGame.Data;
 using BoardGame.SquaresLocation.Chess;
 using BoardGame.Movements;
 using BoardGame.Pieces.Visitors;
