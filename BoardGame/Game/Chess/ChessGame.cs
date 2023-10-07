@@ -16,6 +16,7 @@ using BoardGame.Players;
 using BoardGame.Players.Chess;
 using BoardGame.SquaresLocation;
 using BoardGame.SquaresLocation.Links._2DGrid;
+using BoardGame.Movements.Chess;
 
 namespace BoardGame.Game.Chess;
 
@@ -91,10 +92,15 @@ public class ChessGame : Game
 
     public override void ExecuteMove(IPiece piece, IMovement move)
     {
+        if (!_currentPlayer.TryGetPiece(piece.Location, out _))
+            throw new ArgumentException("The piece those not belong to the current player");
         VerifyMove(piece, move);
+
         _playerOne = new ChessPlayer(move.SimulateMove(this, _playerOne));
         _playerTwo = new ChessPlayer(move.SimulateMove(this, _playerTwo));
         _currentPlayer = _currentPlayer == _playerOne ? _playerTwo : _playerOne;
+        
+        RemoveAllPawnDoubleMovesForNextPlayer();
     }
 
     public override string ToString()
@@ -117,5 +123,18 @@ public class ChessGame : Game
         }
         sb.Append("   A  B  C  D  E  F  G  H ");
         return sb.ToString();
+    }
+
+    private void RemoveAllPawnDoubleMovesForNextPlayer()
+    {
+        var currentPlayerPieces = new List<IPiece>();
+        foreach (var p in _currentPlayer.GetAvailablePieces())
+        {
+            IMovement? lastMove = p.Visit(new Pieces.Visitors.MovementPieceVisitor());
+            currentPlayerPieces.Add(lastMove is ChessMovementPawnDouble ? p.Clone(p.GetSquare()) : p);
+        }
+
+        if (_currentPlayer == _playerOne) _playerOne = new ChessPlayer(currentPlayerPieces);
+        else _playerTwo = new ChessPlayer(currentPlayerPieces);
     }
 }

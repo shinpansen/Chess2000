@@ -18,7 +18,7 @@ namespace BoardGame.Pieces.Chess
         {
         }
 
-        private Knight(ISquare square, IMovement lastMove) : base(square, lastMove)
+        private Knight(ISquare square, IMovement? lastMove) : base(square, lastMove)
         {
         }
 
@@ -48,7 +48,7 @@ namespace BoardGame.Pieces.Chess
             return new Knight(newSquare);
         }
 
-        public override IPiece Clone(ISquare newSquare, IMovement lastMove)
+        public override IPiece Clone(ISquare newSquare, IMovement? lastMove)
         {
             return new Knight(newSquare, lastMove);
         }

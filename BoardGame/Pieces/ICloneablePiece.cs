@@ -7,6 +7,6 @@ namespace BoardGame.Pieces
     {
         public TPiece Clone();
         public TPiece Clone(TSquare newSquare);
-        public TPiece Clone(TSquare newSquare, TMovement move);
+        public TPiece Clone(TSquare newSquare, TMovement? move);
     }
 }

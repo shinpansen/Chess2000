@@ -18,7 +18,7 @@ namespace BoardGame.Pieces.Chess
         {
         }
 
-        private Queen(ISquare square, IMovement lastMove) : base(square, lastMove)
+        private Queen(ISquare square, IMovement? lastMove) : base(square, lastMove)
         {
         }
 
@@ -50,7 +50,7 @@ namespace BoardGame.Pieces.Chess
             return new Queen(newSquare);
         }
 
-        public override IPiece Clone(ISquare newSquare, IMovement lastMove)
+        public override IPiece Clone(ISquare newSquare, IMovement? lastMove)
         {
             return new Queen(newSquare, lastMove);
         }
