@@ -3,7 +3,7 @@ using BoardGame.Squares;
 
 namespace BoardGame.Pieces
 {
-    public interface ICloneablePiece<TPiece, TSquare, TMovement>
+    public interface ICloneablePiece<out TPiece, in TSquare, in TMovement>
     {
         public TPiece Clone();
         public TPiece Clone(TSquare newSquare);

@@ -37,14 +37,15 @@ public abstract class ChessPiece : IPiece
         return Square;
     }
     
-    public abstract List<IMovement> GetAvailableMoves(IGame game);
-    public abstract List<IMovement> SimulateAvailableMoves(IGame game, IBoard board);
-    public abstract IPiece Clone();
-    public abstract IPiece Clone(ISquare newSquare);
-    public abstract IPiece Clone(ISquare newSquare, IMovement lastMove);
-    public abstract bool Equals(IPiece? other);
     public IMovement? Visit(MovementPieceVisitor visitor)
     {
         return visitor.Visit(this);
     }
+
+    public abstract List<IMovement> GetAvailableMoves(IGame game);
+    public abstract List<IMovement> SimulateAvailableMoves(IGame game, IBoard board);
+    public abstract IPiece Clone();
+    public abstract IPiece Clone(ISquare newSquare);
+    public abstract IPiece Clone(ISquare newSquare, IMovement? lastMove);
+    public abstract bool Equals(IPiece? other);
 }

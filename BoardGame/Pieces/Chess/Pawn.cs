@@ -7,61 +7,62 @@ using BoardGame.Squares;
 using BoardGame.SquaresLocation.Links._2DGrid;
 using System;
 using System.Collections.Generic;
+using BoardGame.Movements.Chess;
 using BoardGame.SquaresLocation.Links;
 
 namespace BoardGame.Pieces.Chess;
 
 public sealed class Pawn : ChessPiece
 {
-    public ISquareLink Forward { get; private set; }
+    private ISquareLink _forward { get; set; }
     
     private Pawn(ISquare square, ISquareLink forward) : base(square)
     {
-        Forward = forward;
+        _forward = forward;
     }
 
     private Pawn(ISquare square, IMovement? lastMove, ISquareLink forward) : base(square, lastMove)
     {
-        Forward = forward;
+        _forward = forward;
     }
 
     public Pawn(string location, ISquareLink forward) : base(location)
     {
-        Forward = forward;
+        _forward = forward;
     }
 
     public override List<IMovement> GetAvailableMoves(IGame game)
     {
-        var provider = new PawnMovementsProvider(game, game.Board, this, Forward);
+        var provider = new PawnMovementsProvider(game, game.Board, this, _forward);
         return provider.GetAvailableMoves();
     }
 
     public override List<IMovement> SimulateAvailableMoves(IGame game, IBoard board)
     {
-        var provider = new PawnMovementsProvider(game, board, this, Forward);
+        var provider = new PawnMovementsProvider(game, board, this, _forward);
         return provider.SimulateAvailableMoves();
     }
 
     public override IPiece Clone()
     {
-        return new Pawn(Square, Forward);
+        return new Pawn(Square, _forward);
     }
 
     public override IPiece Clone(ISquare newSquare)
     {
-        return new Pawn(newSquare, Forward);
+        return new Pawn(newSquare, _forward);
     }
 
     public override IPiece Clone(ISquare newSquare, IMovement? lastMove)
     {
-        return new Pawn(newSquare, lastMove, Forward);
+        return new Pawn(newSquare, lastMove, _forward);
     }
 
     public override bool Equals(IPiece? other)
     {
         if (other is not Pawn otherPiece) return false;
         return otherPiece.Location.Equals(Square.GetLocation()) && 
-               otherPiece.Forward.Equals(this.Forward);
+               otherPiece._forward.Equals(this._forward);
     }
 
     public override string ToString()

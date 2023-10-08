@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using BoardGame.SquaresLocation.Links;
 using BoardGame.SquaresLocation.Links._2DGrid;
 
@@ -14,16 +15,14 @@ public class ChessSquareLocation : SquareLocation
 
     public ChessSquareLocation(string location)
     {
-        if (location.Length != 2 || !int.TryParse(location.AsSpan(1, 1), out var row))
-            throw new ArgumentException("Invalid location");
-        if (row < 1 || row > 8 || !AvailableColumns.Contains(location[..1].ToUpper()))
-            throw new ArgumentException("Invalid row or column");
+        if (!Regex.IsMatch(location!, "[A-H][1-8]"))
+            throw new Exception("Invalid location (Valid range A1-H8)");
 
-        Row = row;
+        Row = int.Parse(location[1..]);
         Column = location[..1];
     }
 
-    public ChessSquareLocation(int column, int row)
+    private ChessSquareLocation(int column, int row)
     {
         if (row < 1 || row > 8 || column < 0 || column > AvailableColumns.Length)
             throw new ArgumentException("Invalid row or column");

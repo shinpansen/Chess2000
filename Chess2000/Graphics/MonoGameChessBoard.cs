@@ -14,7 +14,7 @@ using System.Data.Common;
 
 namespace Chess2000.Graphics
 {
-    internal class MonoGameChessBoard : MonoGame2DGraphicalObject
+    internal class MonoGameChessBoard : MonoGame2DGraphicalObject, IDrawable
     {
         private int _squareSize { get; set; }
         private Texture2D _graySquare { get; set; }
@@ -88,5 +88,15 @@ namespace Chess2000.Graphics
                             _squareSize,
                             _squareSize);
         }
+
+        public void Draw(GameTime gameTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int DrawOrder => 0;
+        public bool Visible => true;
+        public event EventHandler<EventArgs> DrawOrderChanged;
+        public event EventHandler<EventArgs> VisibleChanged;
     }
 }

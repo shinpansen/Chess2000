@@ -107,10 +107,8 @@ public abstract class ChessMovementsProvider : MovementsProvider
 
     private bool IsFriend(IPiece other)
     {
-        foreach(var player in Game.GetAvailablePlayers())
-            if (player.TryGetPiece(Piece.Location, out _) && 
-                player.TryGetPiece(other.Location, out _))
-                return true;
-        return false;
+        return Game.GetAvailablePlayers().Any(player =>
+            player.TryGetPiece(this.Piece.Location, out _) && 
+            player.TryGetPiece(other.Location, out _));
     }
 }

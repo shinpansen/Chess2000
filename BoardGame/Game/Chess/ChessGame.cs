@@ -93,14 +93,13 @@ public class ChessGame : Game
     public override void ExecuteMove(IPiece piece, IMovement move)
     {
         if (!_currentPlayer.TryGetPiece(piece.Location, out _))
-            throw new ArgumentException("The piece those not belong to the current player");
+            throw new ArgumentException("Piece does not belong to the current player");
         VerifyMove(piece, move);
-
+        
+        _currentPlayer.OnBeforeTurnStarts(this, EventArgs.Empty);
         _playerOne = new ChessPlayer(move.SimulateMove(this, _playerOne));
         _playerTwo = new ChessPlayer(move.SimulateMove(this, _playerTwo));
         _currentPlayer = _currentPlayer == _playerOne ? _playerTwo : _playerOne;
-        
-        RemoveAllPawnDoubleMovesForNextPlayer();
     }
 
     public override string ToString()
@@ -112,29 +111,16 @@ public class ChessGame : Game
             sb.Append(i.ToString() +  " ");
             foreach (var square in squares.Where(s => s.ToString().Contains(i.ToString())).OrderBy(s => s.ToString()))
             {
-                _playerOne.TryGetPiece(square.GetLocation(), out var p1Piece);
-                _playerTwo.TryGetPiece(square.GetLocation(), out var p2Piece);
-                if (p1Piece is not null) sb.Append("|1" + p1Piece.ToString());
-                else if (p2Piece is not null) sb.Append("|2" + p2Piece.ToString());
+                if(_playerOne.TryGetPiece(square.GetLocation(), out var p1Piece))
+                    sb.Append("|1" + p1Piece.ToString());
+                else if(_playerTwo.TryGetPiece(square.GetLocation(), out var p2Piece))
+                    sb.Append("|2" + p2Piece.ToString());
                 else sb.Append("|  ");
             }
-            sb.Append("|");
+            sb.Append('|');
             sb.AppendLine();
         }
         sb.Append("   A  B  C  D  E  F  G  H ");
         return sb.ToString();
-    }
-
-    private void RemoveAllPawnDoubleMovesForNextPlayer()
-    {
-        var currentPlayerPieces = new List<IPiece>();
-        foreach (var p in _currentPlayer.GetAvailablePieces())
-        {
-            IMovement? lastMove = p.Visit(new Pieces.Visitors.MovementPieceVisitor());
-            currentPlayerPieces.Add(lastMove is IChessMovementPawnDouble ? p.Clone(p.GetSquare()) : p);
-        }
-
-        if (_currentPlayer == _playerOne) _playerOne = new ChessPlayer(currentPlayerPieces);
-        else _playerTwo = new ChessPlayer(currentPlayerPieces);
     }
 }

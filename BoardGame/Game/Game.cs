@@ -20,12 +20,24 @@ public abstract class Game : IGame
 {
     public abstract bool IsRunning { get; }
     public abstract IBoard Board { get; }
+    public event EventHandler? BeforeTurnStarts;
+    public event EventHandler? AfterTurnEnds;
 
     public virtual void VerifyMove(IPiece piece, IMovement move)
     {
         var moves = piece.GetAvailableMoves(this);
         if (!moves.Any(m => m.Equals(move)))
             throw new ArgumentException("Unauthorized move.");
+    }
+
+    public virtual void OnBeforeTurnStarts(object sender, EventArgs e)
+    {
+        BeforeTurnStarts?.Invoke(this, e);
+    }
+    
+    public virtual void OnAfterTurnEnds(object sender, EventArgs e)
+    {
+        AfterTurnEnds?.Invoke(this, e);
     }
     
     public abstract ReadOnlyCollection<IPlayer> GetAvailablePlayers();
