@@ -97,9 +97,10 @@ public class ChessGame : Game
         VerifyMove(piece, move);
         
         _currentPlayer.OnBeforeTurnStarts(this, EventArgs.Empty);
+        int lastPlayer = _currentPlayer == _playerOne ? 1 : 2;
         _playerOne = new ChessPlayer(move.SimulateMove(this, _playerOne));
         _playerTwo = new ChessPlayer(move.SimulateMove(this, _playerTwo));
-        _currentPlayer = _currentPlayer == _playerOne ? _playerTwo : _playerOne;
+        _currentPlayer = lastPlayer == 1 ? _playerTwo : _playerOne;
     }
 
     public override string ToString()
