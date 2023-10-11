@@ -32,7 +32,7 @@ public abstract class ChessMovementsProvider : MovementsProvider
         new BottomRight()
     };
 
-    protected List<IMovement> Moves {  get; set; }
+    protected List<IMovement> Moves;
 
     protected ChessMovementsProvider(IGame game, IBoard board, IPiece piece) : base(game, board, piece)
     {
@@ -85,8 +85,8 @@ public abstract class ChessMovementsProvider : MovementsProvider
     private bool IsMoveSafeForTheKing(IMovement move) //Testing if move is gonna kill the king
     {
         //Simulating move
-        var player = Game.GetAvailablePlayers().Where(p => p.TryGetPiece(Piece.Location, out _)).First();
-        var otherPlayer = Game.GetAvailablePlayers().Where(p => !p.TryGetPiece(Piece.Location, out _)).First();
+        var player = Game.GetAvailablePlayers().Where(pi => pi.TryGetPiece(Piece.Location, out _)).First();
+        var otherPlayer = Game.GetAvailablePlayers().Where(pl => pl != player).First();
         var playerPiecesAfterMove = move.SimulateMove(Game, player);
         var otherPlayerPiecesAfterMove = move.SimulateMove(Game, otherPlayer);
 

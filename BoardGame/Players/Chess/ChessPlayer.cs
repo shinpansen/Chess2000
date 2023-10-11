@@ -23,8 +23,8 @@ public class ChessPlayer : Player
             foreach (var piece in AvailablePieces)
             {
                 var lastMove = piece.Visit(new MovementPieceVisitor());
-                newPieces.Add(lastMove is IChessMovementPawnDouble ? 
-                    piece.Clone(piece.GetSquare(), null) : 
+                newPieces.Add(lastMove is IChessMovementPawnDouble move ?
+                    piece.Clone(piece.GetSquare(), move.OnBeforeTurnStarts()) : 
                     piece.Clone());
             }
 

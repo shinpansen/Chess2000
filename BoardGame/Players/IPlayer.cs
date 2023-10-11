@@ -11,8 +11,6 @@ namespace BoardGame.Players;
 
 public interface IPlayer
 {
-    public event EventHandler BeforeTurnStarts;
-    public event EventHandler AfterTurnEnds;
     public ReadOnlyCollection<IPiece> GetAvailablePieces();
     public bool TryGetPiece(ISquareLocation location, out IPiece piece);
     public void OnBeforeTurnStarts(object sender, EventArgs e);

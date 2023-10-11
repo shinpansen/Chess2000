@@ -45,12 +45,12 @@ public sealed class Pawn : ChessPiece
 
     public override IPiece Clone()
     {
-        return new Pawn(Square, _forward);
+        return new Pawn(Square, LastMove, _forward);
     }
 
     public override IPiece Clone(ISquare newSquare)
     {
-        return new Pawn(newSquare, _forward);
+        return new Pawn(newSquare, LastMove, _forward);
     }
 
     public override IPiece Clone(ISquare newSquare, IMovement? lastMove)

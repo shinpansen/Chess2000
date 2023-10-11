@@ -34,26 +34,28 @@ public class PawnMovementsProvider : ChessMovementsProvider
         //Eating opponent on the left
         var topLeftLinks = new Link2DGridBuilder().Link(forward).Left().Build();
         if (TryGetSquareWithOpponent(topLeftLinks, out var squareTopLeft))
-            Moves.Add(new ChessMovementBase(Piece, squareTopLeft));
+            Moves.Add(new ChessMovementEat(Piece, squareTopLeft));
 
         //Eating opponent on the right
         var topRightLinks = new Link2DGridBuilder().Link(forward).Right().Build();
         if (TryGetSquareWithOpponent(topRightLinks, out var squareTopRight))
-            Moves.Add(new ChessMovementBase(Piece, squareTopRight));
+            Moves.Add(new ChessMovementEat(Piece, squareTopRight));
 
         //Prise en passant
         AddPriseEnPassantMove(forward, new Left());
         AddPriseEnPassantMove(forward, new Right());
 
-        //Super movement (transformation into Queen or other piece)
-        if (!TryGetSquare(new Link2DGridBuilder().Link(forward, 2).Build(), out var lastSquare)) //Last square in front
+        //Swap piece
+        if (TryGetSquare(new Link2DGridBuilder().Link(forward, 1).Build(), out var lastSquare) && 
+            !TryGetPiece(lastSquare.GetLocation(), out _) &&
+            !TryGetSquare(new Link2DGridBuilder().Link(forward, 2).Build(), out _)) // 2 squares forward out of board = next square is last
         {
-            string lastSquareLocation = lastSquare.GetLocation().ToString() ?? "";
-            Moves.Add(new ChessMovementSuper(Piece, lastSquare, new Queen(lastSquareLocation)));
-            Moves.Add(new ChessMovementSuper(Piece, lastSquare, new Tower(lastSquareLocation)));
-            Moves.Add(new ChessMovementSuper(Piece, lastSquare, new Bishop(lastSquareLocation)));
-            Moves.Add(new ChessMovementSuper(Piece, lastSquare, new Knight(lastSquareLocation)));
-            Moves.Add(new ChessMovementSuper(Piece, lastSquare, Piece.Clone(lastSquare))); //Stay a pawn!
+            string lastSquareLocation = lastSquare.GetLocation().ToString() ?? string.Empty;
+            Moves.Add(new ChessMovementSwapPiece(Piece, lastSquare, new Queen(lastSquareLocation)));
+            Moves.Add(new ChessMovementSwapPiece(Piece, lastSquare, new Tower(lastSquareLocation)));
+            Moves.Add(new ChessMovementSwapPiece(Piece, lastSquare, new Bishop(lastSquareLocation)));
+            Moves.Add(new ChessMovementSwapPiece(Piece, lastSquare, new Knight(lastSquareLocation)));
+            Moves.Add(new ChessMovementSwapPiece(Piece, lastSquare, Piece.Clone(lastSquare))); //Stay a pawn!
         }
     }
 

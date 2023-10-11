@@ -16,7 +16,7 @@ public abstract class ChessPiece : IPiece
 {
     public ISquareLocation Location => GetSquare().GetLocation();
     public IMovement? LastMove { get; protected set; }
-    protected ISquare Square { get; set; }
+    protected ISquare Square;
 
     protected ChessPiece(ISquare square)
     {

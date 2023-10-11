@@ -5,7 +5,7 @@ namespace BoardGame.Squares.Chess;
 
 public class ChessSquare : ISquare
 {
-    private ISquareLocation _location { get; set; }
+    private ISquareLocation _location;
     
     public ChessSquare(ChessSquareLocation location)
     {

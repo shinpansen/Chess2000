@@ -42,12 +42,12 @@ namespace BoardGame.Pieces.Chess
 
         public override IPiece Clone()
         {
-            return new Queen(Square);
+            return new Queen(Square, LastMove);
         }
 
         public override IPiece Clone(ISquare newSquare)
         {
-            return new Queen(newSquare);
+            return new Queen(newSquare, LastMove);
         }
 
         public override IPiece Clone(ISquare newSquare, IMovement? lastMove)

@@ -11,9 +11,9 @@ namespace BoardGame.Players;
 
 public abstract class Player : IPlayer
 {
-    public event EventHandler? BeforeTurnStarts;
-    public event EventHandler? AfterTurnEnds;
-    protected List<IPiece> AvailablePieces { get; set; }
+    protected event EventHandler<EventArgs>? BeforeTurnStarts;
+    protected event EventHandler<EventArgs>? AfterTurnEnds;
+    protected List<IPiece> AvailablePieces;
 
     protected Player(List<IPiece> pieces)
     {

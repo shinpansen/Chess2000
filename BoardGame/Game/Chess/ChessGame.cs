@@ -24,9 +24,10 @@ public class ChessGame : Game
 {
     public override bool IsRunning => _currentPlayer.GetAvailablePieces().Sum(p => p.GetAvailableMoves(this).Count) > 0;
     public override IBoard Board { get; }
-    private IPlayer _playerOne { get; set; }
-    private IPlayer _playerTwo { get; set; }
-    private IPlayer _currentPlayer { get; set; }
+
+    private IPlayer _playerOne;
+    private IPlayer _playerTwo;
+    private IPlayer _currentPlayer;
 
     public ChessGame(IPlayer playerOne, IPlayer playerTwo)
     {

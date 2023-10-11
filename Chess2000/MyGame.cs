@@ -69,7 +69,7 @@ namespace Chess2000
 
             foreach (var piece in _chessGame.GetCurrentPlayers().First().GetAvailablePieces())
             {
-                var drawable = new ChessPiece(GraphicsDevice, Content, piece, ChessPiece.PieceColor.Black);
+                var drawable = new ChessPiece(GraphicsDevice, Content, piece);
                 if (_leftButtonMouseClicked && drawable.IsClicked(_mouseClickLocation))
                 {
                     _actions.Clear();
@@ -100,10 +100,10 @@ namespace Chess2000
             foreach (var action in _actions)
                 action.Draw(gameTime);
 
-            foreach (var piece in _chessGame.GetAvailablePlayers().First().GetAvailablePieces())
-                new ChessPiece(GraphicsDevice, Content, piece, ChessPiece.PieceColor.Black).Draw(gameTime);
-            foreach (var piece in _chessGame.GetAvailablePlayers().ElementAt(1).GetAvailablePieces())
+            foreach (var piece in _chessGame.GetAvailablePlayers().ElementAt(0).GetAvailablePieces())
                 new ChessPiece(GraphicsDevice, Content, piece, ChessPiece.PieceColor.White).Draw(gameTime);
+            foreach (var piece in _chessGame.GetAvailablePlayers().ElementAt(1).GetAvailablePieces())
+                new ChessPiece(GraphicsDevice, Content, piece, ChessPiece.PieceColor.Black).Draw(gameTime);
 
             base.Draw(gameTime);
         }

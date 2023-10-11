@@ -36,6 +36,11 @@ namespace Chess2000.Drawables.Chess
             { "T", "Tower" }
         };
 
+        public ChessPiece(GraphicsDevice graphicsDevice, ContentManager content, IPiece piece) :
+            this(graphicsDevice, content, piece, PieceColor.Black)
+        {
+        }
+
         public ChessPiece(GraphicsDevice graphicsDevice, ContentManager content, IPiece piece, PieceColor color) : 
             base(graphicsDevice, content)
         {

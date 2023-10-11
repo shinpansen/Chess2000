@@ -15,7 +15,7 @@ namespace BoardGame.Board.Chess;
 
 public class ChessBoard : IBoard
 {
-    private List<ISquare> _availableSquares { get; set; }
+    private List<ISquare> _availableSquares;
 
     public ChessBoard()
     {

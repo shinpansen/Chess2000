@@ -27,7 +27,7 @@ public class KingMovementsProvider : ChessMovementsProvider
     private void AddMoveIfPossibleAndNotThreateningOtherKing(ISquareLink link, List<ISquareLink> possibleLinks)
     {
         var firstMoveLink = new Link2DGridBuilder().Link(link).Build();
-        if (!TryGetSquareEmptyOrWithOpponent(firstMoveLink, out var firstSquare)) return;
+        if (!TryGetSquareEmptyOrWithOpponent(firstMoveLink, out var targetSquare)) return;
 
         //A king can't directly threaten another king.
         //We simulate the next move to see if we can eat another king from the firstSquare spot
@@ -40,7 +40,9 @@ public class KingMovementsProvider : ChessMovementsProvider
                 return;
         }
 
-        Moves.Add(new ChessMovementBase(Piece, firstSquare));
+        Moves.Add(TryGetPiece(targetSquare.GetLocation(), out _) ? 
+            new ChessMovementEat(Piece, targetSquare) : 
+            new ChessMovementBase(Piece, targetSquare));
     }
 
     private void AddRockIfPossible()

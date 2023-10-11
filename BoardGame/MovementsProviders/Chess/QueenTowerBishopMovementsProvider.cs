@@ -23,11 +23,13 @@ namespace BoardGame.MovementsProviders.Chess
             {
                 foreach (var link in dir)
                 {
-                    for (ushort i = 1; i <= 8; i++)
+                    for (int i = 1; i <= 8; i++)
                     {
                         var links = new Link2DGridBuilder().Link(link, i).Build();
                         if (TryGetSquareEmptyOrWithOpponent(links, out var square, true))
-                            Moves.Add(new ChessMovementBase(Piece, square));
+                            Moves.Add(TryGetPiece(square.GetLocation(), out _) ? 
+                                new ChessMovementEat(Piece, square) : 
+                                new ChessMovementBase(Piece, square));
                     }
                 }
             }

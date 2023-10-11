@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/H.png</SourceFile>
-  <SourceTime>2023-10-10T23:09:45.8401153+02:00</SourceTime>
-  <DestFile>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/bin/DesktopGL/Content/UI/Letters/H.xnb</DestFile>
-  <DestTime>2023-10-10T23:15:35.846601+02:00</DestTime>
+  <SourceFile>C:/Users/jdasilva/Documents/DOSSIER PRIVÉ/MonoGame/Chess2000/Chess2000/Content/UI/Letters/H.png</SourceFile>
+  <SourceTime>2023-10-10T13:25:50.8785979+02:00</SourceTime>
+  <DestFile>C:/Users/jdasilva/Documents/DOSSIER PRIVÉ/MonoGame/Chess2000/Chess2000/Content/bin/DesktopGL/Content/UI/Letters/H.xnb</DestFile>
+  <DestTime>2023-10-11T10:53:59.9304771+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

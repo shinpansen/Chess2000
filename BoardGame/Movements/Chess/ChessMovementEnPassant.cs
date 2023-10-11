@@ -7,14 +7,17 @@ using BoardGame.Pieces.Chess;
 using BoardGame.Players;
 using BoardGame.Squares;
 using BoardGame.Squares.Chess;
+using BoardGame.SquaresLocation;
 
 namespace BoardGame.Movements.Chess;
 
 public class ChessMovementEnPassant : IMovement
 {
-    private IPiece _pawn { get; set; }
-    private ISquare _pawnTarget { get; set; }
-    private IPiece _opponentPiece { get; set; }
+    public ISquareLocation? TargetLocation => _pawnTarget.GetLocation();
+
+    private IPiece _pawn;
+    private ISquare _pawnTarget;
+    private IPiece _opponentPiece;
 
     public ChessMovementEnPassant(IPiece pawn, ISquare pawnTarget, IPiece opponentPiece)
     {

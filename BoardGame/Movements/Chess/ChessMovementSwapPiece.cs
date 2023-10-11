@@ -2,16 +2,19 @@ using BoardGame.Game;
 using BoardGame.Pieces;
 using BoardGame.Players;
 using BoardGame.Squares;
+using BoardGame.SquaresLocation;
 
 namespace BoardGame.Movements.Chess;
 
-public class ChessMovementSuper : IMovement
+public class ChessMovementSwapPiece : IMovement
 {
-    private IPiece _pawn { get; set; }
-    private ISquare _pawnTarget { get; set; }
-    private IPiece _newPiece { get; set; }
+    public ISquareLocation? TargetLocation => _pawnTarget.GetLocation();
 
-    public ChessMovementSuper(IPiece pawn, ISquare pawnTarget, IPiece newPiece)
+    private IPiece _pawn;
+    private ISquare _pawnTarget;
+    private IPiece _newPiece;
+
+    public ChessMovementSwapPiece(IPiece pawn, ISquare pawnTarget, IPiece newPiece)
     {
         _pawn = pawn;
         _pawnTarget = pawnTarget;
@@ -31,7 +34,7 @@ public class ChessMovementSuper : IMovement
 
     public bool Equals(IMovement? other)
     {
-        if (other is not ChessMovementSuper otherMovement) return false;
+        if (other is not ChessMovementSwapPiece otherMovement) return false;
         return otherMovement._pawn.Equals(this._pawn) &&
                otherMovement._pawnTarget.GetLocation().Equals(this._pawnTarget.GetLocation()) &&
                otherMovement._newPiece.Equals(this._newPiece);

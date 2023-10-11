@@ -11,5 +11,6 @@ namespace BoardGame.Movements;
 
 public interface IMovement : IEquatable<IMovement>
 {
+    public ISquareLocation? TargetLocation { get; }
     public List<IPiece> SimulateMove(IGame game, IPlayer player);
 }

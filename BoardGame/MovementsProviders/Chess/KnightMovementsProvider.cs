@@ -32,7 +32,9 @@ namespace BoardGame.MovementsProviders.Chess
             };
             foreach (var links in possibleLinks)
                 if (TryGetSquareEmptyOrWithOpponent(links, out var square))
-                    Moves.Add(new ChessMovementBase(Piece, square));
+                    Moves.Add(TryGetPiece(square.GetLocation(), out _) ?
+                        new ChessMovementEat(Piece, square) :
+                        new ChessMovementBase(Piece, square));
         }
     }
 }

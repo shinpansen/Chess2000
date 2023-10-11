@@ -20,8 +20,8 @@ public abstract class Game : IGame
 {
     public abstract bool IsRunning { get; }
     public abstract IBoard Board { get; }
-    public event EventHandler? BeforeTurnStarts;
-    public event EventHandler? AfterTurnEnds;
+    protected event EventHandler<EventArgs>? BeforeTurnStarts;
+    protected event EventHandler<EventArgs>? AfterTurnEnds;
 
     public virtual void VerifyMove(IPiece piece, IMovement move)
     {

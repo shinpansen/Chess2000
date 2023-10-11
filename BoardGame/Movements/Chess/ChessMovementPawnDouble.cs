@@ -17,4 +17,10 @@ public class ChessMovementPawnDouble : ChessMovementBase, IChessMovementPawnDoub
         return otherMovement.Piece.Equals(this.Piece) &&
             otherMovement.Target.GetLocation().Equals(this.Target.GetLocation());
     }
+
+    public IMovement OnBeforeTurnStarts()
+    {
+        //Become a normal move before new turn starts
+        return new ChessMovementBase(Piece, Target);
+    }
 }

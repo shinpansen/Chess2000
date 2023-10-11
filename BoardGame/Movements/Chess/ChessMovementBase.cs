@@ -15,8 +15,10 @@ namespace BoardGame.Movements.Chess;
 
 public class ChessMovementBase : IMovement
 {
-    protected IPiece Piece { get; set; }
-    protected ISquare Target { get; set; }
+    public ISquareLocation? TargetLocation => Target.GetLocation();
+
+    protected IPiece Piece;
+    protected ISquare Target;
 
     public ChessMovementBase(IPiece piece, ISquare target)
     {
@@ -24,18 +26,13 @@ public class ChessMovementBase : IMovement
         Target = target;
     }
 
-    public List<IPiece> SimulateMove(IGame game, IPlayer player)
+    public virtual List<IPiece> SimulateMove(IGame game, IPlayer player)
     {
         var piecesClone = new List<IPiece>(player.GetAvailablePieces());
 
-        if(player.TryGetPiece(Target.GetLocation(), out var targetPiece))
-            piecesClone.Remove(targetPiece);
-
-        if (player.TryGetPiece(Piece.Location, out _))
-        {
-            piecesClone.Remove(Piece);
-            piecesClone.Add(Piece.Clone(Target, this));
-        }
+        if (!player.TryGetPiece(Piece.Location, out _)) return piecesClone;
+        piecesClone.Remove(Piece);
+        piecesClone.Add(Piece.Clone(Target, this));
 
         return piecesClone;
     }

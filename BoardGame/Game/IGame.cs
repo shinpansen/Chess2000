@@ -11,8 +11,6 @@ public interface IGame
 {
     public bool IsRunning { get; }
     public IBoard Board { get; }
-    public event EventHandler BeforeTurnStarts;
-    public event EventHandler AfterTurnEnds;
     public ReadOnlyCollection<IPlayer> GetAvailablePlayers();
     public ReadOnlyCollection<IPlayer> GetCurrentPlayers();
     public void VerifyMove(IPiece piece, IMovement move);
