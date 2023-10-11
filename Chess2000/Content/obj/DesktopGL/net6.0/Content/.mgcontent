@@ -4,37 +4,37 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black Bishop.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black King.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black Knight.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black Pawn.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black Queen.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/Black Tower.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/default.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White Bishop.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White King.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White Knight.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White Pawn.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White Queen.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/ChessPieces/White Tower.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Actions/Eat.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Actions/Move.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Letters/A.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Letters/B.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Letters/C.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Letters/D.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Letters/E.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Letters/F.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Letters/G.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Letters/H.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Numbers/1.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Numbers/2.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Numbers/3.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Numbers/4.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Numbers/5.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Numbers/6.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Numbers/7.png</File>
-    <File>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Numbers/8.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/Black Bishop.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/Black King.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/Black Knight.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/Black Pawn.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/Black Queen.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/Black Tower.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/default.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/White Bishop.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/White King.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/White Knight.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/White Pawn.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/White Queen.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/White Tower.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Actions/Eat.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Actions/Move.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/A.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/B.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/C.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/D.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/E.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/F.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/G.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/H.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/1.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/2.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/3.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/4.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/5.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/6.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/7.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/8.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

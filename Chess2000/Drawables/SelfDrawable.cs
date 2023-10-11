@@ -15,7 +15,7 @@ namespace Chess2000.Drawables
         protected SpriteBatch SpriteBatch { get; set; }
         protected ContentManager Content { get; set; }
 
-        public SelfDrawable(GraphicsDevice graphicsDevice, ContentManager content)
+        protected SelfDrawable(GraphicsDevice graphicsDevice, ContentManager content)
         {
             GraphicsDevice = graphicsDevice;
             Content = content;
