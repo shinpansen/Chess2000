@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Chess2000.Window
 {
-    internal class ViewPort
+    public class ViewPort
     {
         public int Width => _graphicsDevice.Viewport.Width;
         public int Height => _graphicsDevice.Viewport.Height;

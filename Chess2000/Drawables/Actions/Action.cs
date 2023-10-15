@@ -1,5 +1,6 @@
 ﻿using BoardGame.Movements;
 using BoardGame.Pieces;
+using Chess2000.Drawables.Chess;
 using Chess2000.Window;
 using Chess2000.Window.Chess;
 using Microsoft.Xna.Framework;
@@ -11,22 +12,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess2000.Drawables.Chess.Actions
+namespace Chess2000.Drawables.Actions
 {
-    internal abstract class Action : ChessDrawable, IClickable
+    public abstract class Action : ChessDrawable, IClickable
     {
         public override int DrawOrder => 1;
-        public override bool Visible => true;
         public override event EventHandler<EventArgs> DrawOrderChanged;
         public override event EventHandler<EventArgs> VisibleChanged;
         public bool IsSelected { get; set; }
         public string Location { get; private set; }
         public IPiece Piece { get; private set; }
         public IMovement Move { get; private set; }
-        
+
         protected Texture2D Texture2D { get; init; }
 
-        protected Action(DrawTools drawTools, string location, IPiece piece, IMovement move) : base(drawTools)
+        protected Action(GraphicsManager graphicsManager, string location, IPiece piece, IMovement move) : base(graphicsManager)
         {
             Location = location;
             Piece = piece;
@@ -41,7 +41,7 @@ namespace Chess2000.Drawables.Chess.Actions
             SpriteBatch.End();
         }
 
-        public bool IsClicked(Point point)
+        public bool Contains(Point point)
         {
             var rect = ChessBoardPositionFinder.GetRectangle(Location, ChessBoard.SquareSize);
             return rect.Contains(point);

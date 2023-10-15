@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Chess2000.Window
 {
-    internal interface IClickable
+    public interface IClickable
     {
         public bool IsSelected { get; set; }
-        public bool IsClicked(Point point);
+        public bool Contains(Point point);
     }
 }

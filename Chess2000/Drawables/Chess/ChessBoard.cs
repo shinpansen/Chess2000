@@ -12,20 +12,19 @@ using System.Threading.Tasks;
 
 namespace Chess2000.Drawables.Chess
 {
-    internal class ChessBoard :  ChessDrawable
+    public class ChessBoard : ChessDrawable
     {
         public const int SquareSize = 64;
         public override int DrawOrder => 0;
-        public override bool Visible => true;
         public override event EventHandler<EventArgs> DrawOrderChanged;
         public override event EventHandler<EventArgs> VisibleChanged;
-        
+
         private Texture2D _graySquare { get; set; }
         private Texture2D _purpleSquare { get; set; }
         private Dictionary<string, Texture2D> _lettersTextures { get; set; }
         private Dictionary<int, Texture2D> _numbersTextures { get; set; }
 
-        public ChessBoard(DrawTools drawTools) : base(drawTools)
+        public ChessBoard(GraphicsManager graphicsManager) : base(graphicsManager)
         {
             _graySquare = new Texture2D(GraphicsDevice, 1, 1);
             _graySquare.SetData(new[] { Color.Gray });
@@ -44,13 +43,13 @@ namespace Chess2000.Drawables.Chess
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch.Begin();
-            foreach(string column in ChessSquareLocation.AvailableColumns)
+            foreach (string column in ChessSquareLocation.AvailableColumns)
             {
                 DrawColumnLetter(column);
                 int columnInt = Array.IndexOf(ChessSquareLocation.AvailableColumns, column);
                 for (int row = 1; row <= 8; row++)
                 {
-                    SpriteBatch.Draw((row + columnInt) % 2 == 0 ? _graySquare : _purpleSquare, 
+                    SpriteBatch.Draw((row + columnInt) % 2 == 0 ? _graySquare : _purpleSquare,
                         ChessBoardPositionFinder.GetRectangle(column + row, SquareSize), MyGame.TransparencyColor);
                     if (column == ChessSquareLocation.AvailableColumns.First()) DrawRowNumber(row);
                 }

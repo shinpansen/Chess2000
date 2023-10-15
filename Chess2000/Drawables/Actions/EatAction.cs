@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess2000.Drawables.Chess.Actions
+namespace Chess2000.Drawables.Actions
 {
-    internal class EatAction : Action
+    public class EatAction : Action
     {
-        public EatAction(DrawTools drawTools, string location, IPiece piece, IMovement move) : 
-            base(drawTools, location, piece, move)
+        public EatAction(GraphicsManager graphicsManager, string location, IPiece piece, IMovement move) :
+            base(graphicsManager, location, piece, move)
         {
             Texture2D = Content.Load<Texture2D>("UI/Actions/Eat");
         }

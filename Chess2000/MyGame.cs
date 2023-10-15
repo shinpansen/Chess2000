@@ -3,51 +3,66 @@ using BoardGame.SquaresLocation.Chess;
 using Chess2000.Actions;
 using Chess2000.Drawables.Chess;
 using Chess2000.Window;
+using Chess2000.Controls;
+using Chess2000.Drawables;
+using Chess2000.Window.Chess;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Linq;
-using Chess2000.Controls;
-using Chess2000.Drawables;
-using Chess2000.Window.Chess;
+using Chess2000.Drawables.Actions;
+using Chess2000.Drawables.UI;
 
 namespace Chess2000
 {
     public class MyGame : Game
     {
         public static readonly Color TransparencyColor = Color.Pink;
-        
-        public IEnumerable<IDrawable> GameDrawables => new List<IDrawable>(){_drawableBoard}
-            .Concat(_drawablePieces)
-            .Concat(_actions)
-            .Concat(_selections);
-        
+
+        public IEnumerable<IDrawable> GameDrawables => new List<IDrawable>() 
+        { 
+            _drawableBoard,
+            _cursor,
+            _selection,
+            _checkTargetHighlight,
+            _checkSourceHighlight
+        }
+        .Concat(_drawablePieces)
+        .Concat(_actions)
+        .Where(d => d is not null);
+
+        public IEnumerable<IClickable> GameClickables => new List<IClickable>().Concat(
+            _drawablePieces.Where(d => _chessGame.GetCurrentPlayers().First().GetAvailablePieces().Any(p => p == d.Piece)))
+            .Concat(_actions);
+
         private readonly GraphicsDeviceManager _graphics;
         private readonly BoardGame.Game.IGame _chessGame;
         private SpriteBatch _spriteBatch;
-        private DrawTools _drawTools;
+        private GraphicsManager _graphicsManager;
         private ViewPort _viewPort;
         private ChessBoard _drawableBoard;
         private ActionsProvider _actionsProvider;
         private List<Drawables.Chess.ChessPiece> _drawablePieces;
-        private List<Drawables.Chess.Actions.Action> _actions;
-        private List<Drawables.Chess.PieceSelection> _selections;
+        private List<Action> _actions;
+        private Cursor _cursor;
+        private PieceHighlight _selection;
+        private CheckTargetHighlight _checkTargetHighlight;
+        private CheckSourceHighlight _checkSourceHighlight;
         private MouseTools _mouseTools;
         private Point _mouseClickLocation;
 
         public MyGame()
         {
+            Content.RootDirectory = "Content";
+            IsMouseVisible = false;
+            Window.AllowUserResizing = true;
+
             _graphics = new GraphicsDeviceManager(this);
             _chessGame = new ChessGame();
             _drawablePieces = new List<Drawables.Chess.ChessPiece>();
-            _actions = new List<Drawables.Chess.Actions.Action>();
-            _selections = new List<PieceSelection>();
+            _actions = new List<Action>();
             _mouseTools = new MouseTools();
-
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
-            Window.AllowUserResizing = true;
         }
 
         protected override void Initialize()
@@ -63,9 +78,10 @@ namespace Chess2000
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _viewPort = new ViewPort(GraphicsDevice);
-            _drawTools = new DrawTools(GraphicsDevice, Content, _spriteBatch);
-            _drawableBoard = new ChessBoard(_drawTools);
-            _actionsProvider = new ActionsProvider(_drawTools);
+            _graphicsManager = new GraphicsManager(GraphicsDevice, Content, _spriteBatch);
+            _drawableBoard = new ChessBoard(_graphicsManager);
+            _actionsProvider = new ActionsProvider(_graphicsManager);
+            _cursor = new Cursor(_graphicsManager, this);
             UpdateDrawablePiecesList();
         }
 
@@ -81,14 +97,14 @@ namespace Chess2000
             var player = _chessGame.GetCurrentPlayers().First();
             foreach (var drawablePiece in _drawablePieces.Where(d =>  player.GetAvailablePieces().Any(p => d.Piece == p)))
             {
-                if (!leftButtonMouseClicked || !drawablePiece.IsClicked(_mouseClickLocation)) continue;
+                if (!leftButtonMouseClicked || !drawablePiece.Contains(_mouseClickLocation)) continue;
                 _actions.Clear();
-                _selections.Clear();
+                _selection?.Hide();
                 drawablePiece.IsSelected = !drawablePiece.IsSelected;
                 if (drawablePiece.IsSelected)
                 {
                     _actions = _actionsProvider.GetAvailableActions(_chessGame, drawablePiece.Piece);
-                    _selections.Add(new PieceSelection(_drawTools, drawablePiece.Piece.Location.ToString()));
+                    _selection = new PieceHighlight(_graphicsManager, drawablePiece.Piece.Location.ToString(), drawablePiece);
                     foreach (var d in _drawablePieces.Where(dr => dr != drawablePiece))
                         d.IsSelected = false;
                     break;
@@ -97,12 +113,13 @@ namespace Chess2000
 
             foreach (var action in _actions)
             {
-                if(leftButtonMouseClicked && action.IsClicked(_mouseClickLocation))
+                if(leftButtonMouseClicked && action.Contains(_mouseClickLocation))
                 {
                     _chessGame.ExecuteMove(action.Piece, action.Move);
                     UpdateDrawablePiecesList();
+                    UpdateCheckState();
                     _actions.Clear();
-                    _selections.Clear();
+                    _selection?.Hide();
                     break;
                 }
             }
@@ -124,9 +141,31 @@ namespace Chess2000
         {
             _drawablePieces.Clear();
             foreach (var piece in _chessGame.GetAvailablePlayers().ElementAt(0).GetAvailablePieces())
-                _drawablePieces.Add(new ChessPiece(_drawTools, piece, ChessPiece.PieceColor.White));
+                _drawablePieces.Add(new ChessPiece(_graphicsManager, piece, ChessPiece.PieceColor.White));
             foreach (var piece in _chessGame.GetAvailablePlayers().ElementAt(1).GetAvailablePieces())
-                _drawablePieces.Add(new ChessPiece(_drawTools, piece, ChessPiece.PieceColor.Black));
+                _drawablePieces.Add(new ChessPiece(_graphicsManager, piece, ChessPiece.PieceColor.Black));
+        }
+
+        private void UpdateCheckState()
+        {
+            _checkTargetHighlight?.Hide();
+            _checkSourceHighlight?.Hide();
+            var player = _chessGame.GetCurrentPlayers().ElementAt(0);
+            var otherPlayer = _chessGame.GetAvailablePlayers().Where(p => p != player).First();
+            foreach (var piece in otherPlayer.GetAvailablePieces())
+            {
+                var moves = piece.GetAvailableMoves(_chessGame);
+                foreach(var move in moves)
+                {
+                    if(!move.SimulateMove(_chessGame, player).Any(p => p is BoardGame.Pieces.Chess.IKing))
+                    {
+                        var king = player.GetAvailablePieces().First(p => p is BoardGame.Pieces.Chess.IKing);
+                        _checkTargetHighlight = new CheckTargetHighlight(_graphicsManager, king.Location.ToString());
+                        _checkSourceHighlight = new CheckSourceHighlight(_graphicsManager, piece.Location.ToString());
+                        return;
+                    }
+                }
+            }
         }
     }
 }

@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess2000.Drawables.Chess.Actions
+namespace Chess2000.Drawables.Actions
 {
-    internal class RockAction : Action
+    public class RockAction : Action
     {
-        public RockAction(DrawTools drawTools, string location, IPiece piece, IMovement move) : 
-            base(drawTools, location, piece, move)
+        public RockAction(GraphicsManager graphicsManager, string location, IPiece piece, IMovement move) :
+            base(graphicsManager, location, piece, move)
         {
             Texture2D = Content.Load<Texture2D>("UI/Actions/Rock");
         }

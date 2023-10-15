@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Chess2000.Drawables.Chess
 {
-    internal class ChessPiece : ChessDrawable, IClickable
+    public class ChessPiece : ChessDrawable, IClickable
     {
         public enum PieceColor
         {
@@ -18,13 +18,12 @@ namespace Chess2000.Drawables.Chess
         }
 
         public override int DrawOrder => 2;
-        public override bool Visible => true;
         public override event EventHandler<EventArgs> DrawOrderChanged;
         public override event EventHandler<EventArgs> VisibleChanged;
         public bool IsSelected { get; set; }
         public IPiece Piece { get; private set; }
+        public PieceColor Color { get; set; }
 
-        private PieceColor _pieceColor { get; set; }
         private Texture2D _texture2D {  get; set; }
         private readonly Dictionary<string, string> _texturesValues = new Dictionary<string, string>()
         {
@@ -36,12 +35,12 @@ namespace Chess2000.Drawables.Chess
             { "T", "Tower" }
         };
 
-        public ChessPiece(DrawTools drawTools, IPiece piece, PieceColor color = PieceColor.Black) : base(drawTools)
+        public ChessPiece(GraphicsManager graphicsManager, IPiece piece, PieceColor color = PieceColor.Black) : base(graphicsManager)
         {
             Piece = piece;
-            _pieceColor = color;
+            Color = color;
             _texture2D = _texturesValues.ContainsKey(piece.ToString()) ?
-                Content.Load<Texture2D>("ChessPieces/" + _pieceColor.ToString() + " " + _texturesValues[piece.ToString()]) :
+                Content.Load<Texture2D>("ChessPieces/" + Color.ToString() + " " + _texturesValues[piece.ToString()]) :
                 Content.Load<Texture2D>("ChessPieces/default");
         }
 
@@ -53,7 +52,7 @@ namespace Chess2000.Drawables.Chess
             SpriteBatch.End();
         }
 
-        public bool IsClicked(Point point)
+        public bool Contains(Point point)
         {
             var rect = ChessBoardPositionFinder.GetRectangle(Piece.Location.ToString(), ChessBoard.SquareSize);
             return rect.Contains(point);

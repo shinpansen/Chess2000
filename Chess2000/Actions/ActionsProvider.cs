@@ -3,7 +3,6 @@ using BoardGame.Movements;
 using BoardGame.Movements.Chess;
 using BoardGame.Pieces;
 using BoardGame.Players;
-using Chess2000.Drawables.Chess.Actions;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,41 +11,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Chess2000.Drawables;
-using static System.Collections.Specialized.BitVector32;
+using Chess2000.Drawables.Actions;
 
 namespace Chess2000.Actions
 {
-    internal class ActionsProvider
+    public class ActionsProvider
     {
-        private readonly DrawTools _dt;
+        private readonly GraphicsManager _graphicsManager;
 
-        public ActionsProvider(DrawTools drawTools)
+        public ActionsProvider(GraphicsManager graphicsManager)
         {
-            _dt = drawTools;
+            _graphicsManager = graphicsManager;
         }
 
-        public List<Drawables.Chess.Actions.Action> GetAvailableActions(IGame game, IPiece piece)
+        public List<Drawables.Actions.Action> GetAvailableActions(IGame game, IPiece piece)
         {
-            var actions = new List<Drawables.Chess.Actions.Action>();
+            var actions = new List<Drawables.Actions.Action>();
             piece.GetAvailableMoves(game).ForEach(move => actions.Add(GetAction(piece, move)));
 
             return actions;
         }
 
-        private Drawables.Chess.Actions.Action GetAction(IPiece piece, IMovement move)
+        private Drawables.Actions.Action GetAction(IPiece piece, IMovement move)
         {
             switch (move)
             {
                 case ChessMovementEat:
                 case ChessMovementEnPassant:
-                    return new EatAction(_dt, move.TargetLocation!.ToString(), piece, move);
+                    return new EatAction(_graphicsManager, move.TargetLocation!.ToString(), piece, move);
                 case ChessMovementRock:
-                    return new RockAction(_dt, move.TargetLocation!.ToString(), piece, move);
+                    return new RockAction(_graphicsManager, move.TargetLocation!.ToString(), piece, move);
                 case ChessMovementPawnDouble:
                 case ChessMovementBase:
-                    return new MoveAction(_dt, move.TargetLocation!.ToString(), piece, move);
+                    return new MoveAction(_graphicsManager, move.TargetLocation!.ToString(), piece, move);
                 default:
-                    return new MoveAction(_dt, move.TargetLocation!.ToString(), piece, move);
+                    return new MoveAction(_graphicsManager, move.TargetLocation!.ToString(), piece, move);
             }
         }
     }

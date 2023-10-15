@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Actions/Select.png</SourceFile>
-  <SourceTime>2023-10-13T00:28:55.1403713+02:00</SourceTime>
-  <DestFile>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/bin/DesktopGL/Content/UI/Actions/Select.xnb</DestFile>
-  <DestTime>2023-10-13T00:29:06.9104936+02:00</DestTime>
+  <SourceFile>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/UI/Actions/SelectWhite.png</SourceFile>
+  <SourceTime>2023-10-15T20:10:20.5896433+02:00</SourceTime>
+  <DestFile>C:/Users/shinpansen/Documents/MonoGames/Chess2000/Chess2000/Content/bin/DesktopGL/Content/UI/Actions/SelectWhite.xnb</DestFile>
+  <DestTime>2023-10-15T20:18:46.5537823+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
