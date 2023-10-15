@@ -12,10 +12,10 @@ namespace Chess2000.Drawables.Chess.Actions
 {
     internal class RockAction : Action
     {
-        public RockAction(GraphicsDevice graphicsDevice, ContentManager content, string location, IPiece piece, IMovement move) : 
-            base(graphicsDevice, content, location, piece, move)
+        public RockAction(DrawTools drawTools, string location, IPiece piece, IMovement move) : 
+            base(drawTools, location, piece, move)
         {
-            _texture2D = Content.Load<Texture2D>("UI/Actions/Rock");
+            Texture2D = Content.Load<Texture2D>("UI/Actions/Rock");
         }
     }
 }

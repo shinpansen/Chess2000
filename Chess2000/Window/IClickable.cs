@@ -9,6 +9,7 @@ namespace Chess2000.Window
 {
     internal interface IClickable
     {
+        public bool IsSelected { get; set; }
         public bool IsClicked(Point point);
     }
 }

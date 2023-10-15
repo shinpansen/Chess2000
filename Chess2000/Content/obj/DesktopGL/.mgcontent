@@ -17,25 +17,31 @@
     <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/White Pawn.png</File>
     <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/White Queen.png</File>
     <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/ChessPieces/White Tower.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Fonts/BoardFont.spritefont</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Letters/A.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Letters/B.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Letters/C.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Letters/D.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Letters/E.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Letters/F.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Letters/G.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Letters/H.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Numbers/1.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Numbers/2.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Numbers/3.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Numbers/4.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Numbers/5.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Numbers/6.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Numbers/7.png</File>
-    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/Numbers/8.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Actions/Eat.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Actions/Move.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Actions/Rock.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Actions/Select.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/A.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/B.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/C.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/D.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/E.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/F.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/G.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Letters/H.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/1.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/2.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/3.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/4.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/5.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/6.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/7.png</File>
+    <File>/home/shinpansen/Documents/MonoGame/Chess2000/Chess2000/Content/UI/Numbers/8.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

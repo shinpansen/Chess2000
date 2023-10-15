@@ -13,39 +13,38 @@ using System.Threading.Tasks;
 
 namespace Chess2000.Drawables.Chess.Actions
 {
-    internal abstract class Action : SelfDrawable, IDrawable, IClickable
+    internal abstract class Action : ChessDrawable, IClickable
     {
-        public int DrawOrder => 1;
-        public bool Visible => true;
-        public event EventHandler<EventArgs> DrawOrderChanged;
-        public event EventHandler<EventArgs> VisibleChanged;
+        public override int DrawOrder => 1;
+        public override bool Visible => true;
+        public override event EventHandler<EventArgs> DrawOrderChanged;
+        public override event EventHandler<EventArgs> VisibleChanged;
+        public bool IsSelected { get; set; }
         public string Location { get; private set; }
         public IPiece Piece { get; private set; }
         public IMovement Move { get; private set; }
+        
+        protected Texture2D Texture2D { get; init; }
 
-        protected Texture2D _texture2D { get; set; }
-
-        private Rectangle _rectangle { get; set; }
-
-        public Action(GraphicsDevice graphicsDevice, ContentManager content, string location, IPiece piece, IMovement move) : 
-            base(graphicsDevice, content)
+        protected Action(DrawTools drawTools, string location, IPiece piece, IMovement move) : base(drawTools)
         {
             Location = location;
             Piece = piece;
             Move = move;
-            _rectangle = new GameBoardLocation(GraphicsDevice, Location, ChessBoard.SquareSize).Rectangle;
         }
 
-        public void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             SpriteBatch.Begin();
-            SpriteBatch.Draw(_texture2D, _rectangle, MyGame.TransparencyColor);
+            var rect = ChessBoardPositionFinder.GetRectangle(Location, ChessBoard.SquareSize);
+            SpriteBatch.Draw(Texture2D, rect, MyGame.TransparencyColor);
             SpriteBatch.End();
         }
 
         public bool IsClicked(Point point)
         {
-            return _rectangle.Contains(point);
+            var rect = ChessBoardPositionFinder.GetRectangle(Location, ChessBoard.SquareSize);
+            return rect.Contains(point);
         }
     }
 }

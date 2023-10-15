@@ -12,10 +12,10 @@ namespace Chess2000.Drawables.Chess.Actions
 {
     internal class EatAction : Action
     {
-        public EatAction(GraphicsDevice graphicsDevice, ContentManager content, string location, IPiece piece, IMovement move) : 
-            base(graphicsDevice, content, location, piece, move)
+        public EatAction(DrawTools drawTools, string location, IPiece piece, IMovement move) : 
+            base(drawTools, location, piece, move)
         {
-            _texture2D = Content.Load<Texture2D>("UI/Actions/Eat");
+            Texture2D = Content.Load<Texture2D>("UI/Actions/Eat");
         }
     }
 }

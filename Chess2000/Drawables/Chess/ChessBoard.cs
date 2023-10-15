@@ -12,25 +12,24 @@ using System.Threading.Tasks;
 
 namespace Chess2000.Drawables.Chess
 {
-    internal class ChessBoard : SelfDrawable, IDrawable
+    internal class ChessBoard :  ChessDrawable
     {
         public const int SquareSize = 64;
-
-        public int DrawOrder => 0;
-        public bool Visible => true;
-        public event EventHandler<EventArgs> DrawOrderChanged;
-        public event EventHandler<EventArgs> VisibleChanged;
-
+        public override int DrawOrder => 0;
+        public override bool Visible => true;
+        public override event EventHandler<EventArgs> DrawOrderChanged;
+        public override event EventHandler<EventArgs> VisibleChanged;
+        
         private Texture2D _graySquare { get; set; }
         private Texture2D _purpleSquare { get; set; }
         private Dictionary<string, Texture2D> _lettersTextures { get; set; }
         private Dictionary<int, Texture2D> _numbersTextures { get; set; }
 
-        public ChessBoard(GraphicsDevice graphicsDevice, ContentManager content) : base(graphicsDevice, content)
+        public ChessBoard(DrawTools drawTools) : base(drawTools)
         {
-            _graySquare = new Texture2D(graphicsDevice, 1, 1);
+            _graySquare = new Texture2D(GraphicsDevice, 1, 1);
             _graySquare.SetData(new[] { Color.Gray });
-            _purpleSquare = new Texture2D(graphicsDevice, 1, 1);
+            _purpleSquare = new Texture2D(GraphicsDevice, 1, 1);
             _purpleSquare.SetData(new[] { Color.MediumPurple });
 
             _lettersTextures = new Dictionary<string, Texture2D>();
@@ -42,7 +41,7 @@ namespace Chess2000.Drawables.Chess
                 _numbersTextures.Add(number, Content.Load<Texture2D>("UI/Numbers/" + number));
         }
 
-        public void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             SpriteBatch.Begin();
             foreach(string column in ChessSquareLocation.AvailableColumns)
@@ -52,7 +51,7 @@ namespace Chess2000.Drawables.Chess
                 for (int row = 1; row <= 8; row++)
                 {
                     SpriteBatch.Draw((row + columnInt) % 2 == 0 ? _graySquare : _purpleSquare, 
-                        new GameBoardLocation(GraphicsDevice, column + row, SquareSize).Rectangle, MyGame.TransparencyColor);
+                        ChessBoardPositionFinder.GetRectangle(column + row, SquareSize), MyGame.TransparencyColor);
                     if (column == ChessSquareLocation.AvailableColumns.First()) DrawRowNumber(row);
                 }
             }
@@ -61,14 +60,14 @@ namespace Chess2000.Drawables.Chess
 
         private void DrawColumnLetter(string column)
         {
-            var rect = new GameBoardLocation(GraphicsDevice, column + "1", SquareSize).Rectangle;
+            var rect = ChessBoardPositionFinder.GetRectangle(column + "1", SquareSize);
             SpriteBatch.Draw(_lettersTextures[column],
                 new Rectangle(rect.X, rect.Y + SquareSize, SquareSize, SquareSize), MyGame.TransparencyColor);
         }
         private void DrawRowNumber(int row)
         {
             string firstColumn = ChessSquareLocation.AvailableColumns.First();
-            var rect = new GameBoardLocation(GraphicsDevice, firstColumn + row, SquareSize).Rectangle;
+            var rect = ChessBoardPositionFinder.GetRectangle(firstColumn + row, SquareSize);
             SpriteBatch.Draw(_numbersTextures[row],
                 new Rectangle(rect.X - SquareSize, rect.Y, SquareSize, SquareSize), MyGame.TransparencyColor);
         }

@@ -8,29 +8,42 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Linq;
+using Chess2000.Controls;
+using Chess2000.Drawables;
+using Chess2000.Window.Chess;
 
 namespace Chess2000
 {
     public class MyGame : Game
     {
         public static readonly Color TransparencyColor = Color.Pink;
-
-        private GraphicsDeviceManager _graphics { get; set; }
-        private SpriteBatch _spriteBatch { get; set; }
-
-        private BoardGame.Game.IGame _chessGame { get; set; }
-        private ViewPort _viewPort { get; set; }
-        private ChessBoard _drawableBoard { get; set; }
-        private ActionsProvider _actionsProvider { get; set; }
-        private List<Drawables.Chess.Actions.Action> _actions { get; set; }
-        private bool _leftButtonMouseClicked = false;
+        
+        public IEnumerable<IDrawable> GameDrawables => new List<IDrawable>(){_drawableBoard}
+            .Concat(_drawablePieces)
+            .Concat(_actions)
+            .Concat(_selections);
+        
+        private readonly GraphicsDeviceManager _graphics;
+        private readonly BoardGame.Game.IGame _chessGame;
+        private SpriteBatch _spriteBatch;
+        private DrawTools _drawTools;
+        private ViewPort _viewPort;
+        private ChessBoard _drawableBoard;
+        private ActionsProvider _actionsProvider;
+        private List<Drawables.Chess.ChessPiece> _drawablePieces;
+        private List<Drawables.Chess.Actions.Action> _actions;
+        private List<Drawables.Chess.PieceSelection> _selections;
+        private MouseTools _mouseTools;
         private Point _mouseClickLocation;
 
         public MyGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             _chessGame = new ChessGame();
+            _drawablePieces = new List<Drawables.Chess.ChessPiece>();
             _actions = new List<Drawables.Chess.Actions.Action>();
+            _selections = new List<PieceSelection>();
+            _mouseTools = new MouseTools();
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -50,8 +63,10 @@ namespace Chess2000
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _viewPort = new ViewPort(GraphicsDevice);
-            _drawableBoard = new ChessBoard(GraphicsDevice, Content);
-            _actionsProvider = new ActionsProvider(GraphicsDevice, Content);
+            _drawTools = new DrawTools(GraphicsDevice, Content, _spriteBatch);
+            _drawableBoard = new ChessBoard(_drawTools);
+            _actionsProvider = new ActionsProvider(_drawTools);
+            UpdateDrawablePiecesList();
         }
 
         protected override void Update(GameTime gameTime)
@@ -60,30 +75,34 @@ namespace Chess2000
                 Exit();*/
 
             MouseState mouseState = Mouse.GetState();
-            _leftButtonMouseClicked = false;
-            if (mouseState.LeftButton == ButtonState.Pressed)
-            {
-                _leftButtonMouseClicked = true;
-                _mouseClickLocation = new Point(mouseState.X, mouseState.Y);
-            }
+            _mouseClickLocation = new Point(mouseState.X, mouseState.Y);
+            var leftButtonMouseClicked = _mouseTools.IsButtonPressed(MouseTools.MouseButton.Left);
 
-            foreach (var piece in _chessGame.GetCurrentPlayers().First().GetAvailablePieces())
+            var player = _chessGame.GetCurrentPlayers().First();
+            foreach (var drawablePiece in _drawablePieces.Where(d =>  player.GetAvailablePieces().Any(p => d.Piece == p)))
             {
-                var drawable = new ChessPiece(GraphicsDevice, Content, piece);
-                if (_leftButtonMouseClicked && drawable.IsClicked(_mouseClickLocation))
+                if (!leftButtonMouseClicked || !drawablePiece.IsClicked(_mouseClickLocation)) continue;
+                _actions.Clear();
+                _selections.Clear();
+                drawablePiece.IsSelected = !drawablePiece.IsSelected;
+                if (drawablePiece.IsSelected)
                 {
-                    _actions.Clear();
-                    _actions = _actionsProvider.GetAvailableActions(_chessGame, piece);
+                    _actions = _actionsProvider.GetAvailableActions(_chessGame, drawablePiece.Piece);
+                    _selections.Add(new PieceSelection(_drawTools, drawablePiece.Piece.Location.ToString()));
+                    foreach (var d in _drawablePieces.Where(dr => dr != drawablePiece))
+                        d.IsSelected = false;
                     break;
                 }
             }
 
             foreach (var action in _actions)
             {
-                if(_leftButtonMouseClicked && action.IsClicked(_mouseClickLocation))
+                if(leftButtonMouseClicked && action.IsClicked(_mouseClickLocation))
                 {
                     _chessGame.ExecuteMove(action.Piece, action.Move);
+                    UpdateDrawablePiecesList();
                     _actions.Clear();
+                    _selections.Clear();
                     break;
                 }
             }
@@ -95,17 +114,19 @@ namespace Chess2000
         {
             GraphicsDevice.Clear(new Color(20, 20, 20));
 
-            _drawableBoard.Draw(gameTime);
-
-            foreach (var action in _actions)
-                action.Draw(gameTime);
-
-            foreach (var piece in _chessGame.GetAvailablePlayers().ElementAt(0).GetAvailablePieces())
-                new ChessPiece(GraphicsDevice, Content, piece, ChessPiece.PieceColor.White).Draw(gameTime);
-            foreach (var piece in _chessGame.GetAvailablePlayers().ElementAt(1).GetAvailablePieces())
-                new ChessPiece(GraphicsDevice, Content, piece, ChessPiece.PieceColor.Black).Draw(gameTime);
+            foreach (var gameDrawable in GameDrawables.Where(d => d.Visible).OrderBy(d => d.DrawOrder))
+                gameDrawable.Draw(gameTime);
 
             base.Draw(gameTime);
+        }
+
+        private void UpdateDrawablePiecesList()
+        {
+            _drawablePieces.Clear();
+            foreach (var piece in _chessGame.GetAvailablePlayers().ElementAt(0).GetAvailablePieces())
+                _drawablePieces.Add(new ChessPiece(_drawTools, piece, ChessPiece.PieceColor.White));
+            foreach (var piece in _chessGame.GetAvailablePlayers().ElementAt(1).GetAvailablePieces())
+                _drawablePieces.Add(new ChessPiece(_drawTools, piece, ChessPiece.PieceColor.Black));
         }
     }
 }

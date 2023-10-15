@@ -205,6 +205,18 @@
 /processorParam:TextureFormat=Color
 /build:UI/Actions/Rock.png
 
+#begin UI/Actions/Select.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/Actions/Select.png
+
 #begin UI/Letters/A.png
 /importer:TextureImporter
 /processor:TextureProcessor
